@@ -1,0 +1,18 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Matches paths written by uploadPatientDocument():
+    // patients/{patientId}/documents/{fileName}
+    match /patients/{patientId}/documents/{fileName} {
+      allow read, write: if request.auth != null && isOwnerOfPatient(patientId);
+    }
+
+    // Checks the Firestore patient doc's ownerId, same rule as firestore.rules,
+    // so a leaked/guessed Storage URL still can't be read without owning the record.
+    function isOwnerOfPatient(patientId) {
+      return firestore.get(/databases/(default)/documents/patients/$(patientId)).data.ownerId == request.auth.uid;
+    }
+  }
+}

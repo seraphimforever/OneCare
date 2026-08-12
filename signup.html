@@ -776,6 +776,17 @@ input::placeholder {
 }
 
 
+.signup-button:disabled {
+
+    opacity: .7;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
 /* =====================================================
    BOTTOM
 ===================================================== */
@@ -1296,7 +1307,12 @@ input::placeholder {
 </main>
 
 
-<script>
+<script type="module">
+
+import {
+    registerPatient
+} from "./database.js";
+
 
 /* =====================================================
    SHOW / HIDE PASSWORD
@@ -1329,12 +1345,16 @@ function togglePassword() {
 
 }
 
+// Expose to the inline onclick handlers, since this script is now a module
+// and module-scope functions aren't global by default.
+window.togglePassword = togglePassword;
+
 
 /* =====================================================
    CREATE ACCOUNT
 ===================================================== */
 
-function createAccount() {
+async function createAccount() {
 
     const firstName =
         document
@@ -1443,6 +1463,8 @@ function createAccount() {
 
 
     /* PASSWORD */
+    // Firebase Auth itself enforces a 6-character minimum, so this stays
+    // in sync with what the server will actually accept.
 
     if(password.length < 6) {
 
@@ -1472,43 +1494,8 @@ function createAccount() {
     }
 
 
-    /* =================================================
-       FRONTEND DEMO
-    ================================================= */
-
-    const patient = {
-
-        firstName:
-            firstName,
-
-        lastName:
-            lastName,
-
-        email:
-            email,
-
-        phone:
-            phone
-
-    };
-
-
-    /*
-       Save temporary frontend information.
-
-       Your backend team can replace this
-       with a secure registration API.
-    */
-
-    localStorage.setItem(
-        "onecarePatient",
-        JSON.stringify(patient)
-    );
-
-
     const button =
         document.querySelector(".signup-button");
-
 
     button.disabled = true;
 
@@ -1516,20 +1503,50 @@ function createAccount() {
         "Creating your account...";
 
 
-    setTimeout(function() {
+    try {
+
+        // Creates the Firebase Auth account AND the Firestore patient
+        // document (keyed by the new user's uid) in one step.
+        await registerPatient(email, password, {
+            firstName,
+            lastName,
+            email,
+            phone,
+        });
 
         alert(
             "Your OneCare account has been created!"
         );
 
-
         window.location.href =
             "patient-login.html";
 
+    } catch (error) {
 
-    }, 1000);
+        // Firebase's error codes (e.g. auth/email-already-in-use,
+        // auth/weak-password) are more useful to show than a generic failure.
+        let message = "Something went wrong creating your account. Please try again.";
+
+        if (error.code === "auth/email-already-in-use") {
+            message = "An account with this email already exists. Try signing in instead.";
+        } else if (error.code === "auth/invalid-email") {
+            message = "That email address doesn't look valid.";
+        } else if (error.code === "auth/weak-password") {
+            message = "Please choose a stronger password (at least 6 characters).";
+        }
+
+        alert(message);
+
+        button.disabled = false;
+
+        button.textContent =
+            "Create My OneCare Account →";
+
+    }
 
 }
+
+window.createAccount = createAccount;
 
 </script>
 

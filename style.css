@@ -1,0 +1,96 @@
+/* Accessible High-Contrast CSS Theme */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0fdf4; /* Soothing light green background */
+    color: #111827;
+    margin: 0;
+    padding: 20px;
+    font-size: 19px; /* Enhanced baseline font-size for clarity */
+}
+
+.portal-container {
+    max-width: 650px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border: 3px solid #16a34a; /* Solid borders to emphasize shapes */
+}
+
+h1 {
+    color: #15803d;
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #4b5563;
+    margin-bottom: 25px;
+}
+
+fieldset {
+    border: 2px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #fafafa;
+}
+
+legend {
+    font-weight: bold;
+    color: #16a34a;
+    padding: 0 10px;
+    font-size: 21px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 2px solid #9ca3af;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 18px; /* Large input text to ensure verification ease */
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #16a34a;
+    outline: 3px solid #bbf7d0;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #16a34a;
+    color: white;
+    padding: 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+    background-color: #15803d;
+}
+
+/* Success/Error Alerts styling */
+.status-alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.success { background-color: #dcfce7; color: #166534; border: 2px solid #16a34a; }
+.error { background-color: #fee2e2; color: #991b1b; border: 2px solid #dc2626; }
+.hidden { display: none; }

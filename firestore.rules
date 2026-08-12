@@ -1,0 +1,40 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Patients ----------
+    match /patients/{patientId} {
+
+      // Only the owner can read, update, or delete their own record.
+      allow read, update, delete: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+
+      // Only allow creating a record that's assigned to yourself —
+      // stops someone creating a doc and setting ownerId to someone else's uid.
+      allow create: if isSignedIn() && request.resource.data.ownerId == request.auth.uid;
+
+      // ---------- Subcollections ----------
+      // These don't store their own ownerId — they inherit access from the
+      // parent patient doc, so every entry doesn't need to duplicate it.
+      match /{subcollection}/{entryId} {
+        allow read, write: if isSignedIn() && isOwnerOfPatient(patientId);
+      }
+    }
+
+    // ---------- Doctors (read-only directory for patients) ----------
+    match /doctors/{doctorId} {
+      allow read: if isSignedIn();
+      // Doctor records are managed by an admin/backend process, not patients.
+      allow write: if false;
+    }
+
+    // ---------- Helpers ----------
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwnerOfPatient(patientId) {
+      return get(/databases/$(database)/documents/patients/$(patientId)).data.ownerId == request.auth.uid;
+    }
+  }
+}

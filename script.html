@@ -1,0 +1,29 @@
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+  import { getStorage } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-storage.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCMOsk4HMvIRvQRzB-IXq6Z8EmYJq4rI3Q",
+    authDomain: "onecare-2dbc8.firebaseapp.com",
+    projectId: "onecare-2dbc8",
+    storageBucket: "onecare-2dbc8.firebasestorage.app",
+    messagingSenderId: "880131894731",
+    appId: "1:880131894731:web:8c344e105366a5a1d5da4e",
+    measurementId: "G-BSTRV519XB"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  const storage = getStorage(app);
+
+  // Make available to other script tags on the page
+  window.db = db;
+  window.auth = auth;
+  window.storage = storage;
+</script>

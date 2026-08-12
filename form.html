@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HealthTech — Patient Portal</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --text: #1E293B;
+    --green: #10B981;
+    --teal: #0D9488;
+    --dark-teal: #0F766E;
+    --light: #F0FDFA;
+    --badge: #E6F4F1;
+    --border: #CBD5E1;
+    --white: #FFFFFF;
+    --muted: #64748B;
+    --sidebar: #123F4C;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #EEF7F6;
+    color: var(--text);
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 250px;
+    background: var(--sidebar);
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.logo {
+    padding: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.logo h1 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.logo p {
+    color: #B8D7D5;
+    font-size: 13px;
+}
+
+.patient-mini {
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.06);
+    margin: 15px;
+    border-radius: 10px;
+}
+
+.patient-mini-name {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.patient-mini-id {
+    font-size: 12px;
+    color: #B8D7D5;
+    margin-top: 5px;
+}
+
+.nav {
+    padding: 5px 10px 20px;
+}
+
+.nav-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8FB8B7;
+    padding: 15px 15px 8px;
+}
+
+.nav button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #D9EEEE;
+    text-align: left;
+    padding: 12px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 3px;
+    transition: 0.2s;
+}
+
+.nav button:hover {
+    background: rgba(16,185,129,0.15);
+}
+
+.nav button.active {
+    background: var(--teal);
+    color: white;
+    box-shadow: inset 4px 0 0 var(--green);
+}
+
+/* MAIN */
+
+.main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+}
+
+/* TOP BAR */
+
+.topbar {
+    height: 72px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.topbar-title h2 {
+    font-size: 20px;
+}
+
+.topbar-title p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+.patient-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.patient-selector label {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.patient-selector select {
+    min-width: 210px;
+}
+
+/* CONTENT */
+
+.content {
+    padding: 30px;
+    max-width: 1600px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-heading {
+    margin-bottom: 22px;
+}
+
+.page-heading h2 {
+    font-size: 25px;
+    margin-bottom: 6px;
+}
+
+.page-heading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* CARDS */
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 22px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(15,118,110,0.04);
+}
+
+.card-header {
+    padding: 15px 18px;
+    background: var(--light);
+    border-bottom: 1px solid #D6EDE9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header h3 {
+    font-size: 17px;
+    color: var(--dark-teal);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+    gap: 18px;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* FIELDS */
+
+.field {
+    margin-bottom: 4px;
+}
+
+.field label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+    color: #52727B;
+    margin-bottom: 7px;
+}
+
+.field-value {
+    min-height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 12px;
+    background: #FCFEFE;
+    font-size: 14px;
+}
+
+input,
+select,
+textarea {
+    font-family: inherit;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 12px;
+    outline: none;
+    font-size: 14px;
+    color: var(--text);
+    background: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 2px rgba(13,148,136,0.08);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 180px;
+}
+
+/* BADGES */
+
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: var(--badge);
+    color: var(--dark-teal);
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.badge.green {
+    background: #DCFCE7;
+    color: #15803D;
+}
+
+.badge.yellow {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+/* BUTTONS */
+
+.btn {
+    border: none;
+    border-radius: 7px;
+    padding: 9px 14px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.btn-primary {
+    background: var(--teal);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--dark-teal);
+}
+
+.btn-green {
+    background: var(--green);
+    color: white;
+}
+
+.btn-outline {
+    background: white;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+}
+
+.btn-outline:hover {
+    background: var(--light);
+}
+
+/* TABLE */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+th {
+    background: #F7FAFA;
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    color: #52727B;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #E7EEEE;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* STATS */
+
+.stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.stat-number {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--dark-teal);
+}
+
+.stat-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+/* TIMELINE */
+
+.timeline {
+    position: relative;
+    padding-left: 25px;
+}
+
+.timeline-item {
+    position: relative;
+    padding: 0 0 24px 20px;
+    border-left: 2px solid #B8DDD8;
+}
+
+.timeline-item:last-child {
+    border-left: none;
+}
+
+.timeline-item::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: var(--green);
+    border-radius: 50%;
+    position: absolute;
+    left: -6px;
+    top: 3px;
+}
+
+.timeline-date {
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.timeline-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.timeline-text {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* DOCUMENTS */
+
+.report-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #FCFEFE;
+}
+
+.report-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.file-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
+    background: var(--badge);
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.report-name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.report-meta {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.report-buttons {
+    display: flex;
+    gap: 7px;
+}
+
+/* SEARCH */
+
+.search-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.search-row input {
+    max-width: 350px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1000px) {
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 750px) {
+    .sidebar {
+        width: 210px;
+    }
+
+    .main {
+        margin-left: 210px;
+        width: calc(100% - 210px);
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .patient-selector label {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <h1>HealthTech</h1>
+        <p>Patient Information Portal</p>
+    </div>
+
+    <div class="patient-mini">
+        <div class="patient-mini-name" id="sidebarPatientName">
+            Owein Fernando
+        </div>
+
+        <div class="patient-mini-id" id="sidebarPatientID">
+            Patient ID: HT-00124
+        </div>
+    </div>
+
+    <nav class="nav">
+
+        <div class="nav-title">Patient</div>
+
+        <button class="nav-btn active"
+                onclick="showPage('personal', this)">
+            Personal Info
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('general', this)">
+            General Questions
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('lab', this)">
+            Lab Results
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('medical', this)">
+            Medical Records
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('physical', this)">
+            Physical Reports
+        </button>
+
+        <div class="nav-title">History</div>
+
+        <button class="nav-btn"
+                onclick="showPage('family', this)">
+            Family History
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('neurological', this)">
+            Neurological
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('pulmonary', this)">
+            Pulmonary
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('cardiology', this)">
+            Cardiology
+        </button>
+
+        <div class="nav-title">Doctor</div>
+
+        <button class="nav-btn"
+                onclick="showPage('notes', this)">
+            Doctor's Notes
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('files', this)">
+            Documents
+        </button>
+
+    </nav>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+<header class="topbar">
+
+    <div class="topbar-title">
+        <h2 id="topTitle">Personal Information</h2>
+        <p>Patient management and medical records</p>
+    </div>
+
+    <div class="patient-selector">
+
+        <label>Patient:</label>
+
+        <select id="patientSelect"
+                onchange="changePatient()">
+
+            <option value="0">
+                Owein Fernando — HT-00124
+            </option>
+
+            <option value="1">
+                Daniel Perera — HT-00125
+            </option>
+
+        </select>
+
+    </div>
+
+</header>
+
+
+<div class="content">
+
+
+<!-- PERSONAL INFORMATION -->
+
+<section class="page active" id="personal">
+
+    <div class="page-heading">
+        <h2>Personal Information</h2>
+        <p>Basic information about the selected patient.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Patient Information</h3>
+            <span class="badge green">Active Patient</span>
+        </div>
+
+        <div class="card-body">
+
+            <div class="grid grid-3">
+
+                <div class="field">
+                    <label>First Name</label>
+                    <div class="field-value" id="firstName"></div>
+                </div>
+
+                <div class="field">
+                    <label>Last Name</label>
+                    <div class="field-value" id="lastName"></div>
+                </div>
+
+                <div class="field">
+                    <label>Date of Birth</label>
+                    <div class="field-value" id="dob"></div>
+                </div>
+
+                <div class="field">
+                    <label>Gender</label>
+                    <div class="field-value" id="gender"></div>
+                </div>
+
+                <div class="field">
+                    <label>Marital Status</label>
+                    <div class="field-value" id="marital"></div>
+                </div>
+
+                <div class="field">
+                    <label>Blood Type</label>
+                    <div class="field-value" id="blood"></div>
+                </div>
+
+                <div class="field">
+                    <label>Phone Number</label>
+                    <div class="field-value" id="phone"></div>
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <div class="field-value" id="email"></div>
+                </div>
+
+                <div class="field">
+                    <label>Occupation</label>
+                    <div class="field-value" id="occupation"></div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="field">
+                <label>Address</label>
+                <div class="field-value" id="address"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GENERAL QUESTIONS -->
+
+<section class="page" id="general">
+
+    <div class="page-heading">
+        <h2>General Questions</h2>
+        <p>General health and lifestyle information.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>General Health</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="grid grid-3">
+
+                <div class="field">
+                    <label>General Health</label>
+                    <div class="field-value" id="health"></div>
+                </div>
+
+                <div class="field">
+                    <label>Exercise Regularly</label>
+                    <div class="field-value" id="exercise"></div>
+                </div>
+
+                <div class="field">
+                    <label>Smoking</label>
+                    <div class="field-value" id="smoking"></div>
+                </div>
+
+                <div class="field">
+                    <label>Allergies</label>
+                    <div class="field-value" id="allergies"></div>
+                </div>
+
+                <div class="field">
+                    <label>Sleep</label>
+                    <div class="field-value" id="sleep"></div>
+                </div>
+
+                <div class="field">
+                    <label>Diet</label>
+                    <div class="field-value" id="diet"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LAB RESULTS -->
+
+<section class="page" id="lab">
+
+    <div class="page-heading">
+        <h2>Lab Results</h2>
+        <p>Laboratory test results for the selected patient.</p>
+    </div>
+
+    <div class="grid grid-4">
+
+        <div class="stat-card">
+            <div class="stat-label">Total Tests</div>
+            <div class="stat-number" id="totalTests">8</div>
+            <div class="stat-sub">Latest laboratory panel</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Normal</div>
+            <div class="stat-number" id="normalTests">6</div>
+            <div class="stat-sub">Within reference range</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Attention</div>
+            <div class="stat-number" id="attentionTests">2</div>
+            <div class="stat-sub">Review recommended</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Last Updated</div>
+            <div class="stat-number"
+                 style="font-size:18px"
+                 id="labDate">
+                10 Aug 2026
+            </div>
+            <div class="stat-sub">Latest report</div>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Laboratory Results</h3>
+            <span class="badge">Latest Panel</span>
+        </div>
+
+        <div class="card-body">
+
+            <div class="search-row">
+
+                <input
+                    type="text"
+                    id="labSearch"
+                    placeholder="Search test name..."
+                    onkeyup="filterLabs()"
+                >
+
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Test</th>
+                            <th>Result</th>
+                            <th>Unit</th>
+                            <th>Reference Range</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="labTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MEDICAL RECORDS -->
+
+<section class="page" id="medical">
+
+    <div class="page-heading">
+        <h2>Medical Records</h2>
+        <p>Previous consultations, diagnoses and treatments.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Medical History</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="timeline"
+                 id="medicalTimeline">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PHYSICAL REPORTS -->
+
+<section class="page" id="physical">
+
+    <div class="page-heading">
+        <h2>Physical Reports</h2>
+        <p>Recent physical examination information.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Physical Examination</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="grid grid-3">
+
+                <div class="field">
+                    <label>Height</label>
+                    <div class="field-value" id="height"></div>
+                </div>
+
+                <div class="field">
+                    <label>Weight</label>
+                    <div class="field-value" id="weight"></div>
+                </div>
+
+                <div class="field">
+                    <label>Blood Pressure</label>
+                    <div class="field-value" id="bp"></div>
+                </div>
+
+                <div class="field">
+                    <label>Heart Rate</label>
+                    <div class="field-value" id="heartRate"></div>
+                </div>
+
+                <div class="field">
+                    <label>Temperature</label>
+                    <div class="field-value" id="temperature"></div>
+                </div>
+
+                <div class="field">
+                    <label>Oxygen Saturation</label>
+                    <div class="field-value" id="oxygen"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAMILY HISTORY -->
+
+<section class="page" id="family">
+
+    <div class="page-heading">
+        <h2>Family History</h2>
+        <p>Relevant family medical history.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Family Medical History</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Relation</th>
+                            <th>Condition</th>
+                            <th>Age Diagnosed</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="familyTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NEUROLOGICAL -->
+
+<section class="page" id="neurological">
+
+    <div class="page-heading">
+        <h2>Neurological</h2>
+        <p>Neurological examination and observations.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Neurological Assessment</h3>
+            <span class="badge green">Stable</span>
+        </div>
+
+        <div class="card-body">
+
+            <div class="grid grid-2">
+
+                <div class="field">
+                    <label>Consciousness</label>
+                    <div class="field-value" id="consciousness"></div>
+                </div>
+
+                <div class="field">
+                    <label>Orientation</label>
+                    <div class="field-value" id="orientation"></div>
+                </div>
+
+                <div class="field">
+                    <label>Reflexes</label>
+                    <div class="field-value" id="reflexes"></div>
+                </div>
+
+                <div class="field">
+                    <label>Motor Function</label>
+                    <div class="field-value" id="motor"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PULMONARY -->
+
+<section class="page" id="pulmonary">
+
+    <div class="page-heading">
+        <h2>Pulmonary</h2>
+        <p>Respiratory assessment information.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Respiratory Assessment</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="grid grid-3">
+
+                <div class="field">
+                    <label>Respiratory Rate</label>
+                    <div class="field-value" id="respRate"></div>
+                </div>
+
+                <div class="field">
+                    <label>Lung Sounds</label>
+                    <div class="field-value" id="lungSounds"></div>
+                </div>
+
+                <div class="field">
+                    <label>Breathing</label>
+                    <div class="field-value" id="breathing"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CARDIOLOGY -->
+
+<section class="page" id="cardiology">
+
+    <div class="page-heading">
+        <h2>Cardiology</h2>
+        <p>Cardiovascular assessment information.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Cardiovascular Assessment</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="grid grid-3">
+
+                <div class="field">
+                    <label>Heart Rate</label>
+                    <div class="field-value" id="cardioHR"></div>
+                </div>
+
+                <div class="field">
+                    <label>Rhythm</label>
+                    <div class="field-value" id="rhythm"></div>
+                </div>
+
+                <div class="field">
+                    <label>ECG</label>
+                    <div class="field-value" id="ecg"></div>
+                </div>
+
+                <div class="field">
+                    <label>Chest Pain</label>
+                    <div class="field-value" id="chestPain"></div>
+                </div>
+
+                <div class="field">
+                    <label>Peripheral Pulses</label>
+                    <div class="field-value" id="pulses"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DOCTOR'S NOTES -->
+
+<section class="page" id="notes">
+
+    <div class="page-heading">
+        <h2>Doctor's Notes</h2>
+        <p>Enter notes for the current consultation.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Consultation Notes</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="field">
+
+                <label>Doctor's Note</label>
+
+                <textarea
+                    id="doctorNote"
+                    placeholder="Enter doctor's observations, recommendations or follow-up notes here..."
+                ></textarea>
+
+            </div>
+
+            <br>
+
+            <button
+                class="btn btn-primary"
+                onclick="clearNote()">
+                Clear Note
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DOCUMENTS -->
+
+<section class="page" id="files">
+
+    <div class="page-heading">
+        <h2>Documents & Reports</h2>
+        <p>View or download patient-related documents.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header">
+            <h3>Available Documents</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div id="documentList"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</div>
+</main>
+
+</div>
+
+
+<script>
+
+/* PATIENT DATA */
+
+const patients = [
+
+{
+    firstName: "Owein",
+    lastName: "Fernando",
+    id: "HT-00124",
+    dob: "21 August 2002",
+    gender: "Male",
+    marital: "Single",
+    blood: "O+",
+    phone: "+94 77 123 4567",
+    email: "owein.demo@example.com",
+    occupation: "Student",
+    address: "Colombo, Sri Lanka",
+
+    health: "Good",
+    exercise: "Yes",
+    smoking: "No",
+    allergies: "No known allergies",
+    sleep: "7–8 hours",
+    diet: "Balanced diet",
+
+    height: "178 cm",
+    weight: "72 kg",
+    bp: "118 / 76 mmHg",
+    heartRate: "72 bpm",
+    temperature: "36.7 °C",
+    oxygen: "98%",
+
+    neurological: {
+        consciousness: "Alert and responsive",
+        orientation: "Fully oriented",
+        reflexes: "Normal",
+        motor: "Normal strength and coordination"
+    },
+
+    pulmonary: {
+        respRate: "16 breaths/min",
+        lungSounds: "Clear bilaterally",
+        breathing: "Normal"
+    },
+
+    cardiology: {
+        heartRate: "72 bpm",
+        rhythm: "Regular",
+        ecg: "Normal sinus rhythm",
+        chestPain: "None reported",
+        pulses: "Present and equal"
+    },
+
+    labs: [
+        ["Haemoglobin", "14.8", "g/dL", "13.0–17.0", "Normal"],
+        ["White Blood Cells", "7.2", "×10⁹/L", "4.0–11.0", "Normal"],
+        ["Platelets", "268", "×10⁹/L", "150–400", "Normal"],
+        ["Glucose", "92", "mg/dL", "70–99", "Normal"],
+        ["Creatinine", "0.9", "mg/dL", "0.7–1.3", "Normal"],
+        ["Total Cholesterol", "198", "mg/dL", "<200", "Normal"],
+        ["Vitamin D", "24", "ng/mL", "30–100", "Attention"],
+        ["LDL Cholesterol", "132", "mg/dL", "<100", "Attention"]
+    ],
+
+    medical: [
+        ["10 Aug 2026", "Routine Health Review", "General health assessment completed. No acute concerns."],
+        ["14 Jun 2026", "Blood Test", "Routine blood panel completed."],
+        ["02 Mar 2026", "Annual Physical", "General examination completed."],
+        ["18 Nov 2025", "Consultation", "Reported occasional headaches. Lifestyle advice provided."]
+    ],
+
+    family: [
+        ["Father", "Hypertension", "52", "Managed"],
+        ["Mother", "Type 2 Diabetes", "49", "Managed"],
+        ["Grandfather", "Heart Disease", "67", "Historical"]
+    ],
+
+    documents: [
+        {
+            name: "Complete Blood Count Report",
+            type: "PDF",
+            size: "184 KB",
+            content:
+`HealthTech Laboratory Report
+
+Patient: Owein Fernando
+Patient ID: HT-00124
+
+Complete Blood Count
+
+Haemoglobin: 14.8 g/dL
+White Blood Cells: 7.2 ×10⁹/L
+Platelets: 268 ×10⁹/L
+
+Demo document — not a real medical record.`
+        },
+
+        {
+            name: "Physical Examination Report",
+            type: "PDF",
+            size: "142 KB",
+            content:
+`Physical Examination Report
+
+Patient: Owein Fernando
+
+Blood Pressure: 118/76 mmHg
+Heart Rate: 72 bpm
+Temperature: 36.7 °C
+Oxygen Saturation: 98%
+
+Demo document — not a real medical record.`
+        },
+
+        {
+            name: "General Health Summary",
+            type: "TXT",
+            size: "8 KB",
+            content:
+`GENERAL HEALTH SUMMARY
+
+Patient: Owein Fernando
+
+Overall health: Good
+Exercise: Yes
+Smoking: No
+Allergies: No known allergies
+Sleep: 7–8 hours
+
+Demo data only.`
+        }
+    ]
+},
+
+
+{
+    firstName: "Daniel",
+    lastName: "Perera",
+    id: "HT-00125",
+    dob: "14 February 2001",
+    gender: "Male",
+    marital: "Single",
+    blood: "A+",
+    phone: "+94 76 987 3210",
+    email: "daniel.demo@example.com",
+    occupation: "Software Developer",
+    address: "Kandy, Sri Lanka",
+
+    health: "Very Good",
+    exercise: "Yes",
+    smoking: "No",
+    allergies: "Dust allergy",
+    sleep: "6–7 hours",
+    diet: "Mixed diet",
+
+    height: "174 cm",
+    weight: "69 kg",
+    bp: "122 / 79 mmHg",
+    heartRate: "76 bpm",
+    temperature: "36.6 °C",
+    oxygen: "99%",
+
+    neurological: {
+        consciousness: "Alert and responsive",
+        orientation: "Fully oriented",
+        reflexes: "Normal",
+        motor: "Normal"
+    },
+
+    pulmonary: {
+        respRate: "17 breaths/min",
+        lungSounds: "Clear bilaterally",
+        breathing: "Normal"
+    },
+
+    cardiology: {
+        heartRate: "76 bpm",
+        rhythm: "Regular",
+        ecg: "Normal sinus rhythm",
+        chestPain: "None reported",
+        pulses: "Present and equal"
+    },
+
+    labs: [
+        ["Haemoglobin", "15.1", "g/dL", "13.0–17.0", "Normal"],
+        ["White Blood Cells", "6.8", "×10⁹/L", "4.0–11.0", "Normal"],
+        ["Platelets", "291", "×10⁹/L", "150–400", "Normal"],
+        ["Glucose", "88", "mg/dL", "70–99", "Normal"],
+        ["Creatinine", "1.0", "mg/dL", "0.7–1.3", "Normal"],
+        ["Total Cholesterol", "187", "mg/dL", "<200", "Normal"],
+        ["Vitamin D", "34", "ng/mL", "30–100", "Normal"],
+        ["LDL Cholesterol", "104", "mg/dL", "<100", "Attention"]
+    ],
+
+    medical: [
+        ["05 Aug 2026", "Routine Review", "Routine health assessment completed."],
+        ["21 May 2026", "Allergy Consultation", "Discussed seasonal dust allergy symptoms."],
+        ["11 Jan 2026", "Blood Test", "Routine blood panel completed."],
+        ["04 Sep 2025", "Annual Physical", "General examination completed."]
+    ],
+
+    family: [
+        ["Father", "Hypertension", "55", "Managed"],
+        ["Mother", "No significant history", "—", "—"],
+        ["Grandmother", "Diabetes", "70", "Historical"]
+    ],
+
+    documents: [
+        {
+            name: "Laboratory Results",
+            type: "PDF",
+            size: "172 KB",
+            content:
+`LABORATORY RESULTS
+
+Patient: Daniel Perera
+Patient ID: HT-00125
+
+Haemoglobin: 15.1 g/dL
+WBC: 6.8 ×10⁹/L
+Platelets: 291 ×10⁹/L
+Glucose: 88 mg/dL
+
+Demo document — not a real medical record.`
+        },
+
+        {
+            name: "Cardiology Report",
+            type: "PDF",
+            size: "126 KB",
+            content:
+`CARDIOLOGY REPORT
+
+Patient: Daniel Perera
+
+Heart Rate: 76 bpm
+Rhythm: Regular
+ECG: Normal sinus rhythm
+Chest Pain: None reported
+
+Demo document — not a real medical record.`
+        },
+
+        {
+            name: "Health Summary",
+            type: "TXT",
+            size: "7 KB",
+            content:
+`HEALTH SUMMARY
+
+Patient: Daniel Perera
+
+Overall health: Very Good
+Exercise: Yes
+Smoking: No
+Allergy: Dust
+
+Demo data only.`
+        }
+    ]
+}
+
+];
+
+
+/* PAGE TITLES */
+
+const pageTitles = {
+    personal: "Personal Information",
+    general: "General Questions",
+    lab: "Lab Results",
+    medical: "Medical Records",
+    physical: "Physical Reports",
+    family: "Family History",
+    neurological: "Neurological",
+    pulmonary: "Pulmonary",
+    cardiology: "Cardiology",
+    notes: "Doctor's Notes",
+    files: "Documents & Reports"
+};
+
+
+/* NAVIGATION */
+
+function showPage(pageID, button) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageID).classList.add("active");
+
+    document.querySelectorAll(".nav-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    if (button) {
+        button.classList.add("active");
+    }
+
+    document.getElementById("topTitle").textContent =
+        pageTitles[pageID];
+}
+
+
+/* CHANGE PATIENT */
+
+function changePatient() {
+
+    const index =
+        document.getElementById("patientSelect").value;
+
+    loadPatient(index);
+}
+
+
+/* LOAD PATIENT */
+
+function loadPatient(index) {
+
+    const p = patients[index];
+
+    document.getElementById("sidebarPatientName").textContent =
+        p.firstName + " " + p.lastName;
+
+    document.getElementById("sidebarPatientID").textContent =
+        "Patient ID: " + p.id;
+
+    document.getElementById("firstName").textContent = p.firstName;
+    document.getElementById("lastName").textContent = p.lastName;
+    document.getElementById("dob").textContent = p.dob;
+    document.getElementById("gender").textContent = p.gender;
+    document.getElementById("marital").textContent = p.marital;
+    document.getElementById("blood").textContent = p.blood;
+    document.getElementById("phone").textContent = p.phone;
+    document.getElementById("email").textContent = p.email;
+    document.getElementById("occupation").textContent = p.occupation;
+    document.getElementById("address").textContent = p.address;
+
+    document.getElementById("health").textContent = p.health;
+    document.getElementById("exercise").textContent = p.exercise;
+    document.getElementById("smoking").textContent = p.smoking;
+    document.getElementById("allergies").textContent = p.allergies;
+    document.getElementById("sleep").textContent = p.sleep;
+    document.getElementById("diet").textContent = p.diet;
+
+    document.getElementById("height").textContent = p.height;
+    document.getElementById("weight").textContent = p.weight;
+    document.getElementById("bp").textContent = p.bp;
+    document.getElementById("heartRate").textContent = p.heartRate;
+    document.getElementById("temperature").textContent = p.temperature;
+    document.getElementById("oxygen").textContent = p.oxygen;
+
+    document.getElementById("consciousness").textContent =
+        p.neurological.consciousness;
+
+    document.getElementById("orientation").textContent =
+        p.neurological.orientation;
+
+    document.getElementById("reflexes").textContent =
+        p.neurological.reflexes;
+
+    document.getElementById("motor").textContent =
+        p.neurological.motor;
+
+    document.getElementById("respRate").textContent =
+        p.pulmonary.respRate;
+
+    document.getElementById("lungSounds").textContent =
+        p.pulmonary.lungSounds;
+
+    document.getElementById("breathing").textContent =
+        p.pulmonary.breathing;
+
+    document.getElementById("cardioHR").textContent =
+        p.cardiology.heartRate;
+
+    document.getElementById("rhythm").textContent =
+        p.cardiology.rhythm;
+
+    document.getElementById("ecg").textContent =
+        p.cardiology.ecg;
+
+    document.getElementById("chestPain").textContent =
+        p.cardiology.chestPain;
+
+    document.getElementById("pulses").textContent =
+        p.cardiology.pulses;
+
+    loadLabs(p);
+    loadMedical(p);
+    loadFamily(p);
+    loadDocuments(p);
+}
+
+
+/* LAB RESULTS */
+
+function loadLabs(patient) {
+
+    const table =
+        document.getElementById("labTable");
+
+    table.innerHTML = "";
+
+    let normal = 0;
+    let attention = 0;
+
+    patient.labs.forEach(row => {
+
+        if (row[4] === "Normal") {
+            normal++;
+        } else {
+            attention++;
+        }
+
+        const tr =
+            document.createElement("tr");
+
+        const statusClass =
+            row[4] === "Normal"
+            ? "green"
+            : "yellow";
+
+        tr.innerHTML = `
+            <td>${row[0]}</td>
+            <td><strong>${row[1]}</strong></td>
+            <td>${row[2]}</td>
+            <td>${row[3]}</td>
+            <td>
+                <span class="badge ${statusClass}">
+                    ${row[4]}
+                </span>
+            </td>
+        `;
+
+        table.appendChild(tr);
+    });
+
+    document.getElementById("totalTests").textContent =
+        patient.labs.length;
+
+    document.getElementById("normalTests").textContent =
+        normal;
+
+    document.getElementById("attentionTests").textContent =
+        attention;
+}
+
+
+/* FILTER LABS */
+
+function filterLabs() {
+
+    const search =
+        document.getElementById("labSearch")
+        .value
+        .toLowerCase();
+
+    document.querySelectorAll("#labTable tr")
+        .forEach(row => {
+
+            row.style.display =
+                row.textContent
+                .toLowerCase()
+                .includes(search)
+                ? ""
+                : "none";
+
+        });
+}
+
+
+/* MEDICAL HISTORY */
+
+function loadMedical(patient) {
+
+    const container =
+        document.getElementById("medicalTimeline");
+
+    container.innerHTML = "";
+
+    patient.medical.forEach(item => {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "timeline-item";
+
+        div.innerHTML = `
+            <div class="timeline-date">${item[0]}</div>
+            <div class="timeline-title">${item[1]}</div>
+            <div class="timeline-text">${item[2]}</div>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+
+/* FAMILY HISTORY */
+
+function loadFamily(patient) {
+
+    const table =
+        document.getElementById("familyTable");
+
+    table.innerHTML = "";
+
+    patient.family.forEach(row => {
+
+        const tr =
+            document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${row[0]}</td>
+            <td>${row[1]}</td>
+            <td>${row[2]}</td>
+            <td>
+                <span class="badge">
+                    ${row[3]}
+                </span>
+            </td>
+        `;
+
+        table.appendChild(tr);
+    });
+}
+
+
+/* DOCUMENTS */
+
+function loadDocuments(patient) {
+
+    const container =
+        document.getElementById("documentList");
+
+    container.innerHTML = "";
+
+    patient.documents.forEach((doc, index) => {
+
+        const item =
+            document.createElement("div");
+
+        item.className = "report-item";
+
+        item.innerHTML = `
+
+            <div class="report-left">
+
+                <div class="file-icon">
+                    ${doc.type}
+                </div>
+
+                <div>
+
+                    <div class="report-name">
+                        ${doc.name}
+                    </div>
+
+                    <div class="report-meta">
+                        ${doc.type} • ${doc.size}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="report-buttons">
+
+                <button
+                    class="btn btn-outline"
+                    onclick="viewDocument(${index})">
+                    View
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="downloadDocument(${index})">
+                    Download
+                </button>
+
+            </div>
+        `;
+
+        container.appendChild(item);
+    });
+}
+
+
+/* VIEW DOCUMENT */
+
+function viewDocument(index) {
+
+    const patientIndex =
+        document.getElementById("patientSelect").value;
+
+    const doc =
+        patients[patientIndex].documents[index];
+
+    const newWindow =
+        window.open("", "_blank");
+
+    newWindow.document.write(`
+
+        <!DOCTYPE html>
+
+        <html>
+
+        <head>
+
+            <title>${doc.name}</title>
+
+            <style>
+
+                body {
+                    font-family: Arial;
+                    background: #F0FDFA;
+                    padding: 40px;
+                    color: #1E293B;
+                }
+
+                .document {
+                    max-width: 800px;
+                    margin: auto;
+                    background: white;
+                    padding: 40px;
+                    border-radius: 12px;
+                    border: 1px solid #CBD5E1;
+                }
+
+                h1 {
+                    color: #0F766E;
+                    margin-bottom: 25px;
+                }
+
+                pre {
+                    white-space: pre-wrap;
+                    line-height: 1.7;
+                    font-family: Arial;
+                }
+
+                .demo {
+                    margin-top: 30px;
+                    padding: 12px;
+                    background: #E6F4F1;
+                    border-radius: 7px;
+                    color: #0F766E;
+                    font-size: 13px;
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <div class="document">
+
+                <h1>${doc.name}</h1>
+
+                <pre>${doc.content}</pre>
+
+                <div class="demo">
+                    Fictional demo document — not a real medical record.
+                </div>
+
+            </div>
+
+        </body>
+
+        </html>
+    `);
+
+    newWindow.document.close();
+}
+
+
+/* DOWNLOAD DOCUMENT */
+
+function downloadDocument(index) {
+
+    const patientIndex =
+        document.getElementById("patientSelect").value;
+
+    const doc =
+        patients[patientIndex].documents[index];
+
+    const blob =
+        new Blob(
+            [doc.content],
+            { type: "text/plain" }
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const link =
+        document.createElement("a");
+
+    link.href = url;
+
+    link.download =
+        doc.name.replace(/\s+/g, "_") + ".txt";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+}
+
+
+/* CLEAR DOCTOR'S NOTE */
+
+function clearNote() {
+
+    document.getElementById("doctorNote").value = "";
+
+}
+
+
+/* INITIAL LOAD */
+
+loadPatient(0);
+
+</script>
+
+</body>
+</html>

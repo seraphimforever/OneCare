@@ -50,6 +50,12 @@
 
         --dark: #1E293B;
 
+        /* Fixed (non-flipping) ink — for elements that must stay
+           permanently dark regardless of the theme toggle, e.g. panels
+           that also pair with a fixed white surface. Unlike --dark,
+           this is intentionally NOT redefined inside body.dark. */
+        --ink: #1E293B;
+
         --green: #10B981;
 
         --teal: #0D9488;
@@ -2215,7 +2221,7 @@
             5px;
 
         background:
-            var(--dark);
+            var(--ink);
 
         border-radius:
             50%;
@@ -2826,7 +2832,7 @@
     .cura-section {
 
         background:
-            var(--dark);
+            var(--ink);
 
         color:
             white;
@@ -3407,7 +3413,7 @@
             7px;
 
         background:
-            var(--dark);
+            var(--ink);
 
         border-radius:
             50%;
@@ -3541,7 +3547,7 @@
             18px 20px;
 
         background:
-            var(--dark);
+            var(--ink);
 
         color:
             white;
@@ -5633,128 +5639,54 @@ hero.addEventListener(
 
 
 /* =====================================================
-   CURA
+ /* =====================================================
+   CURA AI
 ===================================================== */
 
-const curaButton =
-    document.getElementById(
-        "curaButton"
-    );
-
-
-const curaChat =
-    document.getElementById(
-        "curaChat"
-    );
-
-
-const chatClose =
-    document.getElementById(
-        "chatClose"
-    );
-
-
-const chatInput =
-    document.getElementById(
-        "chatInput"
-    );
-
-
-const chatSend =
-    document.getElementById(
-        "chatSend"
-    );
-
-
-const chatMessages =
-    document.getElementById(
-        "chatMessages"
-    );
-
-
-/* OPEN */
-
-curaButton.addEventListener(
-    "click",
-    function() {
-
-        curaChat.classList.toggle(
-            "open"
-        );
-
-
-        if (
-            curaChat.classList.contains(
-                "open"
-            )
-        ) {
-
-            setTimeout(
-                function() {
-
-                    chatInput.focus();
-
-                },
-                300
-            );
-
-        }
-
-    }
-);
-
-
-/* CLOSE */
-
-chatClose.addEventListener(
-    "click",
-    function() {
-
-        curaChat.classList.remove(
-            "open"
-        );
-
-    }
-);
+const curaButton = document.getElementById("curaButton");
+const curaChat = document.getElementById("curaChat");
+const chatClose = document.getElementById("chatClose");
+const chatInput = document.getElementById("chatInput");
+const chatSend = document.getElementById("chatSend");
+const chatMessages = document.getElementById("chatMessages");
 
 
 /* =====================================================
-   MESSAGE FUNCTION
+   OPEN CURA
 ===================================================== */
 
-function addMessage(
-    text,
-    user
-) {
+curaButton.addEventListener("click", function () {
+    window.location.href = "ai.html";
+});
 
 
-    const message =
-        document.createElement(
-            "div"
-        );
+/* =====================================================
+   CLOSE CURA
+===================================================== */
+
+chatClose.addEventListener("click", function () {
+
+    curaChat.classList.remove("open");
+
+});
 
 
-    message.className =
-        "message";
+/* =====================================================
+   ADD MESSAGE TO CHAT
+===================================================== */
 
+function addMessage(message, sender) {
 
-    if (user) {
+    const messageDiv = document.createElement("div");
 
-        message.classList.add(
-            "user"
-        );
-
-    }
-
-
-    message.textContent =
-        text;
-
-
-    chatMessages.appendChild(
-        message
+    messageDiv.classList.add(
+        "chat-message",
+        sender
     );
 
+    messageDiv.textContent = message;
+
+    chatMessages.appendChild(messageDiv);
 
     chatMessages.scrollTop =
         chatMessages.scrollHeight;
@@ -5763,137 +5695,110 @@ function addMessage(
 
 
 /* =====================================================
-   CURA DEMO BRAIN
+   CURA CHAT
 ===================================================== */
 
-function curaResponse(
-    text
-) {
+function curaResponse(text) {
 
-
-    const lower =
-        text.toLowerCase();
-
+    const lower = text.toLowerCase();
 
     if (
         lower.includes("hello") ||
         lower.includes("hi") ||
         lower.includes("hey")
     ) {
-
-        return "Hey! 👋 It's lovely to see you. I'm Cura, your OneCare companion. What can I help you with?";
-
+        return "Hey! 👋 I'm Cura, your OneCare companion. What can I help you with?";
     }
-
 
     if (
         lower.includes("record") ||
         lower.includes("history")
     ) {
-
         return "Your medical records and history will be available from your OneCare dashboard after you sign in. 💚";
-
     }
 
-
-    if (
-        lower.includes("doctor")
-    ) {
-
-        return "Your doctor can use your unique OneCare ID to request a temporary access session. You remain in control of the authorization.";
-
+    if (lower.includes("doctor")) {
+        return "Your doctor can use your unique OneCare ID to request temporary access. You remain in control of the authorization.";
     }
-
 
     if (
         lower.includes("otp") ||
         lower.includes("code") ||
         lower.includes("one time")
     ) {
-
-        return "The one-time code is designed for temporary authorized access. Your permanent password should never need to be shared with a doctor.";
-
+        return "Your one-time code is designed for temporary authorized access. Your permanent password should never need to be shared with a doctor.";
     }
-
 
     if (
         lower.includes("privacy") ||
         lower.includes("secure") ||
         lower.includes("security")
     ) {
-
         return "Privacy is one of OneCare's core ideas. The prototype is designed around giving you control over who can access your health information.";
-
     }
 
-
-    if (
-        lower.includes("onecare")
-    ) {
-
+    if (lower.includes("onecare")) {
         return "OneCare is your personal digital health space — Your Care. Once. Everywhere. ✨";
-
     }
 
-
-    if (
-        lower.includes("help")
-    ) {
-
+    if (lower.includes("help")) {
         return "Of course! I can explain OneCare, your health records, doctor access, your OneCare ID, privacy, or how the platform works.";
-
     }
 
-
-    return "I'm still learning! 💚 For this prototype, try asking me about your records, doctors, privacy, your OneCare ID, or one-time access.";
-
+    return "I'm still learning! 💚 Try asking me about your records, doctors, privacy, your OneCare ID, or one-time access.";
 }
 
 
 /* =====================================================
-   SEND
+   SEND CURA MESSAGE
 ===================================================== */
 
 function sendCuraMessage() {
 
+    const text = chatInput.value.trim();
 
-    const text =
-        chatInput.value.trim();
+    if (!text) return;
 
+    /* User message */
+    addMessage(text, true);
 
-    if (!text) {
+    chatInput.value = "";
 
-        return;
+    chatInput.disabled = true;
+    chatSend.disabled = true;
 
-    }
+    /* Cura thinking */
+    const thinking = document.createElement("div");
 
+    thinking.className = "message";
 
-    addMessage(
-        text,
-        true
-    );
+    thinking.textContent = "Cura is thinking...";
 
+    chatMessages.appendChild(thinking);
 
-    chatInput.value =
-        "";
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 
+    /* Cura response */
+    setTimeout(function () {
 
-    setTimeout(
-        function() {
+        thinking.remove();
 
+        addMessage(
+            curaResponse(text),
+            false
+        );
 
-            addMessage(
-                curaResponse(text),
-                false
-            );
+        chatInput.disabled = false;
+        chatSend.disabled = false;
+        chatInput.focus();
 
-
-        },
-        650
-    );
-
+    }, 650);
 }
 
+
+/* =====================================================
+   SEND BUTTON
+===================================================== */
 
 chatSend.addEventListener(
     "click",
@@ -5901,85 +5806,23 @@ chatSend.addEventListener(
 );
 
 
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
 chatInput.addEventListener(
     "keydown",
-    function(event) {
+    function (event) {
 
-        if (
-            event.key === "Enter"
-        ) {
+        if (event.key === "Enter" && !event.shiftKey) {
+
+            event.preventDefault();
 
             sendCuraMessage();
-
         }
 
     }
 );
-
-
-/* =====================================================
-   SMOOTH INTERNAL LINKS
-===================================================== */
-
-document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
-    .forEach(
-        function(link) {
-
-            link.addEventListener(
-                "click",
-                function(event) {
-
-
-                    const id =
-                        link.getAttribute(
-                            "href"
-                        );
-
-
-                    if (
-                        id === "#"
-                    ) {
-
-                        event.preventDefault();
-
-                        window.scrollTo({
-                            top: 0,
-                            behavior: "smooth"
-                        });
-
-                        return;
-
-                    }
-
-
-                    const target =
-                        document.querySelector(
-                            id
-                        );
-
-
-                    if (target) {
-
-                        event.preventDefault();
-
-
-                        target.scrollIntoView({
-                            behavior:
-                                "smooth"
-                        });
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
 </script>
 
 </body>

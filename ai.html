@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cura | OneCare AI Assistant</title>
+<title>Cura — OneCare</title>
+
+<meta
+    name="description"
+    content="Cura — your friendly healthcare assistant from OneCare."
+>
 
 <style>
 
-:root {
-    --dark: #1E293B;
-    --green: #10B981;
-    --teal: #0D9488;
-    --dark-teal: #0F766E;
-    --mint: #F0FDFA;
-    --soft-mint: #E6F4F1;
-    --border: #CBD5E1;
-    --white: #FFFFFF;
-    --light: #F8FAFC;
-    --muted: #475569;
-    --danger: #DC2626;
-}
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -31,108 +23,126 @@
     box-sizing: border-box;
 }
 
-body {
+html {
+    scroll-behavior: smooth;
+}
 
+body {
     min-height: 100vh;
 
     font-family:
-        Arial,
-        Helvetica,
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
         sans-serif;
 
     background:
-        linear-gradient(
-            135deg,
-            #F8FAFC,
-            #F0FDFA
-        );
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(16, 185, 129, 0.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(13, 148, 136, 0.15),
+            transparent 30%
+        ),
+        #f0fdfa;
 
-    color: var(--dark);
+    color: #1e293b;
 
+    overflow-x: hidden;
 }
 
 
-/* =========================
+/* =========================================================
    BACKGROUND
-========================= */
+========================================================= */
 
 .background {
-
     position: fixed;
 
     inset: 0;
 
-    overflow: hidden;
-
     pointer-events: none;
 
-    z-index: -1;
+    overflow: hidden;
 
+    z-index: 0;
 }
 
 .blob {
-
     position: absolute;
 
     border-radius: 50%;
 
-    filter: blur(10px);
+    filter: blur(70px);
 
-    animation:
-        float 10s ease-in-out infinite;
+    opacity: 0.35;
 
+    animation: floatBlob 12s ease-in-out infinite;
 }
 
-.blob.one {
+.blob-one {
+    width: 350px;
+    height: 350px;
 
-    width: 450px;
+    background: #10b981;
 
-    height: 450px;
-
-    left: -220px;
-
-    top: -180px;
-
-    background:
-        rgba(16,185,129,.10);
-
+    top: -150px;
+    left: -120px;
 }
 
-.blob.two {
+.blob-two {
+    width: 300px;
+    height: 300px;
 
-    width: 420px;
+    background: #0d9488;
 
-    height: 420px;
+    right: -100px;
+    top: 30%;
 
-    right: -180px;
-
-    bottom: -200px;
-
-    background:
-        rgba(13,148,136,.10);
-
-    animation-delay: 2s;
-
+    animation-delay: -4s;
 }
 
-@keyframes float {
+.blob-three {
+    width: 250px;
+    height: 250px;
 
-    0%,100% {
-        transform: translate(0,0);
+    background: #5eead4;
+
+    bottom: -120px;
+    left: 40%;
+
+    animation-delay: -8s;
+}
+
+@keyframes floatBlob {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
     }
 
     50% {
-        transform: translate(20px,-25px);
+        transform:
+            translate(30px, -35px)
+            scale(1.1);
     }
-
 }
 
 
-/* =========================
+/* =========================================================
    NAVBAR
-========================= */
+========================================================= */
 
 .navbar {
+    position: relative;
+
+    z-index: 10;
 
     height: 82px;
 
@@ -142,40 +152,34 @@ body {
 
     justify-content: space-between;
 
-    padding:
-        0 5%;
-
-    background:
-        rgba(255,255,255,.95);
+    padding: 0 6vw;
 
     border-bottom:
-        1px solid var(--border);
+        1px solid #cbd5e1;
 
+    background:
+        rgba(240, 253, 250, 0.78);
+
+    backdrop-filter: blur(20px);
 }
 
 .logo {
-
     display: flex;
 
     align-items: center;
 
     gap: 12px;
 
-    color: var(--dark);
+    font-size: 19px;
 
-    text-decoration: none;
+    font-weight: 800;
 
-    font-size: 27px;
-
-    font-weight: 900;
-
+    color: #1e293b;
 }
 
-.logo-mark {
-
-    width: 48px;
-
-    height: 48px;
+.logo-icon {
+    width: 42px;
+    height: 42px;
 
     display: flex;
 
@@ -185,185 +189,228 @@ body {
 
     border-radius: 14px;
 
-    color: white;
-
     background:
         linear-gradient(
             135deg,
-            var(--green),
-            var(--teal)
+            #10b981,
+            #0d9488
         );
 
-    box-shadow:
-        0 8px 20px
-        rgba(13,148,136,.20);
+    color: white;
 
+    font-size: 21px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(13, 148, 136, 0.25);
+
+    animation:
+        logoFloat 4s ease-in-out infinite;
 }
 
-.logo span {
-    color: var(--teal);
+@keyframes logoFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
 }
 
 .back-button {
+    display: inline-flex;
 
-    padding:
-        12px 18px;
+    align-items: center;
 
-    border-radius:
-        12px;
+    gap: 8px;
+
+    padding: 11px 17px;
 
     border:
-        1px solid var(--border);
+        1px solid #cbd5e1;
 
-    background:
-        white;
+    border-radius: 13px;
 
-    color:
-        var(--dark);
+    color: #1e293b;
 
-    text-decoration:
-        none;
+    background: white;
 
-    font-weight:
-        800;
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
 
     transition:
-        .2s;
-
+        0.25s ease;
 }
 
 .back-button:hover {
+    transform: translateY(-2px);
 
-    background:
-        var(--mint);
-
-    border-color:
-        var(--teal);
-
-    color:
-        var(--teal);
-
-}
-
-
-/* =========================
-   MAIN
-========================= */
-
-.main {
-
-    width:
-        min(1100px, 94%);
-
-    height:
-        calc(100vh - 120px);
-
-    min-height:
-        600px;
-
-    margin:
-        20px auto;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    background:
-        white;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        26px;
-
-    overflow:
-        hidden;
+    border-color: #10b981;
 
     box-shadow:
-        0 25px 70px
-        rgba(15,23,42,.10);
-
+        0 8px 25px
+        rgba(16, 185, 129, 0.12);
 }
 
 
-/* =========================
-   CURA HEADER
-========================= */
+/* =========================================================
+   MAIN
+========================================================= */
 
-.cura-header {
+.main {
+    position: relative;
+
+    z-index: 2;
 
     min-height:
-        105px;
+        calc(100vh - 82px);
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    flex-direction: column;
 
-    gap:
-        18px;
+    align-items: center;
 
     padding:
-        20px 28px;
-
-    border-bottom:
-        1px solid var(--border);
-
-    background:
-        linear-gradient(
-            135deg,
-            #FFFFFF,
-            #F0FDFA
-        );
-
+        55px 20px 70px;
 }
 
-.cura-logo {
 
-    width:
-        65px;
+/* =========================================================
+   HERO
+========================================================= */
 
-    height:
-        65px;
+.hero {
+    text-align: center;
 
-    flex-shrink:
-        0;
+    max-width: 760px;
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        20px;
-
-    font-size:
-        31px;
-
-    background:
-        var(--soft-mint);
-
-    border:
-        1px solid
-        #BFE8E0;
+    margin-bottom: 35px;
 
     animation:
-        gentleBounce 3s
-        ease-in-out infinite;
-
+        heroIn
+        0.8s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
 }
 
-@keyframes gentleBounce {
+@keyframes heroIn {
 
-    0%,100% {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        8px 13px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 100px;
+
+    background:
+        rgba(255, 255, 255, 0.75);
+
+    color: #0f766e;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+.eyebrow-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #10b981;
+
+    box-shadow:
+        0 0 12px
+        rgba(16, 185, 129, 0.7);
+
+    animation:
+        pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    50% {
+        opacity: 0.4;
+
+        transform:
+            scale(0.7);
+    }
+}
+
+.hero h1 {
+    font-size:
+        clamp(
+            45px,
+            7vw,
+            76px
+        );
+
+    line-height: 1;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 20px;
+
+    color: #1e293b;
+}
+
+.hero h1 span {
+    color: #0d9488;
+
+    display: inline-block;
+
+    animation:
+        titleFloat
+        4s
+        ease-in-out
+        infinite;
+}
+
+@keyframes titleFloat {
+
+    0%,
+    100% {
         transform:
             translateY(0);
     }
@@ -372,859 +419,966 @@ body {
         transform:
             translateY(-4px);
     }
-
 }
 
-.cura-info h1 {
+.hero p {
+    max-width: 600px;
 
-    font-size:
-        25px;
+    margin: auto;
 
-    margin-bottom:
-        5px;
+    color: #475569;
 
+    font-size: 15px;
+
+    line-height: 1.8;
 }
 
-.cura-info p {
 
-    color:
-        var(--muted);
+/* =========================================================
+   AI PANEL
+========================================================= */
 
-    font-size:
-        15px;
-
-}
-
-.online {
-
-    margin-left:
-        auto;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        7px;
-
-    padding:
-        9px 13px;
-
-    border-radius:
-        30px;
-
-    background:
-        var(--soft-mint);
-
-    color:
-        var(--dark-teal);
-
-    font-size:
-        14px;
-
-    font-weight:
-        800;
-
-}
-
-.online-dot {
-
+.ai-panel {
     width:
-        9px;
+        min(
+            920px,
+            100%
+        );
 
-    height:
-        9px;
+    height: 650px;
 
-    border-radius:
-        50%;
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 30px;
 
     background:
-        var(--green);
+        rgba(
+            255,
+            255,
+            255,
+            0.92
+        );
+
+    backdrop-filter:
+        blur(30px);
 
     box-shadow:
-        0 0 0 4px
-        rgba(16,185,129,.12);
-
-}
-
-
-/* =========================
-   CHAT AREA
-========================= */
-
-.chat {
-
-    flex:
-        1;
-
-    overflow-y:
-        auto;
-
-    padding:
-        30px;
-
-    scroll-behavior:
-        smooth;
-
-}
-
-.message-row {
-
-    display:
-        flex;
-
-    gap:
-        12px;
-
-    margin-bottom:
-        23px;
+        0 35px 90px
+        rgba(
+            15,
+            118,
+            110,
+            0.14
+        );
 
     animation:
-        messageAppear .35s
-        ease;
-
+        panelIn
+        0.9s
+        0.1s
+        both
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
 }
 
-@keyframes messageAppear {
+@keyframes panelIn {
 
     from {
-
-        opacity:
-            0;
+        opacity: 0;
 
         transform:
-            translateY(10px);
-
+            translateY(35px)
+            scale(0.97);
     }
 
     to {
-
-        opacity:
-            1;
+        opacity: 1;
 
         transform:
-            translateY(0);
-
+            translateY(0)
+            scale(1);
     }
-
 }
 
-.message-row.user {
 
-    justify-content:
-        flex-end;
+/* =========================================================
+   PANEL HEADER
+========================================================= */
 
-}
+.panel-header {
+    display: flex;
 
-.message-avatar {
+    align-items: center;
 
-    width:
-        40px;
-
-    height:
-        40px;
-
-    flex-shrink:
-        0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        13px;
-
-    background:
-        var(--soft-mint);
-
-    font-size:
-        20px;
-
-}
-
-.user-avatar {
-
-    background:
-        var(--dark);
-
-    color:
-        white;
-
-}
-
-.message {
-
-    max-width:
-        min(680px,75%);
+    justify-content: space-between;
 
     padding:
-        16px 19px;
+        20px 24px;
 
-    border-radius:
-        18px;
+    border-bottom:
+        1px solid #e2e8f0;
 
     background:
-        var(--light);
-
-    border:
-        1px solid
-        var(--border);
-
-    font-size:
-        17px;
-
-    line-height:
-        1.65;
-
+        rgba(
+            240,
+            253,
+            250,
+            0.7
+        );
 }
 
-.user .message {
+.assistant-info {
+    display: flex;
 
-    color:
-        white;
+    align-items: center;
+
+    gap: 13px;
+}
+
+.assistant-avatar {
+    position: relative;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
 
     background:
         linear-gradient(
             135deg,
-            var(--teal),
-            var(--dark-teal)
+            #10b981,
+            #0d9488
         );
 
-    border:
-        none;
+    color: white;
 
-    border-bottom-right-radius:
-        5px;
+    font-size: 23px;
 
+    box-shadow:
+        0 10px 30px
+        rgba(
+            13,
+            148,
+            136,
+            0.25
+        );
+
+    animation:
+        avatarFloat
+        4s
+        ease-in-out
+        infinite;
 }
 
-.assistant .message {
+@keyframes avatarFloat {
 
-    border-bottom-left-radius:
-        5px;
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
 
+    50% {
+        transform:
+            translateY(-3px);
+    }
 }
 
+.assistant-avatar::before {
+    content: "";
 
-/* =========================
-   QUICK QUESTIONS
-========================= */
+    position: absolute;
 
-.quick-area {
+    inset: -5px;
 
-    padding:
-        0 30px 15px;
-
-}
-
-.quick-title {
-
-    color:
-        #64748B;
-
-    font-size:
-        14px;
-
-    font-weight:
-        800;
-
-    margin-bottom:
-        9px;
-
-}
-
-.quick-buttons {
-
-    display:
-        flex;
-
-    gap:
-        9px;
-
-    flex-wrap:
-        wrap;
-
-}
-
-.quick-button {
+    border-radius: 19px;
 
     border:
         1px solid
-        var(--border);
+        rgba(
+            16,
+            185,
+            129,
+            0.4
+        );
 
-    background:
-        white;
+    animation:
+        avatarRing
+        3s
+        infinite;
+}
 
-    padding:
-        10px 14px;
+@keyframes avatarRing {
 
-    border-radius:
-        30px;
+    0% {
+        transform:
+            scale(1);
 
-    color:
-        var(--dark);
+        opacity: 0.7;
+    }
 
-    font-family:
-        inherit;
+    70% {
+        transform:
+            scale(1.2);
 
-    font-size:
-        14px;
+        opacity: 0;
+    }
 
-    cursor:
-        pointer;
+    100% {
+        opacity: 0;
+    }
+}
+
+.assistant-name {
+    font-size: 15px;
+
+    font-weight: 800;
+
+    color: #1e293b;
+}
+
+.assistant-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    margin-top: 4px;
+}
+
+.online-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #10b981;
+
+    box-shadow:
+        0 0 10px
+        rgba(
+            16,
+            185,
+            129,
+            0.7
+        );
+}
+
+.clear-button {
+    width: 38px;
+    height: 38px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    font-size: 18px;
 
     transition:
-        .2s;
-
+        0.25s;
 }
 
-.quick-button:hover {
-
-    background:
-        var(--mint);
+.clear-button:hover {
+    color: #0f766e;
 
     border-color:
-        var(--teal);
-
-    color:
-        var(--dark-teal);
+        #10b981;
 
     transform:
-        translateY(-1px);
-
+        rotate(-15deg);
 }
 
 
-/* =========================
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+.messages {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 28px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #cbd5e1
+        transparent;
+}
+
+.message-row {
+    display: flex;
+
+    animation:
+        messageIn
+        0.35s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
+}
+
+@keyframes messageIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.message-row.user {
+    justify-content: flex-end;
+}
+
+.message {
+    max-width: 72%;
+
+    padding:
+        14px 17px;
+
+    border-radius: 18px;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.message-row.ai .message {
+    background:
+        #f0fdfa;
+
+    border:
+        1px solid #d5eeea;
+
+    color: #1e293b;
+
+    border-bottom-left-radius: 5px;
+}
+
+.message-row.user .message {
+    background:
+        linear-gradient(
+            135deg,
+            #10b981,
+            #0d9488
+        );
+
+    color: white;
+
+    border-bottom-right-radius: 5px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(
+            13,
+            148,
+            136,
+            0.18
+        );
+}
+
+.message-label {
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    color: #0f766e;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
    TYPING
-========================= */
+========================================================= */
 
 .typing {
+    display: flex;
 
-    display:
-        flex;
+    gap: 5px;
 
-    gap:
-        5px;
-
-    align-items:
-        center;
-
+    align-items: center;
 }
 
 .typing span {
+    width: 7px;
+    height: 7px;
 
-    width:
-        7px;
-
-    height:
-        7px;
-
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     background:
-        var(--teal);
+        #0d9488;
 
     animation:
-        typing 1.2s
+        typing
+        1.2s
         infinite;
-
 }
 
 .typing span:nth-child(2) {
-    animation-delay: .15s;
+    animation-delay:
+        0.15s;
 }
 
 .typing span:nth-child(3) {
-    animation-delay: .3s;
+    animation-delay:
+        0.3s;
 }
 
 @keyframes typing {
 
-    0%,60%,100% {
+    0%,
+    60%,
+    100% {
         transform:
             translateY(0);
-        opacity:
-            .4;
+
+        opacity: 0.35;
     }
 
     30% {
         transform:
             translateY(-5px);
-        opacity:
-            1;
+
+        opacity: 1;
     }
-
 }
 
 
-/* =========================
-   INPUT
-========================= */
+/* =========================================================
+   SUGGESTIONS
+========================================================= */
 
-.input-area {
+.suggestions {
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
 
     padding:
-        18px 22px;
+        0 24px 14px;
 
-    border-top:
-        1px solid var(--border);
-
-    background:
-        white;
-
+    scrollbar-width: none;
 }
 
-.input-container {
+.suggestions::-webkit-scrollbar {
+    display: none;
+}
 
-    display:
-        flex;
-
-    align-items:
-        flex-end;
-
-    gap:
-        10px;
+.suggestion {
+    white-space: nowrap;
 
     padding:
-        8px;
+        9px 13px;
 
     border:
-        2px solid
-        var(--border);
+        1px solid #cbd5e1;
 
-    border-radius:
-        17px;
+    border-radius: 100px;
+
+    background:
+        #ffffff;
+
+    color: #475569;
+
+    font-size: 10px;
+
+    cursor: pointer;
 
     transition:
-        .2s;
-
+        0.25s;
 }
 
-.input-container:focus-within {
+.suggestion:hover {
+    color: #0f766e;
 
     border-color:
-        var(--teal);
+        #10b981;
+
+    background:
+        #e6f4f1;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-area {
+    padding:
+        16px 20px 18px;
+
+    border-top:
+        1px solid #e2e8f0;
+
+    background:
+        #ffffff;
+}
+
+.input-box {
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 9px;
+
+    padding:
+        7px 7px 7px 15px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 17px;
+
+    background:
+        #f8fafc;
+
+    transition:
+        0.25s;
+}
+
+.input-box:focus-within {
+    border-color:
+        #10b981;
 
     box-shadow:
-        0 0 0 4px
-        rgba(13,148,136,.10);
-
+        0 0 0 3px
+        rgba(
+            16,
+            185,
+            129,
+            0.08
+        );
 }
 
 textarea {
+    flex: 1;
 
-    flex:
-        1;
+    resize: none;
 
-    min-height:
-        45px;
+    max-height: 120px;
 
-    max-height:
-        140px;
+    border: 0;
 
-    resize:
-        none;
-
-    border:
-        none;
-
-    outline:
-        none;
-
-    padding:
-        11px;
-
-    font-family:
-        inherit;
-
-    font-size:
-        17px;
-
-    color:
-        var(--dark);
+    outline: none;
 
     background:
         transparent;
 
+    color:
+        #1e293b;
+
+    font-family:
+        inherit;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    padding:
+        8px 0;
 }
 
 textarea::placeholder {
     color:
-        #64748B;
+        #94a3b8;
 }
 
 .send-button {
+    width: 42px;
+    height: 42px;
 
-    width:
-        48px;
+    flex-shrink: 0;
 
-    height:
-        48px;
+    border: 0;
 
-    flex-shrink:
-        0;
-
-    border:
-        none;
-
-    border-radius:
-        13px;
-
-    color:
-        white;
+    border-radius: 13px;
 
     background:
         linear-gradient(
             135deg,
-            var(--green),
-            var(--teal)
+            #10b981,
+            #0d9488
         );
 
-    font-size:
-        20px;
+    color: white;
 
-    cursor:
-        pointer;
+    font-size: 20px;
+
+    cursor: pointer;
 
     transition:
-        .2s;
-
+        0.25s;
 }
 
 .send-button:hover {
-
     transform:
-        scale(1.05);
+        translateY(-2px);
 
+    box-shadow:
+        0 10px 25px
+        rgba(
+            16,
+            185,
+            129,
+            0.25
+        );
 }
 
 .send-button:disabled {
-
-    opacity:
-        .5;
+    opacity: 0.45;
 
     cursor:
         not-allowed;
 
     transform:
         none;
-
 }
 
-.disclaimer {
-
-    text-align:
-        center;
-
-    margin-top:
-        9px;
+.footer {
+    text-align: center;
 
     color:
-        #94A3B8;
+        #94a3b8;
 
-    font-size:
-        12px;
+    font-size: 9px;
 
+    margin-top: 9px;
+
+    letter-spacing: 0.4px;
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-@media(max-width:700px) {
+@media (max-width: 700px) {
 
     .navbar {
-
-        height:
-            70px;
-
         padding:
             0 18px;
-
-    }
-
-    .logo {
-
-        font-size:
-            22px;
-
-    }
-
-    .logo-mark {
-
-        width:
-            40px;
-
-        height:
-            40px;
-
     }
 
     .main {
-
-        width:
-            100%;
-
-        height:
-            calc(100vh - 80px);
-
-        min-height:
-            0;
-
-        margin:
-            10px 0;
-
-        border-radius:
-            20px;
-
-    }
-
-    .cura-header {
-
         padding:
-            15px;
-
-        min-height:
-            85px;
-
+            35px 12px 50px;
     }
 
-    .cura-logo {
-
-        width:
-            52px;
-
-        height:
-            52px;
-
-        font-size:
-            25px;
-
+    .hero h1 {
+        letter-spacing:
+            -2.5px;
     }
 
-    .cura-info h1 {
-
-        font-size:
-            21px;
-
-    }
-
-    .cura-info p {
-
+    .hero p {
         font-size:
             13px;
-
     }
 
-    .online {
+    .ai-panel {
+        height:
+            calc(
+                100vh - 280px
+            );
 
-        display:
-            none;
+        min-height:
+            520px;
 
+        border-radius:
+            23px;
     }
 
-    .chat {
-
+    .messages {
         padding:
             20px 15px;
-
     }
 
     .message {
-
         max-width:
             85%;
-
-        font-size:
-            16px;
-
     }
-
-    .quick-area {
-
-        padding:
-            0 15px 10px;
-
-    }
-
-    .quick-buttons {
-
-        flex-wrap:
-            nowrap;
-
-        overflow-x:
-            auto;
-
-        padding-bottom:
-            5px;
-
-    }
-
-    .quick-button {
-
-        flex-shrink:
-            0;
-
-    }
-
-    .input-area {
-
-        padding:
-            12px;
-
-    }
-
 }
 
+@media (max-width: 450px) {
 
-/* =========================
-   ACCESSIBILITY
-========================= */
+    .logo span {
+        display:
+            none;
+    }
 
-button:focus-visible,
-a:focus-visible,
-textarea:focus-visible {
+    .hero {
+        margin-bottom:
+            25px;
+    }
 
-    outline:
-        3px solid
-        rgba(13,148,136,.35);
+    .hero h1 {
+        font-size:
+            43px;
+    }
 
-    outline-offset:
-        2px;
-
+    .ai-panel {
+        height:
+            calc(
+                100vh - 250px
+            );
+    }
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
 <div class="background">
 
-    <div class="blob one"></div>
+    <div class="blob blob-one"></div>
 
-    <div class="blob two"></div>
+    <div class="blob blob-two"></div>
+
+    <div class="blob blob-three"></div>
 
 </div>
 
 
-<!-- NAVBAR -->
-
 <nav class="navbar">
 
-    <a
-        href="dashboard.html"
-        class="logo"
-    >
+    <div class="logo">
 
-        <div class="logo-mark">
-            ✚
+        <div class="logo-icon">
+            ✦
         </div>
 
-        One<span>Care</span>
+        <span>
+            OneCare
+        </span>
 
-    </a>
+    </div>
 
 
     <a
         href="dashboard.html"
         class="back-button"
     >
-        ← Dashboard
+        ← Back to dashboard
     </a>
 
 </nav>
 
 
-<!-- CHAT -->
-
 <main class="main">
 
 
-<!-- CURA HEADER -->
+<section class="hero">
 
-<header class="cura-header">
+    <div class="eyebrow">
 
+        <span class="eyebrow-dot"></span>
 
-<div class="cura-logo">
-    🧾
-</div>
+        ONECARE INTELLIGENCE
 
+    </div>
 
-<div class="cura-info">
 
     <h1>
-        Cura
+
+        Meet
+
+        <br>
+
+        <span>Cura.</span>
+
     </h1>
 
+
     <p>
-        Your personal OneCare assistant
+
+        Your friendly OneCare healthcare assistant.
+        Ask questions, understand healthcare information,
+        organise your records and get simple explanations
+        whenever you need them.
+
     </p>
 
+</section>
+
+
+
+<section class="ai-panel">
+
+
+<div class="panel-header">
+
+    <div class="assistant-info">
+
+        <div class="assistant-avatar">
+            ✦
+        </div>
+
+
+        <div>
+
+            <div class="assistant-name">
+                Cura
+            </div>
+
+
+            <div class="assistant-status">
+
+                <span class="online-dot"></span>
+
+                Online · Ready to help
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="clear-button"
+        id="clearButton"
+        title="Clear conversation"
+    >
+        ↺
+    </button>
+
 </div>
 
 
-<div class="online">
 
-    <div class="online-dot"></div>
-
-    Online
-
-</div>
-
-
-</header>
-
-
-<!-- MESSAGES -->
-
-<section
-    class="chat"
-    id="chat"
+<div
+    class="messages"
+    id="messages"
 >
+</div>
 
 
-<!-- INITIAL MESSAGE -->
 
-<div class="message-row assistant">
+<div class="suggestions">
 
-    <div class="message-avatar">
-        🧾
-    </div>
 
-    <div class="message">
+<button
+    class="suggestion"
+    data-message="What does hypertension mean?"
+>
+    🩺 Explain a medical term
+</button>
 
-        <strong>
-            Hey! How are you? 💚
-        </strong>
 
-        <br><br>
+<button
+    class="suggestion"
+    data-message="What information should I keep in my medical history?"
+>
+    📋 Organise my medical history
+</button>
 
-        I'm Cura, your personal OneCare
-        assistant. I'm here to help you
-        understand your health information,
-        find things in your OneCare account,
-        and make healthcare a little less
-        confusing.
 
-        <br><br>
+<button
+    class="suggestion"
+    data-message="What questions should I ask my doctor at my next appointment?"
+>
+    👨‍⚕️ Prepare for my appointment
+</button>
 
-        What can I help you with today?
 
-    </div>
+<button
+    class="suggestion"
+    data-message="Can you explain how OneCare can help me?"
+>
+    💚 How can OneCare help?
+</button>
+
+
+</div>
+
+
+
+<div class="input-area">
+
+
+<div class="input-box">
+
+
+<textarea
+    id="messageInput"
+    rows="1"
+    placeholder="Ask Cura anything..."
+></textarea>
+
+
+<button
+    class="send-button"
+    id="sendButton"
+>
+    ↑
+</button>
+
+
+</div>
+
+
+<div class="footer">
+
+    Cura by OneCare
+    <span>•</span>
+    Your Care. Once. Everywhere.
+
+</div>
+
 
 </div>
 
@@ -1232,395 +1386,284 @@ textarea:focus-visible {
 </section>
 
 
-<!-- QUICK QUESTIONS -->
-
-<div class="quick-area">
-
-    <div class="quick-title">
-        You can ask me...
-    </div>
-
-
-    <div class="quick-buttons">
-
-
-        <button
-            class="quick-button"
-            onclick="quickQuestion('What is in my medical history?')"
-        >
-            🩺 My medical history
-        </button>
-
-
-        <button
-            class="quick-button"
-            onclick="quickQuestion('When is my next appointment?')"
-        >
-            📅 My next appointment
-        </button>
-
-
-        <button
-            class="quick-button"
-            onclick="quickQuestion('Where are my medical documents?')"
-        >
-            📄 My documents
-        </button>
-
-
-        <button
-            class="quick-button"
-            onclick="quickQuestion('How does OneCare work?')"
-        >
-            💚 How does OneCare work?
-        </button>
-
-
-        <button
-            class="quick-button"
-            onclick="quickQuestion('I need help')"
-        >
-            ❓ I need help
-        </button>
-
-
-    </div>
-
-</div>
-
-
-<!-- INPUT -->
-
-<div class="input-area">
-
-
-<div class="input-container">
-
-
-<textarea
-    id="userInput"
-    placeholder="Ask Cura anything..."
-    rows="1"
-    onkeydown="handleKey(event)"
-></textarea>
-
-
-<button
-    class="send-button"
-    id="sendButton"
-    onclick="sendMessage()"
->
-    ➤
-</button>
-
-
-</div>
-
-
-<div class="disclaimer">
-
-    Cura provides general information and
-    OneCare assistance. It does not replace
-    professional medical advice.
-
-</div>
-
-
-</div>
-
-
 </main>
+
 
 
 <script>
 
-/* ==========================================
-   ELEMENTS
-========================================== */
+/* =========================================================
+   CONFIGURATION
+========================================================= */
 
-const chat =
-    document.getElementById("chat");
+const FUNCTION_URL =
+    "https://axvljyzfrpgwezplftgd.supabase.co/functions/v1/cura";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_1au5v5VQsAKRsSWZdjzrHA_JPuC3QXn";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const messages =
+    document.getElementById(
+        "messages"
+    );
 
 const input =
-    document.getElementById("userInput");
+    document.getElementById(
+        "messageInput"
+    );
 
 const sendButton =
-    document.getElementById("sendButton");
+    document.getElementById(
+        "sendButton"
+    );
+
+const clearButton =
+    document.getElementById(
+        "clearButton"
+    );
 
 
-/* ==========================================
-   PATIENT DATA
-========================================== */
+let isLoading = false;
 
-let patient = null;
 
-try {
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
-    patient =
-        JSON.parse(
-            localStorage.getItem(
-                "onecarePatient"
-            )
+function escapeHTML(text) {
+
+    const element =
+        document.createElement(
+            "div"
         );
 
-} catch(error) {
+    element.textContent =
+        text;
 
-    patient = null;
-
+    return element.innerHTML;
 }
 
 
-/* ==========================================
-   USER NAME
-========================================== */
+/* =========================================================
+   FORMAT RESPONSE
+========================================================= */
 
-function getPatientName() {
+function formatResponse(text) {
 
-    if(
-        patient &&
-        patient.firstName
-    ) {
+    let formatted =
+        escapeHTML(text);
 
-        return patient.firstName;
+    formatted =
+        formatted.replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+        );
+
+    formatted =
+        formatted.replace(
+            /\n/g,
+            "<br>"
+        );
+
+    return formatted;
+}
+
+
+/* =========================================================
+   ADD MESSAGE
+========================================================= */
+
+function addMessage(
+    type,
+    content
+) {
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+    row.className =
+        "message-row " +
+        type;
+
+
+    const bubble =
+        document.createElement(
+            "div"
+        );
+
+    bubble.className =
+        "message";
+
+
+    if (type === "ai") {
+
+        bubble.innerHTML = `
+
+            <div class="message-label">
+                CURA
+            </div>
+
+            ${content}
+
+        `;
+
+    } else {
+
+        bubble.innerHTML =
+            content;
 
     }
 
-    return "there";
 
+    row.appendChild(
+        bubble
+    );
+
+    messages.appendChild(
+        row
+    );
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
 }
 
 
-/* ==========================================
-   ADD USER MESSAGE
-========================================== */
+/* =========================================================
+   WELCOME MESSAGE
+========================================================= */
 
-function addUserMessage(text) {
+function showWelcome() {
 
-    const row =
-        document.createElement("div");
+    addMessage(
+        "ai",
 
-    row.className =
-        "message-row user";
+        `
+        Hey! 👋
 
+        I'm Cura, your personal
+        OneCare healthcare assistant.
 
-    const avatar =
-        document.createElement("div");
+        <br><br>
 
-    avatar.className =
-        "message-avatar user-avatar";
+        I can help you understand
+        healthcare information,
+        organise your records,
+        prepare for appointments,
+        or simply answer questions
+        in easy-to-understand language.
 
-    avatar.textContent =
-        getPatientName()
-            .charAt(0)
-            .toUpperCase();
+        <br><br>
 
-
-    const message =
-        document.createElement("div");
-
-    message.className =
-        "message";
-
-    message.textContent =
-        text;
-
-
-    row.appendChild(message);
-
-    row.appendChild(avatar);
-
-    chat.appendChild(row);
-
-
-    scrollChat();
-
+        What can I help you with today?
+        `
+    );
 }
 
 
-/* ==========================================
-   ADD CURA MESSAGE
-========================================== */
-
-function addCuraMessage(text) {
-
-    const row =
-        document.createElement("div");
-
-    row.className =
-        "message-row assistant";
-
-
-    const avatar =
-        document.createElement("div");
-
-    avatar.className =
-        "message-avatar";
-
-    avatar.textContent =
-        "🧾";
-
-
-    const message =
-        document.createElement("div");
-
-    message.className =
-        "message";
-
-
-    /*
-       Convert simple line breaks
-       into readable HTML.
-    */
-
-    message.innerHTML =
-        text
-            .replace(/\n/g, "<br>");
-
-
-    row.appendChild(avatar);
-
-    row.appendChild(message);
-
-    chat.appendChild(row);
-
-
-    scrollChat();
-
-}
-
-
-/* ==========================================
+/* =========================================================
    TYPING INDICATOR
-========================================== */
+========================================================= */
 
 function showTyping() {
 
     const row =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     row.className =
-        "message-row assistant";
+        "message-row ai";
 
     row.id =
-        "typingMessage";
+        "typingIndicator";
 
 
-    const avatar =
-        document.createElement("div");
+    row.innerHTML = `
 
-    avatar.className =
-        "message-avatar";
+        <div class="message">
 
-    avatar.textContent =
-        "🧾";
+            <div class="message-label">
+                CURA
+            </div>
 
+            <div class="typing">
 
-    const message =
-        document.createElement("div");
+                <span></span>
+                <span></span>
+                <span></span>
 
-    message.className =
-        "message";
-
-
-    message.innerHTML = `
-
-        <div class="typing">
-
-            <span></span>
-            <span></span>
-            <span></span>
+            </div>
 
         </div>
 
     `;
 
 
-    row.appendChild(avatar);
+    messages.appendChild(
+        row
+    );
 
-    row.appendChild(message);
 
-    chat.appendChild(row);
-
-    scrollChat();
-
+    messages.scrollTop =
+        messages.scrollHeight;
 }
 
-
-/* ==========================================
-   REMOVE TYPING
-========================================== */
 
 function removeTyping() {
 
     const typing =
         document.getElementById(
-            "typingMessage"
+            "typingIndicator"
         );
 
-    if(typing) {
-
+    if (typing) {
         typing.remove();
+    }
+}
 
+
+/* =========================================================
+   SEND MESSAGE
+========================================================= */
+
+async function sendMessage() {
+
+    if (isLoading) {
+        return;
     }
 
-}
-
-
-/* ==========================================
-   SCROLL
-========================================== */
-
-function scrollChat() {
-
-    setTimeout(function() {
-
-        chat.scrollTop =
-            chat.scrollHeight;
-
-    }, 50);
-
-}
-
-
-/* ==========================================
-   QUICK QUESTION
-========================================== */
-
-function quickQuestion(question) {
-
-    input.value =
-        question;
-
-    sendMessage();
-
-}
-
-
-/* ==========================================
-   SEND MESSAGE
-========================================== */
-
-function sendMessage() {
 
     const text =
         input.value.trim();
 
 
-    if(!text) {
-
+    if (!text) {
         return;
-
     }
 
 
-    addUserMessage(text);
+    addMessage(
+        "user",
+        escapeHTML(text)
+    );
 
 
     input.value = "";
 
     input.style.height =
-        "45px";
+        "auto";
 
+
+    isLoading = true;
 
     sendButton.disabled =
         true;
@@ -1629,60 +1672,154 @@ function sendMessage() {
     showTyping();
 
 
-    /*
-       Simulated AI response.
+    try {
 
-       Replace generateCuraResponse()
-       with your backend API later.
-    */
+        const response =
+            await fetch(
+                FUNCTION_URL,
+                {
+                    method: "POST",
 
-    setTimeout(function() {
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "apikey":
+                            SUPABASE_KEY
+
+                    },
+
+                    body:
+                        JSON.stringify({
+                            message:
+                                text
+                        })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
 
         removeTyping();
 
 
-        const response =
-            generateCuraResponse(text);
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "Cura could not respond."
+            );
+
+        }
 
 
-        addCuraMessage(response);
+        if (!data.message) {
 
+            throw new Error(
+                "Cura returned an empty response."
+            );
+
+        }
+
+
+        addMessage(
+            "ai",
+            formatResponse(
+                data.message
+            )
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Cura error:",
+            error
+        );
+
+
+        removeTyping();
+
+
+        addMessage(
+            "ai",
+
+            `
+            I'm sorry, I couldn't
+            connect to Cura right now. 😔
+
+            <br><br>
+
+            Please check your internet
+            connection and try again.
+
+            <br><br>
+
+            <small style="
+                color:#64748b;
+            ">
+                If this keeps happening,
+                the OneCare administrator
+                may need to check the AI
+                connection.
+            </small>
+            `
+        );
+
+    } finally {
+
+        isLoading =
+            false;
 
         sendButton.disabled =
             false;
 
-
         input.focus();
-
-
-    }, 900);
-
-}
-
-
-/* ==========================================
-   ENTER KEY
-========================================== */
-
-function handleKey(event) {
-
-    if(
-        event.key === "Enter" &&
-        !event.shiftKey
-    ) {
-
-        event.preventDefault();
-
-        sendMessage();
 
     }
 
 }
 
 
-/* ==========================================
-   TEXTAREA AUTO RESIZE
-========================================== */
+/* =========================================================
+   SEND BUTTON
+========================================================= */
+
+sendButton.addEventListener(
+    "click",
+    sendMessage
+);
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+input.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter" &&
+            !event.shiftKey
+        ) {
+
+            event.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AUTO RESIZE
+========================================================= */
 
 input.addEventListener(
     "input",
@@ -1694,438 +1831,69 @@ input.addEventListener(
         this.style.height =
             Math.min(
                 this.scrollHeight,
-                140
+                120
             ) + "px";
 
     }
 );
 
 
-/* ==========================================
-   CURA RESPONSE ENGINE
-========================================== */
-
-function generateCuraResponse(question) {
-
-    const q =
-        question
-            .toLowerCase()
-            .trim();
-
-
-    const name =
-        getPatientName();
-
-
-    /* GREETINGS */
-
-    if(
-        q.includes("hello") ||
-        q.includes("hi") ||
-        q.includes("hey") ||
-        q.includes("good morning") ||
-        q.includes("good afternoon") ||
-        q.includes("good evening")
-    ) {
-
-        return `
-            Hey ${name}! 💚
-
-            It's lovely to hear from you.
-
-            I'm Cura, your OneCare assistant.
-            You can ask me about your OneCare
-            dashboard, appointments, documents,
-            medical history, or how OneCare works.
-
-            What would you like to know?
-        `;
-
-    }
-
-
-    /* HOW ARE YOU */
-
-    if(
-        q.includes("how are you") ||
-        q.includes("how r u")
-    ) {
-
-        return `
-            I'm doing great! 🧾💚
-
-            Thanks for asking, ${name}.
-
-            I'm ready whenever you are. What
-            can I help you with today?
-        `;
-
-    }
-
-
-    /* WHO ARE YOU */
-
-    if(
-        q.includes("who are you") ||
-        q.includes("what are you") ||
-        q.includes("your name")
-    ) {
-
-        return `
-            I'm Cura! 🧾
-
-            I'm the friendly AI assistant inside
-            OneCare.
-
-            My job is to help you navigate your
-            healthcare information and make
-            OneCare easier to use.
-
-            Think of me as your little healthcare
-            companion. 💚
-        `;
-
-    }
-
-
-    /* ONECARE */
-
-    if(
-        q.includes("what is onecare") ||
-        q.includes("how does onecare work") ||
-        q.includes("onecare")
-    ) {
-
-        return `
-            OneCare is your personal healthcare
-            information hub. 💚
-
-            The idea is simple:
-
-            Your Care.
-            Once.
-            Everywhere.
-
-            Instead of repeatedly filling out the
-            same healthcare information, your
-            important information can stay in one
-            place and be securely shared with
-            healthcare providers when you allow it.
-
-            Your doctors can use authorised access
-            rather than asking you to repeatedly
-            explain everything from scratch.
-        `;
-
-    }
-
-
-    /* MEDICAL HISTORY */
-
-    if(
-        q.includes("medical history") ||
-        q.includes("health history") ||
-        q.includes("medical record") ||
-        q.includes("health record")
-    ) {
-
-        return `
-            Your medical history is available from
-            the "Medical History" section of your
-            OneCare dashboard. 🩺
-
-            There you can organise information such
-            as previous conditions, treatments,
-            allergies, medications and other
-            important health information.
-
-            Remember: information displayed here
-            should come from your actual healthcare
-            records and should be kept accurate.
-        `;
-
-    }
-
-
-    /* APPOINTMENTS */
-
-    if(
-        q.includes("appointment") ||
-        q.includes("doctor") ||
-        q.includes("visit")
-    ) {
-
-        return `
-            You can find your upcoming appointments
-            on your OneCare dashboard or in the
-            Appointments section. 📅
-
-            Your dashboard currently shows:
-
-            General Consultation
-            Dr. Sarah Perera
-            Thursday · 10:30 AM
-
-            Your connected OneCare backend can later
-            replace this demonstration information
-            with your real appointments.
-        `;
-
-    }
-
-
-    /* DOCUMENTS */
-
-    if(
-        q.includes("document") ||
-        q.includes("report") ||
-        q.includes("file") ||
-        q.includes("receipt")
-    ) {
-
-        return `
-            Your medical documents can be organised
-            in the Documents section. 📄
-
-            This could include medical reports,
-            prescriptions, laboratory results,
-            receipts and other healthcare documents.
-
-            In the final OneCare system, these files
-            should be protected by proper backend
-            authentication and access controls.
-        `;
-
-    }
-
-
-    /* PROFILE */
-
-    if(
-        q.includes("profile") ||
-        q.includes("personal information") ||
-        q.includes("my details") ||
-        q.includes("change my details")
-    ) {
-
-        return `
-            You can manage your personal information
-            from the My Profile section. 👤
-
-            That's where you can update details such
-            as your contact information and other
-            account information.
-
-            If something important has changed, it's
-            always a good idea to make sure your
-            OneCare information stays accurate.
-        `;
-
-    }
-
-
-    /* PASSWORD */
-
-    if(
-        q.includes("password") ||
-        q.includes("forgot")
-    ) {
-
-        return `
-            If you've forgotten your password, use
-            the password recovery option on the
-            patient login page. 🔐
-
-            For the final version of OneCare, your
-            backend should handle password recovery
-            securely rather than storing passwords
-            in the browser.
-        `;
-
-    }
-
-
-    /* DOCTOR ACCESS */
-
-    if(
-        q.includes("doctor access") ||
-        q.includes("doctor access") ||
-        q.includes("otp") ||
-        q.includes("one time") ||
-        q.includes("doctor login")
-    ) {
-
-        return `
-            OneCare can use a one-time passcode
-            system for authorised doctor access. 🔐
-
-            The intended flow is:
-
-            1. The doctor enters the patient's
-               unique OneCare ID.
-
-            2. The backend verifies the request.
-
-            3. A one-time code is sent to the
-               patient's registered contact.
-
-            4. The patient gives the code to the
-               doctor.
-
-            5. The doctor enters the code.
-
-            6. The backend grants temporary,
-               authorised access.
-
-            Your backend team can connect this
-            frontend flow to the real authentication
-            system.
-        `;
-
-    }
-
-
-    /* HELP */
-
-    if(
-        q.includes("help") ||
-        q.includes("what can you do") ||
-        q.includes("can you help")
-    ) {
-
-        return `
-            Of course! 💚
-
-            I can help you navigate OneCare and
-            explain how the different sections work.
-
-            Try asking:
-
-            • "What is my medical history?"
-            • "When is my next appointment?"
-            • "Where are my documents?"
-            • "How does OneCare work?"
-            • "How does doctor access work?"
-            • "How do I change my profile?"
-
-            Just type naturally — you don't need
-            special commands.
-        `;
-
-    }
-
-
-    /* THANK YOU */
-
-    if(
-        q.includes("thank") ||
-        q.includes("thanks")
-    ) {
-
-        return `
-            You're very welcome, ${name}! 💚
-
-            I'm always happy to help.
-
-            What else would you like to know?
-        `;
-
-    }
-
-
-    /* GOODBYE */
-
-    if(
-        q.includes("bye") ||
-        q.includes("goodbye")
-    ) {
-
-        return `
-            Bye for now, ${name}! 👋💚
-
-            Take care, and I'll be right here
-            whenever you need help with OneCare.
-        `;
-
-    }
-
-
-    /* MEDICAL SAFETY */
-
-    if(
-        q.includes("pain") ||
-        q.includes("sick") ||
-        q.includes("symptom") ||
-        q.includes("medicine") ||
-        q.includes("medication") ||
-        q.includes("diagnose") ||
-        q.includes("diagnosis") ||
-        q.includes("emergency") ||
-        q.includes("bleeding") ||
-        q.includes("chest")
-    ) {
-
-        return `
-            I'm sorry you're dealing with that. 💚
-
-            I can provide general information, but
-            I can't diagnose a condition or replace
-            a healthcare professional.
-
-            If you're concerned about a symptom,
-            please contact an appropriate healthcare
-            professional.
-
-            If you believe you're experiencing an
-            emergency, seek immediate emergency
-            medical care rather than relying on Cura.
-        `;
-
-    }
-
-
-    /* FALLBACK */
-
-    return `
-        That's a good question, ${name}. 💚
-
-        I'm still learning how to help with that
-        particular request.
-
-        You can ask me about:
-
-        🩺 Medical history
-        📅 Appointments
-        📄 Documents
-        👤 Your profile
-        🔐 Doctor access
-        💚 How OneCare works
-
-        Or simply tell me what you're trying
-        to find, and I'll try to guide you.
-    `;
-
-}
-
-
-/* ==========================================
-   FOCUS INPUT
-========================================== */
-
-window.addEventListener(
-    "load",
+/* =========================================================
+   CLEAR CHAT
+========================================================= */
+
+clearButton.addEventListener(
+    "click",
     function() {
 
-        input.focus();
+        messages.innerHTML = "";
 
-        scrollChat();
+        showWelcome();
 
     }
 );
 
+
+/* =========================================================
+   SUGGESTIONS
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".suggestion"
+    )
+    .forEach(
+        (button) => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    input.value =
+                        this.dataset.message;
+
+                    input.dispatchEvent(
+                        new Event(
+                            "input"
+                        )
+                    );
+
+                    sendMessage();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   START CURA
+========================================================= */
+
+showWelcome();
+
 </script>
 
-
 </body>
-
 </html>

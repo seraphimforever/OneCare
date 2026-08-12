@@ -1,0 +1,5846 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="OneCare — Your Care. Once. Everywhere">
+
+    <title>OneCare — Your Care. Once. Everywhere</title>
+
+
+    <!-- =====================================================
+         FONTS
+    ====================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?
+    family=DM+Sans:wght@300;400;500;600;700&
+    family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&
+    display=swap"
+          rel="stylesheet">
+
+
+    <!-- =====================================================
+         ICONS
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style>
+
+    /* =====================================================
+       ONECARE COLOR SYSTEM
+    ====================================================== */
+
+    :root {
+
+        --dark: #1E293B;
+
+        /* Fixed (non-flipping) ink — for elements that must stay
+           permanently dark regardless of the theme toggle, e.g. panels
+           that also pair with a fixed white surface. Unlike --dark,
+           this is intentionally NOT redefined inside body.dark. */
+        --ink: #1E293B;
+
+        --green: #10B981;
+
+        --teal: #0D9488;
+
+        --teal-dark: #0F766E;
+
+        --cream: #F0FDFA;
+
+        --mint: #E6F4F1;
+
+        --border: #CBD5E1;
+
+        --white: #FFFFFF;
+
+        --soft: #64748B;
+
+        --muted: #94A3B8;
+
+        --danger: #EF4444;
+
+        --glass:
+            rgba(255,255,255,.72);
+
+        --shadow:
+            0 25px 80px rgba(15,118,110,.12);
+
+        --shadow-heavy:
+            0 35px 100px rgba(15,118,110,.18);
+
+        --radius:
+            32px;
+
+        --ease:
+            cubic-bezier(.2,.8,.2,1);
+    }
+
+
+    /* =====================================================
+       DARK MODE
+    ====================================================== */
+
+    body.dark {
+
+        --cream: #071B1A;
+
+        --white: #0D2624;
+
+        --dark: #ECFFFB;
+
+        --mint: #103B37;
+
+        --border: #294D49;
+
+        --soft: #A9C4C0;
+
+        --muted: #76938F;
+
+        --glass:
+            rgba(13,38,36,.78);
+
+        --shadow:
+            0 25px 80px rgba(0,0,0,.28);
+
+        --shadow-heavy:
+            0 35px 100px rgba(0,0,0,.38);
+    }
+
+
+    /* =====================================================
+       RESET
+    ====================================================== */
+
+    * {
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+    }
+
+
+    html {
+
+        scroll-behavior: smooth;
+    }
+
+
+    body {
+
+        font-family:
+            "DM Sans",
+            sans-serif;
+
+        background:
+            var(--cream);
+
+        color:
+            var(--dark);
+
+        overflow-x:
+            hidden;
+
+        transition:
+            background .5s ease,
+            color .5s ease;
+    }
+
+
+    a {
+
+        text-decoration:
+            none;
+
+        color:
+            inherit;
+    }
+
+
+    button,
+    input {
+
+        font-family:
+            inherit;
+    }
+
+
+    img {
+
+        max-width:
+            100%;
+
+        display:
+            block;
+    }
+
+
+    /* =====================================================
+       PAGE LOADER
+    ====================================================== */
+
+    .loader {
+
+        position:
+            fixed;
+
+        inset:
+            0;
+
+        background:
+            var(--cream);
+
+        z-index:
+            99999;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        transition:
+            opacity .7s ease,
+            visibility .7s ease;
+    }
+
+
+    .loader.hide {
+
+        opacity:
+            0;
+
+        visibility:
+            hidden;
+    }
+
+
+    .loader-inner {
+
+        text-align:
+            center;
+    }
+
+
+    .loader-logo {
+
+        width:
+            65px;
+
+        height:
+            65px;
+
+        border-radius:
+            22px;
+
+        margin:
+            auto;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--green),
+                var(--teal)
+            );
+
+        color:
+            white;
+
+        font-size:
+            27px;
+
+        animation:
+            loaderPulse 1.2s infinite;
+    }
+
+
+    .loader-text {
+
+        margin-top:
+            18px;
+
+        font-size:
+            12px;
+
+        letter-spacing:
+            .25em;
+
+        font-weight:
+            700;
+    }
+
+
+    @keyframes loaderPulse {
+
+        0%,100% {
+
+            transform:
+                scale(1);
+
+            box-shadow:
+                0 0 0 0
+                rgba(16,185,129,.25);
+        }
+
+        50% {
+
+            transform:
+                scale(1.08);
+
+            box-shadow:
+                0 0 0 18px
+                rgba(16,185,129,0);
+        }
+    }
+
+
+    /* =====================================================
+       NAVIGATION
+    ====================================================== */
+
+    nav {
+
+        position:
+            fixed;
+
+        top:
+            0;
+
+        left:
+            0;
+
+        right:
+            0;
+
+        z-index:
+            5000;
+
+        padding:
+            23px 6vw;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            space-between;
+
+        transition:
+            .4s ease;
+    }
+
+
+    nav.scrolled {
+
+        padding:
+            13px 6vw;
+
+        background:
+            var(--glass);
+
+        backdrop-filter:
+            blur(20px);
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    /* =====================================================
+       LOGO
+    ====================================================== */
+
+    .brand {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            12px;
+
+        font-size:
+            15px;
+
+        font-weight:
+            700;
+
+        letter-spacing:
+            .15em;
+    }
+
+
+    .brand-logo {
+
+        width:
+            43px;
+
+        height:
+            43px;
+
+        border-radius:
+            14px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--green),
+                var(--teal)
+            );
+
+        color:
+            white;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        box-shadow:
+            0 10px 30px
+            rgba(13,148,136,.25);
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+    }
+
+
+    .brand-logo::after {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        width:
+            30px;
+
+        height:
+            30px;
+
+        border:
+            1px solid
+            rgba(255,255,255,.5);
+
+        border-radius:
+            50%;
+
+        animation:
+            logoOrbit 4s linear infinite;
+    }
+
+
+    @keyframes logoOrbit {
+
+        from {
+
+            transform:
+                rotate(0deg);
+        }
+
+        to {
+
+            transform:
+                rotate(360deg);
+        }
+    }
+
+
+    /* =====================================================
+       NAV CONTROLS
+    ====================================================== */
+
+    .nav-controls {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            10px;
+    }
+
+
+    .theme {
+
+        width:
+            44px;
+
+        height:
+            44px;
+
+        border:
+            1px solid var(--border);
+
+        background:
+            var(--white);
+
+        color:
+            var(--dark);
+
+        border-radius:
+            50%;
+
+        cursor:
+            pointer;
+
+        transition:
+            .3s ease;
+    }
+
+
+    .theme:hover {
+
+        transform:
+            rotate(20deg)
+            scale(1.05);
+
+        border-color:
+            var(--teal);
+    }
+
+
+    .login {
+
+        padding:
+            12px 22px;
+
+        background:
+            var(--dark);
+
+        color:
+            var(--cream);
+
+        border-radius:
+            100px;
+
+        font-size:
+            13px;
+
+        font-weight:
+            600;
+
+        transition:
+            .3s ease;
+    }
+
+
+    .login:hover {
+
+        background:
+            var(--teal);
+
+        color:
+            white;
+
+        transform:
+            translateY(-2px);
+    }
+
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .hero {
+
+        min-height:
+            100vh;
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        padding:
+            150px 7vw 100px;
+    }
+
+
+    /* =====================================================
+       HERO PHOTO
+    ====================================================== */
+
+    .hero-photo {
+
+        position:
+            absolute;
+
+        inset:
+            0;
+
+        z-index:
+            0;
+
+        overflow:
+            hidden;
+    }
+
+
+    .hero-photo img {
+
+        width:
+            100%;
+
+        height:
+            100%;
+
+        object-fit:
+            cover;
+
+        object-position:
+            center;
+
+        filter:
+            saturate(.72);
+
+        transform:
+            scale(1.06);
+
+        animation:
+            heroZoom 14s
+            ease-in-out infinite
+            alternate;
+    }
+
+
+    @keyframes heroZoom {
+
+        from {
+
+            transform:
+                scale(1.05);
+        }
+
+        to {
+
+            transform:
+                scale(1.12);
+        }
+    }
+
+
+    /* =====================================================
+       HERO IMAGE OVERLAY
+    ====================================================== */
+
+    .hero-overlay {
+
+        position:
+            absolute;
+
+        inset:
+            0;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(240,253,250,.98) 0%,
+                rgba(240,253,250,.88) 35%,
+                rgba(240,253,250,.35) 65%,
+                rgba(240,253,250,.05) 100%
+            );
+    }
+
+
+    body.dark
+    .hero-overlay {
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(7,27,26,.98) 0%,
+                rgba(7,27,26,.88) 38%,
+                rgba(7,27,26,.35) 70%,
+                rgba(7,27,26,.1) 100%
+            );
+    }
+
+
+    /* =====================================================
+       HERO DECORATION
+    ====================================================== */
+
+    .hero-orb {
+
+        position:
+            absolute;
+
+        border-radius:
+            50%;
+
+        pointer-events:
+            none;
+
+        filter:
+            blur(2px);
+    }
+
+
+    .orb-one {
+
+        width:
+            300px;
+
+        height:
+            300px;
+
+        right:
+            15%;
+
+        top:
+            13%;
+
+        background:
+            rgba(16,185,129,.14);
+
+        animation:
+            orbFloat 7s ease-in-out infinite;
+    }
+
+
+    .orb-two {
+
+        width:
+            160px;
+
+        height:
+            160px;
+
+        right:
+            5%;
+
+        bottom:
+            15%;
+
+        background:
+            rgba(13,148,136,.16);
+
+        animation:
+            orbFloat 5s ease-in-out
+            infinite reverse;
+    }
+
+
+    @keyframes orbFloat {
+
+        0%,100% {
+
+            transform:
+                translate(0,0);
+        }
+
+        50% {
+
+            transform:
+                translate(-25px,25px);
+        }
+    }
+
+
+    /* =====================================================
+       HERO CONTENT
+    ====================================================== */
+
+    .hero-content {
+
+        position:
+            relative;
+
+        z-index:
+            5;
+
+        max-width:
+            850px;
+    }
+
+
+    .eyebrow {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        gap:
+            10px;
+
+        color:
+            var(--teal);
+
+        font-size:
+            11px;
+
+        text-transform:
+            uppercase;
+
+        letter-spacing:
+            .22em;
+
+        font-weight:
+            700;
+
+        margin-bottom:
+            28px;
+    }
+
+
+    .live-dot {
+
+        width:
+            8px;
+
+        height:
+            8px;
+
+        background:
+            var(--green);
+
+        border-radius:
+            50%;
+
+        box-shadow:
+            0 0 0 7px
+            rgba(16,185,129,.15);
+
+        animation:
+            livePulse 2s infinite;
+    }
+
+
+    @keyframes livePulse {
+
+        50% {
+
+            box-shadow:
+                0 0 0 12px
+                rgba(16,185,129,0);
+        }
+    }
+
+
+    .hero-title {
+
+        font-size:
+            clamp(
+                4rem,
+                8vw,
+                9rem
+            );
+
+        line-height:
+            .86;
+
+        letter-spacing:
+            -.075em;
+
+        font-weight:
+            400;
+
+        max-width:
+            950px;
+    }
+
+
+    .hero-title em {
+
+        font-family:
+            "Playfair Display",
+            serif;
+
+        color:
+            var(--teal);
+    }
+
+
+    .slogan {
+
+        margin-top:
+            34px;
+
+        font-size:
+            clamp(
+                20px,
+                2.5vw,
+                29px
+            );
+
+        font-weight:
+            500;
+
+        letter-spacing:
+            -.025em;
+    }
+
+
+    .slogan span {
+
+        color:
+            var(--teal);
+    }
+
+
+    .hero-description {
+
+        max-width:
+            580px;
+
+        margin-top:
+            18px;
+
+        font-size:
+            16px;
+
+        line-height:
+            1.8;
+
+        color:
+            var(--soft);
+
+        font-weight:
+            300;
+    }
+
+
+    /* =====================================================
+       BUTTONS
+    ====================================================== */
+
+    .hero-buttons {
+
+        display:
+            flex;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            13px;
+
+        margin-top:
+            35px;
+    }
+
+
+    .btn-primary {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        gap:
+            10px;
+
+        padding:
+            16px 24px;
+
+        border-radius:
+            100px;
+
+        background:
+            var(--teal);
+
+        color:
+            white;
+
+        font-size:
+            13px;
+
+        font-weight:
+            600;
+
+        transition:
+            .35s var(--ease);
+
+        box-shadow:
+            0 12px 35px
+            rgba(13,148,136,.23);
+    }
+
+
+    .btn-primary:hover {
+
+        background:
+            var(--teal-dark);
+
+        transform:
+            translateY(-4px);
+
+        box-shadow:
+            0 18px 45px
+            rgba(13,148,136,.3);
+    }
+
+
+    .btn-secondary {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        gap:
+            10px;
+
+        padding:
+            16px 24px;
+
+        border:
+            1px solid var(--border);
+
+        border-radius:
+            100px;
+
+        background:
+            var(--glass);
+
+        backdrop-filter:
+            blur(15px);
+
+        font-size:
+            13px;
+
+        font-weight:
+            500;
+
+        transition:
+            .35s ease;
+    }
+
+
+    .btn-secondary:hover {
+
+        transform:
+            translateY(-4px);
+
+        border-color:
+            var(--teal);
+
+        color:
+            var(--teal);
+    }
+
+
+    /* =====================================================
+       HERO FLOATING UI
+    ====================================================== */
+
+    .hero-ui {
+
+        position:
+            absolute;
+
+        z-index:
+            6;
+
+        right:
+            9%;
+
+        bottom:
+            12%;
+
+        width:
+            265px;
+
+        padding:
+            20px;
+
+        background:
+            var(--glass);
+
+        backdrop-filter:
+            blur(20px);
+
+        border:
+            1px solid
+            rgba(255,255,255,.5);
+
+        border-radius:
+            25px;
+
+        box-shadow:
+            var(--shadow);
+
+        animation:
+            uiFloat 5s ease-in-out infinite;
+    }
+
+
+    @keyframes uiFloat {
+
+        0%,100% {
+
+            transform:
+                translateY(0)
+                rotate(0deg);
+        }
+
+        50% {
+
+            transform:
+                translateY(-14px)
+                rotate(1deg);
+        }
+    }
+
+
+    .ui-top {
+
+        display:
+            flex;
+
+        justify-content:
+            space-between;
+
+        align-items:
+            center;
+
+        margin-bottom:
+            20px;
+    }
+
+
+    .ui-title {
+
+        font-size:
+            10px;
+
+        color:
+            var(--muted);
+
+        letter-spacing:
+            .12em;
+
+        text-transform:
+            uppercase;
+    }
+
+
+    .ui-check {
+
+        width:
+            30px;
+
+        height:
+            30px;
+
+        border-radius:
+            10px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        background:
+            var(--mint);
+
+        color:
+            var(--green);
+    }
+
+
+    .health-score {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            15px;
+    }
+
+
+    .score-circle {
+
+        width:
+            62px;
+
+        height:
+            62px;
+
+        border-radius:
+            50%;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        background:
+            conic-gradient(
+                var(--green) 0 82%,
+                var(--border) 82% 100%
+            );
+
+        position:
+            relative;
+    }
+
+
+    .score-circle::after {
+
+        content:
+            "82";
+
+        width:
+            48px;
+
+        height:
+            48px;
+
+        border-radius:
+            50%;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        background:
+            var(--white);
+
+        font-weight:
+            700;
+
+        font-size:
+            13px;
+    }
+
+
+    .score-text strong {
+
+        display:
+            block;
+
+        font-size:
+            14px;
+    }
+
+
+    .score-text span {
+
+        color:
+            var(--soft);
+
+        font-size:
+            10px;
+    }
+
+
+    /* =====================================================
+       SCROLL INDICATOR
+    ====================================================== */
+
+    .scroll-indicator {
+
+        position:
+            absolute;
+
+        bottom:
+            35px;
+
+        left:
+            7vw;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            12px;
+
+        color:
+            var(--muted);
+
+        font-size:
+            10px;
+
+        text-transform:
+            uppercase;
+
+        letter-spacing:
+            .18em;
+
+        z-index:
+            6;
+    }
+
+
+    .scroll-line {
+
+        width:
+            45px;
+
+        height:
+            1px;
+
+        background:
+            var(--teal);
+
+        animation:
+            scrollLine 2s infinite;
+    }
+
+
+    @keyframes scrollLine {
+
+        0%,100% {
+
+            width:
+                25px;
+        }
+
+        50% {
+
+            width:
+                55px;
+        }
+    }
+
+
+    /* =====================================================
+       MARQUEE
+    ====================================================== */
+
+    .marquee {
+
+        overflow:
+            hidden;
+
+        border-top:
+            1px solid var(--border);
+
+        border-bottom:
+            1px solid var(--border);
+
+        padding:
+            18px 0;
+
+        white-space:
+            nowrap;
+    }
+
+
+    .marquee-track {
+
+        display:
+            inline-flex;
+
+        gap:
+            35px;
+
+        align-items:
+            center;
+
+        animation:
+            marquee 25s linear infinite;
+    }
+
+
+    .marquee span {
+
+        color:
+            var(--muted);
+
+        text-transform:
+            uppercase;
+
+        letter-spacing:
+            .18em;
+
+        font-size:
+            10px;
+    }
+
+
+    .marquee b {
+
+        color:
+            var(--green);
+
+        font-size:
+            15px;
+    }
+
+
+    @keyframes marquee {
+
+        to {
+
+            transform:
+                translateX(-50%);
+        }
+    }
+
+
+    /* =====================================================
+       SECTIONS
+    ====================================================== */
+
+    section.standard {
+
+        padding:
+            145px 7vw;
+    }
+
+
+    .section-number {
+
+        color:
+            var(--teal);
+
+        text-transform:
+            uppercase;
+
+        letter-spacing:
+            .2em;
+
+        font-size:
+            10px;
+
+        font-weight:
+            700;
+
+        margin-bottom:
+            25px;
+    }
+
+
+    .statement {
+
+        max-width:
+            1100px;
+
+        font-size:
+            clamp(
+                3rem,
+                6vw,
+                6.5rem
+            );
+
+        line-height:
+            .94;
+
+        letter-spacing:
+            -.065em;
+
+        font-weight:
+            400;
+    }
+
+
+    .statement em {
+
+        font-family:
+            "Playfair Display",
+            serif;
+
+        color:
+            var(--muted);
+    }
+
+
+    /* =====================================================
+       STORY
+    ====================================================== */
+
+    .story {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            1.05fr .95fr;
+
+        gap:
+            8vw;
+
+        align-items:
+            center;
+
+        margin-top:
+            110px;
+    }
+
+
+    .story-photo {
+
+        height:
+            650px;
+
+        border-radius:
+            45px;
+
+        overflow:
+            hidden;
+
+        position:
+            relative;
+
+        box-shadow:
+            var(--shadow-heavy);
+    }
+
+
+    .story-photo img {
+
+        width:
+            100%;
+
+        height:
+            100%;
+
+        object-fit:
+            cover;
+
+        transition:
+            transform 1.2s var(--ease);
+    }
+
+
+    .story-photo:hover img {
+
+        transform:
+            scale(1.06);
+    }
+
+
+    .photo-tag {
+
+        position:
+            absolute;
+
+        top:
+            25px;
+
+        left:
+            25px;
+
+        background:
+            rgba(255,255,255,.85);
+
+        backdrop-filter:
+            blur(15px);
+
+        padding:
+            10px 15px;
+
+        border-radius:
+            100px;
+
+        font-size:
+            10px;
+
+        font-weight:
+            600;
+
+        color:
+            var(--dark);
+    }
+
+
+    .story-title {
+
+        font-size:
+            clamp(
+                2.5rem,
+                5vw,
+                5rem
+            );
+
+        line-height:
+            .92;
+
+        letter-spacing:
+            -.06em;
+    }
+
+
+    .story-title span {
+
+        color:
+            var(--teal);
+    }
+
+
+    .story-copy {
+
+        margin-top:
+            30px;
+
+        color:
+            var(--soft);
+
+        font-size:
+            15px;
+
+        line-height:
+            1.8;
+
+        max-width:
+            500px;
+    }
+
+
+    .mini-features {
+
+        margin-top:
+            30px;
+    }
+
+
+    .mini-feature {
+
+        display:
+            flex;
+
+        gap:
+            14px;
+
+        align-items:
+            center;
+
+        padding:
+            14px 0;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .mini-icon {
+
+        width:
+            39px;
+
+        height:
+            39px;
+
+        border-radius:
+            12px;
+
+        background:
+            var(--mint);
+
+        color:
+            var(--teal);
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+    }
+
+
+    .mini-feature span {
+
+        font-size:
+            13px;
+
+        color:
+            var(--soft);
+    }
+
+
+    /* =====================================================
+       SECTION 02
+    ====================================================== */
+
+    .tech-section {
+
+        background:
+            var(--mint);
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+    }
+
+
+    .tech-heading {
+
+        display:
+            flex;
+
+        justify-content:
+            space-between;
+
+        gap:
+            40px;
+
+        align-items:
+            flex-end;
+
+        margin-bottom:
+            80px;
+    }
+
+
+    .tech-heading h2 {
+
+        font-size:
+            clamp(
+                3rem,
+                6vw,
+                6.5rem
+            );
+
+        line-height:
+            .88;
+
+        letter-spacing:
+            -.07em;
+    }
+
+
+    .tech-heading p {
+
+        max-width:
+            360px;
+
+        color:
+            var(--soft);
+
+        font-size:
+            14px;
+
+        line-height:
+            1.7;
+    }
+
+
+    /* =====================================================
+       SIX FEATURE CARDS
+    ====================================================== */
+
+    .features {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+        gap:
+            18px;
+    }
+
+
+    .feature-card {
+
+        min-height:
+            390px;
+
+        background:
+            var(--white);
+
+        border:
+            1px solid var(--border);
+
+        border-radius:
+            30px;
+
+        padding:
+            30px;
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+
+        transition:
+            .45s var(--ease);
+    }
+
+
+    .feature-card:hover {
+
+        transform:
+            translateY(-10px);
+
+        box-shadow:
+            var(--shadow);
+
+        border-color:
+            var(--teal);
+    }
+
+
+    .feature-number {
+
+        position:
+            absolute;
+
+        right:
+            25px;
+
+        top:
+            25px;
+
+        color:
+            var(--muted);
+
+        font-size:
+            10px;
+
+        font-weight:
+            700;
+
+        letter-spacing:
+            .1em;
+    }
+
+
+    .feature-visual {
+
+        height:
+            180px;
+
+        border-radius:
+            23px;
+
+        background:
+            var(--mint);
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+
+        margin-bottom:
+            25px;
+    }
+
+
+    /* =====================================================
+       VISUAL 01 — HEALTH ID
+    ====================================================== */
+
+    .id-card {
+
+        width:
+            180px;
+
+        padding:
+            16px;
+
+        background:
+            white;
+
+        border:
+            1px solid var(--border);
+
+        border-radius:
+            15px;
+
+        box-shadow:
+            0 15px 30px
+            rgba(15,118,110,.12);
+
+        animation:
+            cardFloat 3s ease-in-out infinite;
+    }
+
+
+    @keyframes cardFloat {
+
+        0%,100% {
+
+            transform:
+                translateY(0)
+                rotate(-2deg);
+        }
+
+        50% {
+
+            transform:
+                translateY(-9px)
+                rotate(2deg);
+        }
+    }
+
+
+    .id-line {
+
+        height:
+            7px;
+
+        width:
+            65%;
+
+        background:
+            var(--teal);
+
+        border-radius:
+            10px;
+
+        margin-bottom:
+            10px;
+    }
+
+
+    .id-line.short {
+
+        width:
+            40%;
+
+        background:
+            var(--border);
+    }
+
+
+    .id-avatar {
+
+        width:
+            38px;
+
+        height:
+            38px;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--mint);
+
+        margin-bottom:
+            15px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        color:
+            var(--teal);
+    }
+
+
+    /* =====================================================
+       VISUAL 02 — OTP
+    ====================================================== */
+
+    .otp-box {
+
+        display:
+            flex;
+
+        gap:
+            8px;
+    }
+
+
+    .otp-box span {
+
+        width:
+            35px;
+
+        height:
+            45px;
+
+        border:
+            1px solid var(--border);
+
+        border-radius:
+            10px;
+
+        background:
+            white;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        font-weight:
+            700;
+
+        color:
+            var(--teal);
+
+        animation:
+            otpPop 2.5s infinite;
+    }
+
+
+    .otp-box span:nth-child(2) {
+
+        animation-delay:
+            .1s;
+    }
+
+
+    .otp-box span:nth-child(3) {
+
+        animation-delay:
+            .2s;
+    }
+
+
+    .otp-box span:nth-child(4) {
+
+        animation-delay:
+            .3s;
+    }
+
+
+    .otp-box span:nth-child(5) {
+
+        animation-delay:
+            .4s;
+    }
+
+
+    .otp-box span:nth-child(6) {
+
+        animation-delay:
+            .5s;
+    }
+
+
+    @keyframes otpPop {
+
+        0%,60%,100% {
+
+            transform:
+                translateY(0);
+        }
+
+        30% {
+
+            transform:
+                translateY(-9px);
+        }
+    }
+
+
+    /* =====================================================
+       VISUAL 03 — CURA
+    ====================================================== */
+
+    .cura-mini {
+
+        width:
+            110px;
+
+        height:
+            125px;
+
+        background:
+            white;
+
+        border:
+            2px solid var(--teal);
+
+        border-radius:
+            15px;
+
+        position:
+            relative;
+
+        box-shadow:
+            0 15px 35px
+            rgba(13,148,136,.18);
+
+        transform:
+            rotate(-4deg);
+
+        animation:
+            curaBounce 3s infinite;
+    }
+
+
+    @keyframes curaBounce {
+
+        0%,100% {
+
+            transform:
+                rotate(-4deg)
+                translateY(0);
+        }
+
+        50% {
+
+            transform:
+                rotate(4deg)
+                translateY(-12px);
+        }
+    }
+
+
+    .cura-mini::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        width:
+            35px;
+
+        height:
+            35px;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--mint);
+
+        top:
+            20px;
+
+        left:
+            35px;
+    }
+
+
+    .cura-eyes {
+
+        position:
+            absolute;
+
+        top:
+            34px;
+
+        left:
+            44px;
+
+        display:
+            flex;
+
+        gap:
+            10px;
+    }
+
+
+    .cura-eyes span {
+
+        width:
+            5px;
+
+        height:
+            5px;
+
+        background:
+            var(--ink);
+
+        border-radius:
+            50%;
+    }
+
+
+    .cura-mouth {
+
+        position:
+            absolute;
+
+        top:
+            48px;
+
+        left:
+            51px;
+
+        width:
+            10px;
+
+        height:
+            5px;
+
+        border-bottom:
+            2px solid var(--teal);
+
+        border-radius:
+            50%;
+    }
+
+
+    .cura-plus {
+
+        position:
+            absolute;
+
+        top:
+            72px;
+
+        left:
+            45px;
+
+        color:
+            var(--green);
+
+        font-size:
+            20px;
+    }
+
+
+    /* =====================================================
+       VISUAL 04 — TIMELINE
+    ====================================================== */
+
+    .timeline {
+
+        width:
+            180px;
+
+        position:
+            relative;
+    }
+
+
+    .timeline::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        left:
+            12px;
+
+        top:
+            0;
+
+        bottom:
+            0;
+
+        width:
+            2px;
+
+        background:
+            var(--border);
+    }
+
+
+    .timeline-item {
+
+        display:
+            flex;
+
+        gap:
+            15px;
+
+        align-items:
+            center;
+
+        margin:
+            18px 0;
+
+        position:
+            relative;
+    }
+
+
+    .timeline-dot {
+
+        width:
+            25px;
+
+        height:
+            25px;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--teal);
+
+        border:
+            6px solid var(--mint);
+
+        z-index:
+            2;
+    }
+
+
+    .timeline-text {
+
+        height:
+            8px;
+
+        width:
+            90px;
+
+        background:
+            var(--border);
+
+        border-radius:
+            10px;
+    }
+
+
+    /* =====================================================
+       VISUAL 05 — RECORDS
+    ====================================================== */
+
+    .record-stack {
+
+        position:
+            relative;
+
+        width:
+            150px;
+
+        height:
+            120px;
+    }
+
+
+    .paper {
+
+        position:
+            absolute;
+
+        width:
+            120px;
+
+        height:
+            90px;
+
+        background:
+            white;
+
+        border:
+            1px solid var(--border);
+
+        border-radius:
+            12px;
+
+        padding:
+            13px;
+
+        box-shadow:
+            0 10px 20px
+            rgba(15,118,110,.08);
+    }
+
+
+    .paper:nth-child(1) {
+
+        transform:
+            rotate(-10deg);
+
+        left:
+            0;
+
+        top:
+            12px;
+    }
+
+
+    .paper:nth-child(2) {
+
+        transform:
+            rotate(4deg);
+
+        left:
+            20px;
+
+        top:
+            4px;
+    }
+
+
+    .paper:nth-child(3) {
+
+        transform:
+            rotate(-2deg);
+
+        left:
+            35px;
+
+        top:
+            15px;
+    }
+
+
+    .paper-line {
+
+        width:
+            70%;
+
+        height:
+            6px;
+
+        background:
+            var(--teal);
+
+        border-radius:
+            10px;
+
+        margin-bottom:
+            8px;
+    }
+
+
+    .paper-line.gray {
+
+        width:
+            90%;
+
+        background:
+            var(--border);
+    }
+
+
+    /* =====================================================
+       VISUAL 06 — SECURITY
+    ====================================================== */
+
+    .security-visual {
+
+        position:
+            relative;
+    }
+
+
+    .shield {
+
+        width:
+            90px;
+
+        height:
+            105px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--green),
+                var(--teal)
+            );
+
+        clip-path:
+            polygon(
+                50% 0,
+                92% 15%,
+                85% 70%,
+                50% 100%,
+                15% 70%,
+                8% 15%
+            );
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        color:
+            white;
+
+        font-size:
+            30px;
+
+        animation:
+            shieldPulse 2.5s infinite;
+    }
+
+
+    @keyframes shieldPulse {
+
+        50% {
+
+            transform:
+                scale(1.08);
+
+            filter:
+                drop-shadow(
+                    0 10px 20px
+                    rgba(16,185,129,.25)
+                );
+        }
+    }
+
+
+    /* =====================================================
+       FEATURE TEXT
+    ====================================================== */
+
+    .feature-card h3 {
+
+        font-size:
+            21px;
+
+        letter-spacing:
+            -.03em;
+
+        margin-bottom:
+            8px;
+    }
+
+
+    .feature-card p {
+
+        color:
+            var(--soft);
+
+        font-size:
+            13px;
+
+        line-height:
+            1.7;
+    }
+
+
+    /* =====================================================
+       DOCTOR SECTION
+    ====================================================== */
+
+    .doctor {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:
+            10vw;
+
+        align-items:
+            center;
+    }
+
+
+    .doctor-title {
+
+        font-size:
+            clamp(
+                3rem,
+                6vw,
+                6.5rem
+            );
+
+        line-height:
+            .88;
+
+        letter-spacing:
+            -.07em;
+    }
+
+
+    .doctor-title span {
+
+        color:
+            var(--teal);
+    }
+
+
+    .doctor-copy {
+
+        color:
+            var(--soft);
+
+        margin-top:
+            30px;
+
+        max-width:
+            500px;
+
+        line-height:
+            1.8;
+
+        font-size:
+            15px;
+    }
+
+
+    /* =====================================================
+       ACCESS MOCKUP
+    ====================================================== */
+
+    .access-mockup {
+
+        background:
+            var(--white);
+
+        border:
+            1px solid var(--border);
+
+        border-radius:
+            35px;
+
+        padding:
+            35px;
+
+        box-shadow:
+            var(--shadow);
+
+        position:
+            relative;
+
+        overflow:
+            hidden;
+    }
+
+
+    .access-mockup::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        width:
+            220px;
+
+        height:
+            220px;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--mint);
+
+        right:
+            -100px;
+
+        top:
+            -100px;
+    }
+
+
+    .access-header {
+
+        display:
+            flex;
+
+        justify-content:
+            space-between;
+
+        align-items:
+            center;
+
+        position:
+            relative;
+
+        z-index:
+            2;
+    }
+
+
+    .access-lock {
+
+        width:
+            55px;
+
+        height:
+            55px;
+
+        border-radius:
+            17px;
+
+        background:
+            var(--mint);
+
+        color:
+            var(--teal);
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        font-size:
+            20px;
+    }
+
+
+    .access-status {
+
+        color:
+            var(--green);
+
+        font-size:
+            10px;
+
+        text-transform:
+            uppercase;
+
+        letter-spacing:
+            .15em;
+
+        font-weight:
+            700;
+    }
+
+
+    .access-id {
+
+        margin-top:
+            50px;
+
+        font-family:
+            monospace;
+
+        font-size:
+            31px;
+
+        letter-spacing:
+            .16em;
+    }
+
+
+    .access-bars {
+
+        display:
+            flex;
+
+        gap:
+            5px;
+
+        margin-top:
+            17px;
+    }
+
+
+    .access-bars span {
+
+        flex:
+            1;
+
+        height:
+            4px;
+
+        border-radius:
+            10px;
+
+        background:
+            var(--border);
+    }
+
+
+    .access-bars span.active {
+
+        background:
+            var(--green);
+    }
+
+
+    /* =====================================================
+       CURA SECTION
+    ====================================================== */
+
+    .cura-section {
+
+        background:
+            var(--ink);
+
+        color:
+            white;
+
+        overflow:
+            hidden;
+    }
+
+
+    .cura-grid {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:
+            9vw;
+
+        align-items:
+            center;
+    }
+
+
+    .cura-section .section-number {
+
+        color:
+            var(--green);
+    }
+
+
+    .cura-title {
+
+        font-size:
+            clamp(
+                3rem,
+                6vw,
+                6.5rem
+            );
+
+        line-height:
+            .88;
+
+        letter-spacing:
+            -.07em;
+    }
+
+
+    .cura-title em {
+
+        color:
+            var(--green);
+
+        font-family:
+            "Playfair Display",
+            serif;
+    }
+
+
+    .cura-copy {
+
+        margin-top:
+            28px;
+
+        max-width:
+            510px;
+
+        color:
+            #9BB3AF;
+
+        line-height:
+            1.8;
+
+        font-size:
+            15px;
+    }
+
+
+    /* =====================================================
+       CURA CHAT PREVIEW
+    ====================================================== */
+
+    .chat-preview {
+
+        border:
+            1px solid
+            rgba(255,255,255,.12);
+
+        border-radius:
+            35px;
+
+        background:
+            rgba(255,255,255,.04);
+
+        overflow:
+            hidden;
+
+        box-shadow:
+            0 30px 80px
+            rgba(0,0,0,.2);
+    }
+
+
+    .chat-preview-header {
+
+        padding:
+            20px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            12px;
+
+        border-bottom:
+            1px solid
+            rgba(255,255,255,.1);
+    }
+
+
+    .cura-avatar {
+
+        width:
+            46px;
+
+        height:
+            46px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--green),
+                var(--teal)
+            );
+
+        border-radius:
+            15px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        color:
+            white;
+
+        font-size:
+            18px;
+
+        animation:
+            curaGlow 2.5s infinite;
+    }
+
+
+    @keyframes curaGlow {
+
+        50% {
+
+            box-shadow:
+                0 0 30px
+                rgba(16,185,129,.35);
+        }
+    }
+
+
+    .cura-name strong {
+
+        display:
+            block;
+
+        font-size:
+            14px;
+    }
+
+
+    .cura-name small {
+
+        color:
+            var(--green);
+
+        font-size:
+            10px;
+    }
+
+
+    .chat-body {
+
+        padding:
+            28px;
+
+        min-height:
+            300px;
+    }
+
+
+    .bubble {
+
+        max-width:
+            80%;
+
+        background:
+            rgba(255,255,255,.07);
+
+        border-radius:
+            18px 18px 18px 4px;
+
+        padding:
+            15px;
+
+        color:
+            #D6E6E3;
+
+        font-size:
+            13px;
+
+        line-height:
+            1.6;
+
+        margin-bottom:
+            13px;
+
+        animation:
+            bubbleAppear .7s ease both;
+    }
+
+
+    .bubble.user {
+
+        margin-left:
+            auto;
+
+        border-radius:
+            18px 18px 4px 18px;
+
+        background:
+            var(--teal);
+
+        color:
+            white;
+    }
+
+
+    .bubble:nth-child(2) {
+
+        animation-delay:
+            .5s;
+    }
+
+
+    .bubble:nth-child(3) {
+
+        animation-delay:
+            1s;
+    }
+
+
+    @keyframes bubbleAppear {
+
+        from {
+
+            opacity:
+                0;
+
+            transform:
+                translateY(12px);
+        }
+
+        to {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0);
+        }
+    }
+
+
+    /* =====================================================
+       FINAL CTA
+    ====================================================== */
+
+    .final {
+
+        padding:
+            160px 7vw;
+
+        text-align:
+            center;
+    }
+
+
+    .final h2 {
+
+        font-size:
+            clamp(
+                4rem,
+                9vw,
+                9rem
+            );
+
+        line-height:
+            .84;
+
+        letter-spacing:
+            -.075em;
+
+        font-weight:
+            400;
+    }
+
+
+    .final h2 em {
+
+        color:
+            var(--teal);
+
+        font-family:
+            "Playfair Display",
+            serif;
+    }
+
+
+    .final p {
+
+        max-width:
+            520px;
+
+        margin:
+            30px auto;
+
+        color:
+            var(--soft);
+
+        line-height:
+            1.8;
+
+        font-size:
+            15px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    footer {
+
+        border-top:
+            1px solid var(--border);
+
+        padding:
+            40px 7vw;
+
+        display:
+            flex;
+
+        justify-content:
+            space-between;
+
+        gap:
+            30px;
+
+        align-items:
+            center;
+    }
+
+
+    footer small {
+
+        color:
+            var(--muted);
+
+        font-size:
+            11px;
+
+        line-height:
+            1.7;
+    }
+
+
+    .footer-links {
+
+        display:
+            flex;
+
+        gap:
+            25px;
+
+        color:
+            var(--muted);
+
+        font-size:
+            11px;
+    }
+
+
+    .footer-links a:hover {
+
+        color:
+            var(--teal);
+    }
+
+
+    /* =====================================================
+       CURA RECEIPT BUTTON
+    ====================================================== */
+
+    .cura-button {
+
+        position:
+            fixed;
+
+        right:
+            25px;
+
+        bottom:
+            25px;
+
+        width:
+            70px;
+
+        height:
+            70px;
+
+        z-index:
+            8000;
+
+        border:
+            none;
+
+        cursor:
+            pointer;
+
+        background:
+            transparent;
+
+        transition:
+            .35s var(--ease);
+    }
+
+
+    .cura-button:hover {
+
+        transform:
+            scale(1.1)
+            rotate(-3deg);
+    }
+
+
+    /* =====================================================
+       CUTE RECEIPT
+    ====================================================== */
+
+    .receipt {
+
+        width:
+            60px;
+
+        height:
+            67px;
+
+        background:
+            #fff;
+
+        border:
+            2px solid
+            var(--teal);
+
+        border-radius:
+            9px;
+
+        position:
+            relative;
+
+        box-shadow:
+            0 12px 30px
+            rgba(13,148,136,.25);
+
+        animation:
+            receiptFloat 3s ease-in-out infinite;
+    }
+
+
+    @keyframes receiptFloat {
+
+        0%,100% {
+
+            transform:
+                translateY(0)
+                rotate(-4deg);
+        }
+
+        50% {
+
+            transform:
+                translateY(-7px)
+                rotate(4deg);
+        }
+    }
+
+
+    .receipt::after {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        bottom:
+            -7px;
+
+        left:
+            0;
+
+        width:
+            100%;
+
+        height:
+            10px;
+
+        background:
+            linear-gradient(
+                135deg,
+                transparent 25%,
+                white 25%,
+                white 50%,
+                transparent 50%,
+                transparent 75%,
+                white 75%
+            );
+
+        background-size:
+            12px 12px;
+    }
+
+
+    .receipt-face {
+
+        position:
+            absolute;
+
+        top:
+            13px;
+
+        left:
+            0;
+
+        right:
+            0;
+
+        display:
+            flex;
+
+        justify-content:
+            center;
+
+        gap:
+            11px;
+    }
+
+
+    .receipt-face span {
+
+        width:
+            5px;
+
+        height:
+            7px;
+
+        background:
+            var(--ink);
+
+        border-radius:
+            50%;
+    }
+
+
+    .receipt-smile {
+
+        position:
+            absolute;
+
+        top:
+            27px;
+
+        left:
+            24px;
+
+        width:
+            12px;
+
+        height:
+            7px;
+
+        border-bottom:
+            2px solid var(--teal);
+
+        border-radius:
+            50%;
+    }
+
+
+    .receipt-plus {
+
+        position:
+            absolute;
+
+        top:
+            40px;
+
+        left:
+            22px;
+
+        font-size:
+            14px;
+
+        color:
+            var(--green);
+    }
+
+
+    /* =====================================================
+       CURA CHAT WINDOW
+    ====================================================== */
+
+    .cura-chat {
+
+        position:
+            fixed;
+
+        right:
+            25px;
+
+        bottom:
+            110px;
+
+        width:
+            370px;
+
+        max-width:
+            calc(100vw - 30px);
+
+        height:
+            520px;
+
+        z-index:
+            7999;
+
+        background:
+            var(--white);
+
+        border:
+            1px solid var(--border);
+
+        border-radius:
+            30px;
+
+        overflow:
+            hidden;
+
+        box-shadow:
+            var(--shadow-heavy);
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        opacity:
+            0;
+
+        transform:
+            translateY(20px)
+            scale(.95);
+
+        pointer-events:
+            none;
+
+        transition:
+            .35s var(--ease);
+    }
+
+
+    .cura-chat.open {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        pointer-events:
+            auto;
+    }
+
+
+    .chat-head {
+
+        padding:
+            18px 20px;
+
+        background:
+            var(--ink);
+
+        color:
+            white;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            12px;
+    }
+
+
+    .chat-head-icon {
+
+        width:
+            40px;
+
+        height:
+            40px;
+
+        border-radius:
+            13px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--green),
+                var(--teal)
+            );
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+    }
+
+
+    .chat-head-text {
+
+        flex:
+            1;
+    }
+
+
+    .chat-head-text strong {
+
+        display:
+            block;
+
+        font-size:
+            14px;
+    }
+
+
+    .chat-head-text small {
+
+        color:
+            var(--green);
+
+        font-size:
+            10px;
+    }
+
+
+    .chat-close {
+
+        border:
+            none;
+
+        background:
+            transparent;
+
+        color:
+            white;
+
+        font-size:
+            18px;
+
+        cursor:
+            pointer;
+    }
+
+
+    .chat-messages {
+
+        flex:
+            1;
+
+        overflow-y:
+            auto;
+
+        padding:
+            20px;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        gap:
+            11px;
+    }
+
+
+    .message {
+
+        max-width:
+            82%;
+
+        padding:
+            12px 15px;
+
+        border-radius:
+            17px 17px 17px 4px;
+
+        background:
+            var(--mint);
+
+        color:
+            var(--dark);
+
+        font-size:
+            12px;
+
+        line-height:
+            1.55;
+    }
+
+
+    .message.user {
+
+        align-self:
+            flex-end;
+
+        border-radius:
+            17px 17px 4px 17px;
+
+        background:
+            var(--teal);
+
+        color:
+            white;
+    }
+
+
+    .chat-input-wrap {
+
+        padding:
+            12px;
+
+        border-top:
+            1px solid var(--border);
+
+        display:
+            flex;
+
+        gap:
+            8px;
+    }
+
+
+    .chat-input {
+
+        flex:
+            1;
+
+        min-width:
+            0;
+
+        border:
+            1px solid var(--border);
+
+        background:
+            var(--cream);
+
+        color:
+            var(--dark);
+
+        border-radius:
+            100px;
+
+        outline:
+            none;
+
+        padding:
+            12px 15px;
+
+        font-size:
+            12px;
+    }
+
+
+    .chat-input:focus {
+
+        border-color:
+            var(--teal);
+    }
+
+
+    .chat-send {
+
+        width:
+            42px;
+
+        height:
+            42px;
+
+        border:
+            none;
+
+        border-radius:
+            50%;
+
+        background:
+            var(--teal);
+
+        color:
+            white;
+
+        cursor:
+            pointer;
+    }
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ====================================================== */
+
+    .reveal {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(35px);
+
+        transition:
+            opacity .8s ease,
+            transform .8s var(--ease);
+    }
+
+
+    .reveal.show {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media(max-width: 1000px) {
+
+        .hero-ui {
+
+            right:
+                5%;
+
+            bottom:
+                8%;
+        }
+
+
+        .story,
+        .doctor,
+        .cura-grid {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .features {
+
+            grid-template-columns:
+                repeat(2,1fr);
+        }
+
+
+        .tech-heading {
+
+            flex-direction:
+                column;
+
+            align-items:
+                flex-start;
+        }
+    }
+
+
+    @media(max-width: 650px) {
+
+        nav {
+
+            padding:
+                17px 5vw;
+        }
+
+
+        .brand {
+
+            font-size:
+                12px;
+        }
+
+
+        .brand-logo {
+
+            width:
+                37px;
+
+            height:
+                37px;
+        }
+
+
+        .login {
+
+            padding:
+                10px 15px;
+
+            font-size:
+                11px;
+        }
+
+
+        .hero {
+
+            padding:
+                130px 6vw 90px;
+        }
+
+
+        .hero-title {
+
+            font-size:
+                4.4rem;
+        }
+
+
+        .hero-photo {
+
+            opacity:
+                .45;
+        }
+
+
+        .hero-overlay {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(240,253,250,.96),
+                    rgba(240,253,250,.78)
+                );
+        }
+
+
+        body.dark
+        .hero-overlay {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(7,27,26,.96),
+                    rgba(7,27,26,.78)
+                );
+        }
+
+
+        .hero-ui {
+
+            position:
+                relative;
+
+            right:
+                auto;
+
+            bottom:
+                auto;
+
+            margin:
+                50px auto 0;
+
+            width:
+                250px;
+        }
+
+
+        .scroll-indicator {
+
+            display:
+                none;
+        }
+
+
+        section.standard {
+
+            padding:
+                100px 6vw;
+        }
+
+
+        .story-photo {
+
+            height:
+                430px;
+        }
+
+
+        .features {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .feature-card {
+
+            min-height:
+                360px;
+        }
+
+
+        .cura-chat {
+
+            right:
+                15px;
+
+            bottom:
+                100px;
+
+            width:
+                calc(100vw - 30px);
+        }
+
+
+        .cura-button {
+
+            right:
+                15px;
+
+            bottom:
+                15px;
+        }
+
+
+        footer {
+
+            flex-direction:
+                column;
+
+            align-items:
+                flex-start;
+        }
+    }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADER
+====================================================== -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-inner">
+
+        <div class="loader-logo">
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+        </div>
+
+        <div class="loader-text">
+
+            ONECARE
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NAVIGATION
+====================================================== -->
+
+<nav id="navbar">
+
+    <a href="#" class="brand">
+
+        <div class="brand-logo">
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+        </div>
+
+        ONECARE
+
+    </a>
+
+
+    <div class="nav-controls">
+
+        <button
+            class="theme"
+            id="themeButton"
+            aria-label="Toggle theme">
+
+            <i
+                class="fa-solid fa-moon"
+                id="themeIcon">
+            </i>
+
+        </button>
+
+
+        <a
+            href="Mappp.html"
+            aria-label="Open OneCare Map"
+            style="display:inline-flex;align-items:center;gap:8px;padding:12px 18px;background:var(--teal);color:white;border-radius:100px;font-size:13px;font-weight:600;transition:.3s ease;">
+
+            <i class="fa-solid fa-map-location-dot"></i>
+            Map
+
+        </a>
+
+
+        <a
+            href="login.html"
+            class="login">
+
+            Sign in
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+
+    <div class="hero-photo">
+
+        <img
+            src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2000&q=90"
+            alt="Healthcare professional caring for a patient">
+
+    </div>
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-orb orb-one"></div>
+
+    <div class="hero-orb orb-two"></div>
+
+
+    <div class="hero-content reveal">
+
+
+        <div class="eyebrow">
+
+            <span class="live-dot"></span>
+
+            PERSONAL HEALTHCARE, REIMAGINED
+
+        </div>
+
+
+        <h1 class="hero-title">
+
+            Your health,
+            <br>
+
+            <em>your story.</em>
+
+        </h1>
+
+
+        <div class="slogan">
+
+            <span>Your Care.</span>
+            Once.
+            <span>Everywhere.</span>
+
+        </div>
+
+
+        <p class="hero-description">
+
+            OneCare brings your health information,
+            medical history, documents and healthcare
+            journey into one simple, secure digital space.
+
+            So wherever your care takes you,
+            your information can follow.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+
+            <a
+                href="signup.html"
+                class="btn-primary">
+
+                Create my OneCare
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+            <a
+                href="#story"
+                class="btn-secondary">
+
+                Discover OneCare
+
+                <i class="fa-solid fa-arrow-down"></i>
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         FLOATING HEALTH UI
+    ================================================== -->
+
+    <div class="hero-ui">
+
+
+        <div class="ui-top">
+
+            <span class="ui-title">
+
+                Your health overview
+
+            </span>
+
+
+            <div class="ui-check">
+
+                <i class="fa-solid fa-check"></i>
+
+            </div>
+
+        </div>
+
+
+        <div class="health-score">
+
+
+            <div class="score-circle"></div>
+
+
+            <div class="score-text">
+
+                <strong>
+
+                    OneCare ready
+
+                </strong>
+
+                <span>
+
+                    Everything in one place
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="scroll-indicator">
+
+        <span class="scroll-line"></span>
+
+        Scroll to explore
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     MARQUEE
+====================================================== -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+
+        <span>Your health</span>
+
+        <b>+</b>
+
+        <span>Your records</span>
+
+        <b>+</b>
+
+        <span>Your doctors</span>
+
+        <b>+</b>
+
+        <span>Your privacy</span>
+
+        <b>+</b>
+
+        <span>Your choice</span>
+
+        <b>+</b>
+
+        <span>OneCare</span>
+
+        <b>+</b>
+
+
+        <span>Your health</span>
+
+        <b>+</b>
+
+        <span>Your records</span>
+
+        <b>+</b>
+
+        <span>Your doctors</span>
+
+        <b>+</b>
+
+        <span>Your privacy</span>
+
+        <b>+</b>
+
+        <span>Your choice</span>
+
+        <b>+</b>
+
+        <span>OneCare</span>
+
+        <b>+</b>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     STORY
+====================================================== -->
+
+<section
+    class="standard"
+    id="story">
+
+
+    <div class="section-number reveal">
+
+        01 / THE IDEA
+
+    </div>
+
+
+    <h2 class="statement reveal">
+
+        Healthcare shouldn't
+        feel like you're
+        <em>starting over</em>
+        every time.
+
+    </h2>
+
+
+    <div class="story">
+
+
+        <div class="story-photo reveal">
+
+
+            <img
+                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=90"
+                alt="Doctor speaking with an older patient">
+
+
+            <div class="photo-tag">
+
+                CARE THAT REMEMBERS
+
+            </div>
+
+
+        </div>
+
+
+        <div class="reveal">
+
+
+            <h3 class="story-title">
+
+                Your information
+                <br>
+
+                <span>follows you.</span>
+
+            </h3>
+
+
+            <p class="story-copy">
+
+                A new doctor shouldn't have to ask you
+                for the same information you've already
+                provided somewhere else.
+
+                OneCare is designed around your health
+                story — keeping the important pieces
+                together so they can be available when
+                you need them.
+
+            </p>
+
+
+            <div class="mini-features">
+
+
+                <div class="mini-feature">
+
+                    <div class="mini-icon">
+
+                        <i class="fa-solid fa-id-card"></i>
+
+                    </div>
+
+                    <span>
+
+                        One simple health identity
+
+                    </span>
+
+                </div>
+
+
+                <div class="mini-feature">
+
+                    <div class="mini-icon">
+
+                        <i class="fa-solid fa-folder-open"></i>
+
+                    </div>
+
+                    <span>
+
+                        Medical records in one place
+
+                    </span>
+
+                </div>
+
+
+                <div class="mini-feature">
+
+                    <div class="mini-icon">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                    </div>
+
+                    <span>
+
+                        Easier sharing with doctors
+
+                    </span>
+
+                </div>
+
+
+                <div class="mini-feature">
+
+                    <div class="mini-icon">
+
+                        <i class="fa-solid fa-shield-heart"></i>
+
+                    </div>
+
+                    <span>
+
+                        You decide who gets access
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION 02
+====================================================== -->
+
+<section class="standard tech-section">
+
+
+    <div class="tech-heading">
+
+
+        <div>
+
+            <div class="section-number reveal">
+
+                02 / HOW ONECARE WORKS
+
+            </div>
+
+
+            <h2 class="reveal">
+
+                Six simple
+                <br>
+
+                pieces.
+                <br>
+
+                <span style="color:var(--teal)">
+                    One experience.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <p class="reveal">
+
+            We've taken the complicated parts of
+            digital healthcare and designed them
+            around something much simpler:
+
+            you.
+
+        </p>
+
+
+    </div>
+
+
+    <div class="features">
+
+
+        <!-- =================================================
+             FEATURE 01
+        ================================================== -->
+
+        <article class="feature-card reveal">
+
+
+            <div class="feature-number">
+
+                01 / ID
+
+            </div>
+
+
+            <div class="feature-visual">
+
+
+                <div class="id-card">
+
+                    <div class="id-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <div class="id-line"></div>
+
+                    <div class="id-line short"></div>
+
+                    <div class="id-line"></div>
+
+                </div>
+
+
+            </div>
+
+
+            <h3>
+
+                OneCare ID
+
+            </h3>
+
+
+            <p>
+
+                One unique identity for your
+                personal health space.
+
+            </p>
+
+
+        </article>
+
+
+        <!-- =================================================
+             FEATURE 02
+        ================================================== -->
+
+        <article class="feature-card reveal">
+
+
+            <div class="feature-number">
+
+                02 / ACCESS
+
+            </div>
+
+
+            <div class="feature-visual">
+
+
+                <div class="otp-box">
+
+                    <span>•</span>
+
+                    <span>•</span>
+
+                    <span>•</span>
+
+                    <span>•</span>
+
+                    <span>•</span>
+
+                    <span>•</span>
+
+                </div>
+
+
+            </div>
+
+
+            <h3>
+
+                One-time access
+
+            </h3>
+
+
+            <p>
+
+                Temporary authorization for an
+                approved healthcare session.
+
+            </p>
+
+
+        </article>
+
+
+        <!-- =================================================
+             FEATURE 03
+        ================================================== -->
+
+        <article class="feature-card reveal">
+
+
+            <div class="feature-number">
+
+                03 / CURA
+
+            </div>
+
+
+            <div class="feature-visual">
+
+
+                <div class="cura-mini">
+
+                    <div class="cura-eyes">
+
+                        <span></span>
+
+                        <span></span>
+
+                    </div>
+
+
+                    <div class="cura-mouth"></div>
+
+
+                    <div class="cura-plus">
+
+                        +
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <h3>
+
+                Meet Cura
+
+            </h3>
+
+
+            <p>
+
+                Your friendly AI companion for
+                navigating your OneCare space.
+
+            </p>
+
+
+        </article>
+
+
+        <!-- =================================================
+             FEATURE 04
+        ================================================== -->
+
+        <article class="feature-card reveal">
+
+
+            <div class="feature-number">
+
+                04 / TIMELINE
+
+            </div>
+
+
+            <div class="feature-visual">
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-text"></div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-text"></div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-text"></div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <h3>
+
+                Health timeline
+
+            </h3>
+
+
+            <p>
+
+                See appointments, records and
+                important health events together.
+
+            </p>
+
+
+        </article>
+
+
+        <!-- =================================================
+             FEATURE 05
+        ================================================== -->
+
+        <article class="feature-card reveal">
+
+
+            <div class="feature-number">
+
+                05 / RECORDS
+
+            </div>
+
+
+            <div class="feature-visual">
+
+
+                <div class="record-stack">
+
+
+                    <div class="paper">
+
+                        <div class="paper-line"></div>
+
+                        <div class="paper-line gray"></div>
+
+                        <div class="paper-line gray"></div>
+
+                    </div>
+
+
+                    <div class="paper">
+
+                        <div class="paper-line"></div>
+
+                        <div class="paper-line gray"></div>
+
+                        <div class="paper-line gray"></div>
+
+                    </div>
+
+
+                    <div class="paper">
+
+                        <div class="paper-line"></div>
+
+                        <div class="paper-line gray"></div>
+
+                        <div class="paper-line gray"></div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <h3>
+
+                Records & receipts
+
+            </h3>
+
+
+            <p>
+
+                Keep reports, prescriptions,
+                receipts and documents organized.
+
+            </p>
+
+
+        </article>
+
+
+        <!-- =================================================
+             FEATURE 06
+        ================================================== -->
+
+        <article class="feature-card reveal">
+
+
+            <div class="feature-number">
+
+                06 / SECURITY
+
+            </div>
+
+
+            <div class="feature-visual security-visual">
+
+
+                <div class="shield">
+
+                    <i class="fa-solid fa-heart"></i>
+
+                </div>
+
+
+            </div>
+
+
+            <h3>
+
+                Privacy first
+
+            </h3>
+
+
+            <p>
+
+                Your health information should
+                remain under your control.
+
+            </p>
+
+
+        </article>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     DOCTOR ACCESS
+====================================================== -->
+
+<section class="standard">
+
+
+    <div class="doctor">
+
+
+        <div class="reveal">
+
+
+            <div class="section-number">
+
+                03 / FOR DOCTORS
+
+            </div>
+
+
+            <h2 class="doctor-title">
+
+                Less
+                <br>
+
+                paperwork.
+                <br>
+
+                More
+                <span>care.</span>
+
+            </h2>
+
+
+            <p class="doctor-copy">
+
+                A doctor can enter a patient's unique
+                OneCare ID and request temporary access.
+
+                The patient then authorizes the session
+                using a one-time code.
+
+                The prototype below demonstrates the
+                experience; real authentication and
+                authorization will be handled by the
+                backend.
+
+            </p>
+
+
+        </div>
+
+
+        <div class="access-mockup reveal">
+
+
+            <div class="access-header">
+
+
+                <div class="access-lock">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                </div>
+
+
+                <div class="access-status">
+
+                    Temporary session
+
+                </div>
+
+
+            </div>
+
+
+            <div class="section-number"
+                 style="margin-top:40px">
+
+                ONECARE PATIENT ID
+
+            </div>
+
+
+            <div class="access-id">
+
+                OC •••• ••••
+
+            </div>
+
+
+            <div class="access-bars">
+
+                <span class="active"></span>
+
+                <span class="active"></span>
+
+                <span class="active"></span>
+
+                <span class="active"></span>
+
+                <span></span>
+
+                <span></span>
+
+            </div>
+
+
+            <p class="story-copy"
+               style="margin-top:25px">
+
+                Waiting for patient authorization...
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CURA SECTION
+====================================================== -->
+
+<section class="standard cura-section">
+
+
+    <div class="cura-grid">
+
+
+        <div class="reveal">
+
+
+            <div class="section-number">
+
+                04 / MEET CURA
+
+            </div>
+
+
+            <h2 class="cura-title">
+
+                A little
+                <br>
+
+                help,
+                <br>
+
+                <em>when you need it.</em>
+
+            </h2>
+
+
+            <p class="cura-copy">
+
+                Hey, how are you? I'm Cura,
+                your personal healthcare companion.
+
+                I can help you navigate OneCare,
+                find features and understand how
+                your health space works.
+
+            </p>
+
+
+        </div>
+
+
+        <div class="chat-preview reveal">
+
+
+            <div class="chat-preview-header">
+
+
+                <div class="cura-avatar">
+
+                    <i class="fa-solid fa-sparkles"></i>
+
+                </div>
+
+
+                <div class="cura-name">
+
+                    <strong>
+
+                        Cura
+
+                    </strong>
+
+                    <small>
+
+                        ● Online · Ready to help
+
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="chat-body">
+
+
+                <div class="bubble">
+
+                    Hey! How are you? 👋
+
+                    <br><br>
+
+                    I'm Cura, your personal
+                    healthcare companion.
+
+                    How can I help you today? 💚
+
+                </div>
+
+
+                <div class="bubble user">
+
+                    Where can I find my medical records?
+
+                </div>
+
+
+                <div class="bubble">
+
+                    You can find them in your
+                    Health Timeline once you sign in.
+
+                    I'll help you find your way around! ✨
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     FINAL CTA
+====================================================== -->
+
+<section class="final">
+
+
+    <div class="reveal">
+
+
+        <div class="section-number">
+
+            YOUR HEALTH. YOUR SPACE.
+
+        </div>
+
+
+        <h2>
+
+            Your Care.
+            <br>
+
+            <em>Once. Everywhere.</em>
+
+        </h2>
+
+
+        <p>
+
+            One place for your health story.
+            One identity for your journey.
+            OneCare.
+
+        </p>
+
+
+        <a
+            href="signup.html"
+            class="btn-primary">
+
+            Start your OneCare
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+
+    <small>
+
+        © 2026 OneCare
+        <br>
+
+        Your Care. Once. Everywhere.
+
+    </small>
+
+
+    <div class="footer-links">
+
+        <a href="#">
+            Privacy
+        </a>
+
+        <a href="#">
+            Security
+        </a>
+
+        <a href="#">
+            About
+        </a>
+
+        <a href="login.html">
+            Sign in
+        </a>
+
+    </div>
+
+
+</footer>
+
+
+<!-- =====================================================
+     CURA FLOATING BUTTON
+====================================================== -->
+
+<button
+    class="cura-button"
+    id="curaButton"
+    aria-label="Open Cura">
+
+
+    <div class="receipt">
+
+
+        <div class="receipt-face">
+
+            <span></span>
+
+            <span></span>
+
+        </div>
+
+
+        <div class="receipt-smile"></div>
+
+
+        <div class="receipt-plus">
+
+            ✚
+
+        </div>
+
+
+    </div>
+
+
+</button>
+
+
+<!-- =====================================================
+     CURA CHAT
+====================================================== -->
+
+<div
+    class="cura-chat"
+    id="curaChat">
+
+
+    <div class="chat-head">
+
+
+        <div class="chat-head-icon">
+
+            <i class="fa-solid fa-sparkles"></i>
+
+        </div>
+
+
+        <div class="chat-head-text">
+
+            <strong>
+
+                Cura
+
+            </strong>
+
+            <small>
+
+                Your personal healthcare companion
+
+            </small>
+
+        </div>
+
+
+        <button
+            class="chat-close"
+            id="chatClose">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+    </div>
+
+
+    <div
+        class="chat-messages"
+        id="chatMessages">
+
+
+        <div class="message">
+
+            Hey! How are you? 👋
+
+            <br><br>
+
+            I'm Cura, your personal healthcare
+            companion.
+
+            <br><br>
+
+            How can I help you today? 💚
+
+        </div>
+
+
+    </div>
+
+
+    <div class="chat-input-wrap">
+
+
+        <input
+            type="text"
+            id="chatInput"
+            class="chat-input"
+            placeholder="Ask Cura something...">
+
+
+        <button
+            class="chat-send"
+            id="chatSend">
+
+            <i class="fa-solid fa-arrow-up"></i>
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+
+/* =====================================================
+   PAGE LOADER
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function() {
+
+        setTimeout(
+            function() {
+
+                document
+                    .getElementById("loader")
+                    .classList.add("hide");
+
+            },
+            700
+        );
+
+    }
+);
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+const navbar =
+    document.getElementById(
+        "navbar"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    function() {
+
+        if (
+            window.scrollY > 50
+        ) {
+
+            navbar.classList.add(
+                "scrolled"
+            );
+
+        } else {
+
+            navbar.classList.remove(
+                "scrolled"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+const themeButton =
+    document.getElementById(
+        "themeButton"
+    );
+
+const themeIcon =
+    document.getElementById(
+        "themeIcon"
+    );
+
+
+const savedTheme =
+    localStorage.getItem(
+        "onecare-theme"
+    );
+
+
+if (
+    savedTheme === "dark"
+) {
+
+    document.body.classList.add(
+        "dark"
+    );
+
+    themeIcon.className =
+        "fa-solid fa-sun";
+
+}
+
+
+themeButton.addEventListener(
+    "click",
+    function() {
+
+
+        document.body.classList.toggle(
+            "dark"
+        );
+
+
+        const isDark =
+            document.body.classList.contains(
+                "dark"
+            );
+
+
+        localStorage.setItem(
+            "onecare-theme",
+            isDark
+                ? "dark"
+                : "light"
+        );
+
+
+        themeIcon.className =
+            isDark
+                ? "fa-solid fa-sun"
+                : "fa-solid fa-moon";
+
+    }
+);
+
+
+/* =====================================================
+   REVEAL ANIMATIONS
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(
+        ".reveal"
+    );
+
+
+const revealObserver =
+    new IntersectionObserver(
+        function(entries) {
+
+            entries.forEach(
+                function(entry) {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "show"
+                        );
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: .12
+        }
+    );
+
+
+revealElements.forEach(
+    function(element) {
+
+        revealObserver.observe(
+            element
+        );
+
+    }
+);
+
+
+/* =====================================================
+   HERO PARALLAX
+===================================================== */
+
+const hero =
+    document.querySelector(
+        ".hero"
+    );
+
+
+const heroPhoto =
+    document.querySelector(
+        ".hero-photo img"
+    );
+
+
+const heroUI =
+    document.querySelector(
+        ".hero-ui"
+    );
+
+
+hero.addEventListener(
+    "mousemove",
+    function(event) {
+
+
+        const rect =
+            hero.getBoundingClientRect();
+
+
+        const x =
+            (event.clientX - rect.left)
+            / rect.width
+            - .5;
+
+
+        const y =
+            (event.clientY - rect.top)
+            / rect.height
+            - .5;
+
+
+        heroPhoto.style.transform =
+            `scale(1.08)
+             translate(${x * -8}px,
+                       ${y * -8}px)`;
+
+
+        heroUI.style.transform =
+            `translate(${x * 12}px,
+                       ${y * 12}px)`;
+
+    }
+);
+
+
+hero.addEventListener(
+    "mouseleave",
+    function() {
+
+        heroPhoto.style.transform =
+            "scale(1.08)";
+
+        heroUI.style.transform =
+            "";
+
+    }
+);
+
+
+/* =====================================================
+ /* =====================================================
+   CURA AI
+===================================================== */
+
+const curaButton = document.getElementById("curaButton");
+const curaChat = document.getElementById("curaChat");
+const chatClose = document.getElementById("chatClose");
+const chatInput = document.getElementById("chatInput");
+const chatSend = document.getElementById("chatSend");
+const chatMessages = document.getElementById("chatMessages");
+
+
+/* =====================================================
+   OPEN CURA
+===================================================== */
+
+curaButton.addEventListener("click", function () {
+    window.location.href = "ai.html";
+});
+
+
+/* =====================================================
+   CLOSE CURA
+===================================================== */
+
+chatClose.addEventListener("click", function () {
+
+    curaChat.classList.remove("open");
+
+});
+
+
+/* =====================================================
+   ADD MESSAGE TO CHAT
+===================================================== */
+
+function addMessage(message, sender) {
+
+    const messageDiv = document.createElement("div");
+
+    messageDiv.classList.add(
+        "chat-message",
+        sender
+    );
+
+    messageDiv.textContent = message;
+
+    chatMessages.appendChild(messageDiv);
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+
+}
+
+
+/* =====================================================
+   CURA CHAT
+===================================================== */
+
+function curaResponse(text) {
+
+    const lower = text.toLowerCase();
+
+    if (
+        lower.includes("hello") ||
+        lower.includes("hi") ||
+        lower.includes("hey")
+    ) {
+        return "Hey! 👋 I'm Cura, your OneCare companion. What can I help you with?";
+    }
+
+    if (
+        lower.includes("record") ||
+        lower.includes("history")
+    ) {
+        return "Your medical records and history will be available from your OneCare dashboard after you sign in. 💚";
+    }
+
+    if (lower.includes("doctor")) {
+        return "Your doctor can use your unique OneCare ID to request temporary access. You remain in control of the authorization.";
+    }
+
+    if (
+        lower.includes("otp") ||
+        lower.includes("code") ||
+        lower.includes("one time")
+    ) {
+        return "Your one-time code is designed for temporary authorized access. Your permanent password should never need to be shared with a doctor.";
+    }
+
+    if (
+        lower.includes("privacy") ||
+        lower.includes("secure") ||
+        lower.includes("security")
+    ) {
+        return "Privacy is one of OneCare's core ideas. The prototype is designed around giving you control over who can access your health information.";
+    }
+
+    if (lower.includes("onecare")) {
+        return "OneCare is your personal digital health space — Your Care. Once. Everywhere. ✨";
+    }
+
+    if (lower.includes("help")) {
+        return "Of course! I can explain OneCare, your health records, doctor access, your OneCare ID, privacy, or how the platform works.";
+    }
+
+    return "I'm still learning! 💚 Try asking me about your records, doctors, privacy, your OneCare ID, or one-time access.";
+}
+
+
+/* =====================================================
+   SEND CURA MESSAGE
+===================================================== */
+
+function sendCuraMessage() {
+
+    const text = chatInput.value.trim();
+
+    if (!text) return;
+
+    /* User message */
+    addMessage(text, true);
+
+    chatInput.value = "";
+
+    chatInput.disabled = true;
+    chatSend.disabled = true;
+
+    /* Cura thinking */
+    const thinking = document.createElement("div");
+
+    thinking.className = "message";
+
+    thinking.textContent = "Cura is thinking...";
+
+    chatMessages.appendChild(thinking);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    /* Cura response */
+    setTimeout(function () {
+
+        thinking.remove();
+
+        addMessage(
+            curaResponse(text),
+            false
+        );
+
+        chatInput.disabled = false;
+        chatSend.disabled = false;
+        chatInput.focus();
+
+    }, 650);
+}
+
+
+/* =====================================================
+   SEND BUTTON
+===================================================== */
+
+chatSend.addEventListener(
+    "click",
+    sendCuraMessage
+);
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+chatInput.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Enter" && !event.shiftKey) {
+
+            event.preventDefault();
+
+            sendCuraMessage();
+        }
+
+    }
+);
+</script>
+
+</body>
+
+</html>

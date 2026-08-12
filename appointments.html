@@ -1,0 +1,2833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Appointments | OneCare</title>
+
+<style>
+
+/* =========================================================
+   ONECARE — APPOINTMENTS
+========================================================= */
+
+:root {
+    --dark: #1E293B;
+    --green: #10B981;
+    --teal: #0D9488;
+    --dark-teal: #0F766E;
+    --mint: #F0FDFA;
+    --soft-mint: #E6F4F1;
+    --border: #CBD5E1;
+    --white: #ffffff;
+    --muted: #64748B;
+    --light: #F8FAFC;
+    --red: #EF4444;
+    --orange: #F59E0B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    height: 78px;
+
+    background:
+        rgba(255,255,255,0.95);
+
+    backdrop-filter: blur(20px);
+
+    border-bottom:
+        1px solid
+        rgba(203,213,225,0.7);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 42px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    text-decoration: none;
+
+    color: var(--dark);
+
+    font-size: 1.35rem;
+    font-weight: 900;
+}
+
+.logo-mark {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    box-shadow:
+        0 8px 20px
+        rgba(13,148,136,0.2);
+}
+
+.logo span {
+    color: var(--teal);
+}
+
+.nav-center {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-center a {
+    color: var(--muted);
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+    font-weight: 650;
+
+    transition: 0.2s;
+}
+
+.nav-center a:hover,
+.nav-center a.active {
+    color: var(--teal);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: var(--dark);
+
+    font-weight: 700;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--soft-mint),
+            #D1FAE5
+        );
+
+    color: var(--dark-teal);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.layout {
+    display: flex;
+
+    min-height:
+        calc(100vh - 78px);
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: 245px;
+
+    background: white;
+
+    border-right:
+        1px solid
+        rgba(203,213,225,0.7);
+
+    padding: 28px 18px;
+
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    padding: 0 14px 15px;
+
+    color: #94A3B8;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.4px;
+
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px 15px;
+
+    margin-bottom: 5px;
+
+    border-radius: 13px;
+
+    text-decoration: none;
+
+    color: var(--muted);
+
+    font-size: 0.9rem;
+    font-weight: 650;
+
+    transition: 0.2s;
+}
+
+.sidebar-link:hover {
+    background: var(--mint);
+    color: var(--teal);
+}
+
+.sidebar-link.active {
+    background: var(--soft-mint);
+    color: var(--dark-teal);
+    font-weight: 800;
+}
+
+.sidebar-icon {
+    width: 25px;
+
+    text-align: center;
+
+    font-size: 1.1rem;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+    flex: 1;
+
+    padding: 45px;
+
+    max-width: 1500px;
+}
+
+.page-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 35px;
+}
+
+.page-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: var(--muted);
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 12px 18px;
+
+    font-weight: 800;
+
+    font-size: 0.88rem;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    box-shadow:
+        0 8px 20px
+        rgba(13,148,136,0.2);
+}
+
+.btn-secondary {
+    background: var(--soft-mint);
+
+    color: var(--dark-teal);
+}
+
+.btn-outline {
+    background: white;
+
+    border:
+        1px solid
+        var(--border);
+
+    color: var(--dark);
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card {
+    background: white;
+
+    border:
+        1px solid
+        rgba(203,213,225,0.75);
+
+    border-radius: 22px;
+
+    padding: 27px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(15,23,42,0.035);
+}
+
+.card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.card-title {
+    font-size: 1.15rem;
+
+    font-weight: 850;
+}
+
+.card-subtitle {
+    color: var(--muted);
+
+    font-size: 0.85rem;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   UPCOMING APPOINTMENT HERO
+========================================================= */
+
+.next-appointment {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0F766E,
+            #0D9488,
+            #10B981
+        );
+
+    color: white;
+
+    border: none;
+
+    margin-bottom: 25px;
+}
+
+.next-appointment::after {
+    content: "";
+
+    position: absolute;
+
+    width: 240px;
+    height: 240px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    right: -70px;
+    top: -90px;
+}
+
+.next-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.next-label {
+    font-size: 0.72rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+    opacity: 0.8;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.next-title {
+    font-size: 1.8rem;
+
+    font-weight: 900;
+
+    margin-bottom: 8px;
+}
+
+.next-details {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    margin-top: 18px;
+
+    font-size: 0.88rem;
+}
+
+.next-detail {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.next-button {
+    position: absolute;
+
+    right: 28px;
+    bottom: 27px;
+
+    background: white;
+
+    color: var(--dark-teal);
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 11px 17px;
+
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+.calendar-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(300px, 1fr)
+        minmax(300px, 1.3fr);
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+.calendar {
+    background: white;
+
+    border:
+        1px solid
+        rgba(203,213,225,0.75);
+
+    border-radius: 22px;
+
+    padding: 25px;
+}
+
+.calendar-head {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.month {
+    font-weight: 900;
+
+    font-size: 1.05rem;
+}
+
+.month-buttons {
+    display: flex;
+
+    gap: 7px;
+}
+
+.month-buttons button {
+    width: 33px;
+    height: 33px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--soft-mint);
+
+    color: var(--dark-teal);
+}
+
+.weekdays,
+.days {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap: 6px;
+}
+
+.weekdays {
+    margin-bottom: 8px;
+}
+
+.weekdays span {
+    text-align: center;
+
+    font-size: 0.68rem;
+
+    color: #94A3B8;
+
+    font-weight: 800;
+}
+
+.day {
+    aspect-ratio: 1;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: transparent;
+
+    color: var(--dark);
+
+    font-size: 0.8rem;
+
+    position: relative;
+
+    transition: 0.2s;
+}
+
+.day:hover {
+    background: var(--mint);
+}
+
+.day.today {
+    background: var(--teal);
+
+    color: white;
+
+    font-weight: 900;
+}
+
+.day.has-event::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 5px;
+    left: 50%;
+
+    width: 4px;
+    height: 4px;
+
+    transform: translateX(-50%);
+
+    background: var(--green);
+
+    border-radius: 50%;
+}
+
+.day.today.has-event::after {
+    background: white;
+}
+
+
+/* =========================================================
+   APPOINTMENT LIST
+========================================================= */
+
+.appointment-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+.appointment {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 17px;
+
+    border:
+        1px solid
+        #E2E8F0;
+
+    border-radius: 16px;
+
+    transition: 0.2s;
+}
+
+.appointment:hover {
+    transform: translateX(4px);
+
+    border-color: #B6E8DF;
+}
+
+.appointment-date {
+    width: 52px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background: var(--soft-mint);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.appointment-date strong {
+    color: var(--dark-teal);
+
+    font-size: 1.1rem;
+}
+
+.appointment-date small {
+    color: var(--muted);
+
+    font-size: 0.65rem;
+
+    text-transform: uppercase;
+}
+
+.appointment-info {
+    flex: 1;
+}
+
+.appointment-doctor {
+    font-weight: 850;
+
+    margin-bottom: 4px;
+}
+
+.appointment-meta {
+    color: var(--muted);
+
+    font-size: 0.78rem;
+}
+
+.status {
+    padding: 5px 9px;
+
+    border-radius: 50px;
+
+    font-size: 0.67rem;
+
+    font-weight: 850;
+}
+
+.status.confirmed {
+    background: #DCFCE7;
+
+    color: #15803D;
+}
+
+.status.pending {
+    background: #FEF3C7;
+
+    color: #B45309;
+}
+
+
+/* =========================================================
+   EMPTY / INFORMATION
+========================================================= */
+
+.info-strip {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 17px;
+
+    border-radius: 16px;
+
+    background: var(--mint);
+
+    color: var(--dark-teal);
+
+    margin-top: 20px;
+}
+
+.info-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(15,23,42,0.5);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 5000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.25s;
+}
+
+.modal.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.modal-box {
+    width: min(550px, 100%);
+
+    background: white;
+
+    border-radius: 27px;
+
+    padding: 32px;
+
+    position: relative;
+
+    box-shadow:
+        0 30px 80px
+        rgba(15,23,42,0.2);
+
+    transform:
+        translateY(20px)
+        scale(0.97);
+
+    transition: 0.25s;
+}
+
+.modal.show .modal-box {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.close {
+    position: absolute;
+
+    top: 17px;
+    right: 17px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--soft-mint);
+
+    font-size: 1.2rem;
+}
+
+.modal h2 {
+    margin-bottom: 8px;
+}
+
+.modal-description {
+    color: var(--muted);
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 0.78rem;
+
+    font-weight: 800;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 12px;
+
+    outline: none;
+
+    color: var(--dark);
+
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--teal);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(13,148,136,0.08);
+}
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 90px;
+}
+
+.modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   CURA
+========================================================= */
+
+.cura-button {
+    position: fixed;
+
+    right: 28px;
+    bottom: 28px;
+
+    width: 65px;
+    height: 65px;
+
+    border-radius: 22px;
+
+    border: none;
+
+    color: white;
+
+    font-size: 1.5rem;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    box-shadow:
+        0 15px 35px
+        rgba(13,148,136,0.3);
+
+    z-index: 2000;
+
+    animation:
+        float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+.cura-window {
+    position: fixed;
+
+    right: 28px;
+    bottom: 105px;
+
+    width: 360px;
+
+    background: white;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(15,23,42,0.18);
+
+    border:
+        1px solid
+        var(--border);
+
+    overflow: hidden;
+
+    z-index: 1999;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(20px)
+        scale(0.95);
+
+    transition: 0.25s;
+}
+
+.cura-window.open {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.cura-header {
+    padding: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--mint),
+            white
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+}
+
+.cura-logo {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 14px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 1.3rem;
+
+    box-shadow:
+        0 5px 15px
+        rgba(15,23,42,0.06);
+}
+
+.cura-title {
+    flex: 1;
+}
+
+.cura-title strong {
+    display: block;
+}
+
+.cura-title small {
+    color: var(--muted);
+
+    font-size: 0.7rem;
+}
+
+.cura-close {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 1.1rem;
+}
+
+.cura-messages {
+    height: 300px;
+
+    padding: 18px;
+
+    overflow-y: auto;
+
+    background: #FBFFFE;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.message {
+    max-width: 85%;
+
+    padding: 12px 14px;
+
+    border-radius: 15px;
+
+    font-size: 0.82rem;
+
+    line-height: 1.5;
+}
+
+.message.bot {
+    align-self: flex-start;
+
+    background: var(--soft-mint);
+
+    border-bottom-left-radius: 5px;
+}
+
+.message.user {
+    align-self: flex-end;
+
+    color: white;
+
+    background: var(--teal);
+
+    border-bottom-right-radius: 5px;
+}
+
+.cura-input {
+    display: flex;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    border-top:
+        1px solid
+        var(--border);
+}
+
+.cura-input input {
+    flex: 1;
+
+    height: 42px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 12px;
+
+    padding: 0 12px;
+
+    outline: none;
+}
+
+.cura-send {
+    width: 42px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background: var(--teal);
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    left: 50%;
+    bottom: 30px;
+
+    transform:
+        translate(-50%,20px);
+
+    background: var(--dark);
+
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 12px;
+
+    font-size: 0.85rem;
+
+    z-index: 10000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.25s;
+}
+
+.toast.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .nav-center {
+        display: none;
+    }
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .calendar-layout {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 750px) {
+
+    .navbar {
+        padding: 0 18px;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        padding: 25px 18px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .next-button {
+        position: static;
+
+        margin-top: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+    .cura-window {
+        right: 15px;
+        bottom: 95px;
+
+        width:
+            calc(100% - 30px);
+    }
+
+    .cura-button {
+        right: 18px;
+        bottom: 18px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+    <a href="dashboard.html" class="logo">
+
+        <div class="logo-mark">
+            ✚
+        </div>
+
+        One<span>Care</span>
+
+    </a>
+
+
+    <div class="nav-center">
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="appointments.html"
+           class="active">
+            Appointments
+        </a>
+
+        <a href="documents.html">
+            Documents
+        </a>
+
+        <a href="ai.html">
+            Cura
+        </a>
+
+    </div>
+
+
+    <a href="profile.html"
+       class="nav-user">
+
+        <div class="avatar">
+            JD
+        </div>
+
+        <span>
+            John Doe
+        </span>
+
+    </a>
+
+</nav>
+
+
+
+<!-- =========================================================
+     PAGE LAYOUT
+========================================================= -->
+
+<div class="layout">
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-title">
+        OneCare
+    </div>
+
+
+    <a href="dashboard.html"
+       class="sidebar-link">
+
+        <span class="sidebar-icon">
+            ◉
+        </span>
+
+        Dashboard
+
+    </a>
+
+
+    <a href="profile.html"
+       class="sidebar-link">
+
+        <span class="sidebar-icon">
+            ◎
+        </span>
+
+        My Profile
+
+    </a>
+
+
+    <a href="medical-history.html"
+       class="sidebar-link">
+
+        <span class="sidebar-icon">
+            ♡
+        </span>
+
+        Medical History
+
+    </a>
+
+
+    <a href="documents.html"
+       class="sidebar-link">
+
+        <span class="sidebar-icon">
+            ▣
+        </span>
+
+        Documents
+
+    </a>
+
+
+    <a href="appointments.html"
+       class="sidebar-link active">
+
+        <span class="sidebar-icon">
+            ◷
+        </span>
+
+        Appointments
+
+    </a>
+
+
+    <div class="sidebar-title"
+         style="margin-top:25px;">
+
+        Sharing
+
+    </div>
+
+
+    <a href="access.html"
+       class="sidebar-link">
+
+        <span class="sidebar-icon">
+            ⇄
+        </span>
+
+        Doctor Access
+
+    </a>
+
+
+    <a href="ai.html"
+       class="sidebar-link">
+
+        <span class="sidebar-icon">
+            ✦
+        </span>
+
+        Ask Cura
+
+    </a>
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="main">
+
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Appointments
+            </h1>
+
+            <p>
+                Keep track of your upcoming visits and
+                your healthcare journey.
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="openBooking()"
+        >
+            + Book appointment
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         NEXT APPOINTMENT
+    ====================================================== -->
+
+    <section class="card next-appointment">
+
+        <div class="next-content">
+
+            <div class="next-label">
+                Next appointment
+            </div>
+
+            <div class="next-title">
+                General Consultation
+            </div>
+
+            <div>
+                Dr. Sarah Perera
+            </div>
+
+
+            <div class="next-details">
+
+                <div class="next-detail">
+                    📅 18 August 2026
+                </div>
+
+                <div class="next-detail">
+                    🕐 10:30 AM
+                </div>
+
+                <div class="next-detail">
+                    📍 Colombo Medical Centre
+                </div>
+
+            </div>
+
+
+            <button
+                class="next-button"
+                onclick="viewAppointment()"
+            >
+                View details
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CALENDAR + UPCOMING
+    ====================================================== -->
+
+    <div class="calendar-layout">
+
+
+        <!-- CALENDAR -->
+
+        <section class="calendar">
+
+            <div class="calendar-head">
+
+                <div class="month">
+                    August 2026
+                </div>
+
+
+                <div class="month-buttons">
+
+                    <button>
+                        ‹
+                    </button>
+
+                    <button>
+                        ›
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="weekdays">
+
+                <span>
+                    Sun
+                </span>
+
+                <span>
+                    Mon
+                </span>
+
+                <span>
+                    Tue
+                </span>
+
+                <span>
+                    Wed
+                </span>
+
+                <span>
+                    Thu
+                </span>
+
+                <span>
+                    Fri
+                </span>
+
+                <span>
+                    Sat
+                </span>
+
+            </div>
+
+
+            <div class="days">
+
+                <button class="day">
+                    26
+                </button>
+
+                <button class="day">
+                    27
+                </button>
+
+                <button class="day">
+                    28
+                </button>
+
+                <button class="day">
+                    29
+                </button>
+
+                <button class="day">
+                    30
+                </button>
+
+                <button class="day">
+                    31
+                </button>
+
+                <button class="day">
+                    1
+                </button>
+
+                <button class="day">
+                    2
+                </button>
+
+                <button class="day">
+                    3
+                </button>
+
+                <button class="day">
+                    4
+                </button>
+
+                <button class="day">
+                    5
+                </button>
+
+                <button class="day">
+                    6
+                </button>
+
+                <button class="day">
+                    7
+                </button>
+
+                <button class="day">
+                    8
+                </button>
+
+                <button class="day">
+                    9
+                </button>
+
+                <button class="day">
+                    10
+                </button>
+
+                <button class="day">
+                    11
+                </button>
+
+                <button class="day today">
+                    12
+                </button>
+
+                <button class="day">
+                    13
+                </button>
+
+                <button class="day">
+                    14
+                </button>
+
+                <button class="day">
+                    15
+                </button>
+
+                <button class="day">
+                    16
+                </button>
+
+                <button class="day">
+                    17
+                </button>
+
+                <button class="day has-event">
+                    18
+                </button>
+
+                <button class="day">
+                    19
+                </button>
+
+                <button class="day">
+                    20
+                </button>
+
+                <button class="day">
+                    21
+                </button>
+
+                <button class="day">
+                    22
+                </button>
+
+                <button class="day">
+                    23
+                </button>
+
+                <button class="day">
+                    24
+                </button>
+
+                <button class="day">
+                    25
+                </button>
+
+                <button class="day">
+                    26
+                </button>
+
+                <button class="day">
+                    27
+                </button>
+
+                <button class="day">
+                    28
+                </button>
+
+                <button class="day">
+                    29
+                </button>
+
+                <button class="day">
+                    30
+                </button>
+
+                <button class="day">
+                    31
+                </button>
+
+                <button class="day">
+                    1
+                </button>
+
+                <button class="day">
+                    2
+                </button>
+
+                <button class="day">
+                    3
+                </button>
+
+                <button class="day">
+                    4
+                </button>
+
+                <button class="day">
+                    5
+                </button>
+
+            </div>
+
+
+            <div class="info-strip">
+
+                <div class="info-icon">
+                    💡
+                </div>
+
+                <div>
+
+                    <strong>
+                        Your next visit is in 6 days.
+                    </strong>
+
+                    <div style="
+                        font-size:.75rem;
+                        margin-top:3px;
+                    ">
+                        We'll keep your appointment information
+                        ready for you.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- UPCOMING LIST -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <div class="card-title">
+                        Upcoming visits
+                    </div>
+
+                    <div class="card-subtitle">
+                        Your scheduled healthcare visits
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="appointment-list">
+
+
+                <div class="appointment">
+
+                    <div class="appointment-date">
+
+                        <strong>
+                            18
+                        </strong>
+
+                        <small>
+                            Aug
+                        </small>
+
+                    </div>
+
+
+                    <div class="appointment-info">
+
+                        <div class="appointment-doctor">
+                            Dr. Sarah Perera
+                        </div>
+
+                        <div class="appointment-meta">
+                            General Consultation · 10:30 AM
+                        </div>
+
+                    </div>
+
+
+                    <span class="status confirmed">
+                        Confirmed
+                    </span>
+
+                </div>
+
+
+
+                <div class="appointment">
+
+                    <div class="appointment-date">
+
+                        <strong>
+                            27
+                        </strong>
+
+                        <small>
+                            Aug
+                        </small>
+
+                    </div>
+
+
+                    <div class="appointment-info">
+
+                        <div class="appointment-doctor">
+                            Dr. Michael Fernando
+                        </div>
+
+                        <div class="appointment-meta">
+                            Follow-up · 2:00 PM
+                        </div>
+
+                    </div>
+
+
+                    <span class="status pending">
+                        Pending
+                    </span>
+
+                </div>
+
+
+
+                <div class="appointment">
+
+                    <div class="appointment-date">
+
+                        <strong>
+                            04
+                        </strong>
+
+                        <small>
+                            Sep
+                        </small>
+
+                    </div>
+
+
+                    <div class="appointment-info">
+
+                        <div class="appointment-doctor">
+                            City Diagnostics
+                        </div>
+
+                        <div class="appointment-meta">
+                            Blood Test · 8:30 AM
+                        </div>
+
+                    </div>
+
+
+                    <span class="status confirmed">
+                        Confirmed
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         APPOINTMENT HISTORY
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Recent appointments
+                </div>
+
+                <div class="card-subtitle">
+                    Your previous healthcare visits
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="appointment-list">
+
+
+            <div class="appointment">
+
+                <div class="appointment-date">
+
+                    <strong>
+                        04
+                    </strong>
+
+                    <small>
+                        Aug
+                    </small>
+
+                </div>
+
+
+                <div class="appointment-info">
+
+                    <div class="appointment-doctor">
+                        Dr. Sarah Perera
+                    </div>
+
+                    <div class="appointment-meta">
+                        General consultation · Colombo Medical Centre
+                    </div>
+
+                </div>
+
+
+                <span class="status confirmed">
+                    Completed
+                </span>
+
+            </div>
+
+
+
+            <div class="appointment">
+
+                <div class="appointment-date">
+
+                    <strong>
+                        15
+                    </strong>
+
+                    <small>
+                        Jul
+                    </small>
+
+                </div>
+
+
+                <div class="appointment-info">
+
+                    <div class="appointment-doctor">
+                        City Diagnostics
+                    </div>
+
+                    <div class="appointment-meta">
+                        Blood test · Diagnostics Department
+                    </div>
+
+                </div>
+
+
+                <span class="status confirmed">
+                    Completed
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+</div>
+
+
+
+<!-- =========================================================
+     BOOK APPOINTMENT MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="bookingModal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeBooking()"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            Book an appointment
+        </h2>
+
+
+        <p class="modal-description">
+            Choose a healthcare professional and
+            request an appointment.
+        </p>
+
+
+        <div class="form-grid">
+
+
+            <div class="form-group full">
+
+                <label>
+                    Doctor / Healthcare provider
+                </label>
+
+                <select id="doctor">
+
+                    <option>
+                        Dr. Sarah Perera — General Medicine
+                    </option>
+
+                    <option>
+                        Dr. Michael Fernando — Family Medicine
+                    </option>
+
+                    <option>
+                        City Diagnostics — Laboratory
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="appointmentDate"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Preferred time
+                </label>
+
+                <select id="appointmentTime">
+
+                    <option>
+                        09:00 AM
+                    </option>
+
+                    <option>
+                        10:30 AM
+                    </option>
+
+                    <option>
+                        12:00 PM
+                    </option>
+
+                    <option>
+                        02:00 PM
+                    </option>
+
+                    <option>
+                        04:00 PM
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Reason for visit
+                </label>
+
+                <textarea
+                    id="reason"
+                    placeholder="Briefly describe the reason for your visit..."
+                ></textarea>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="btn btn-outline"
+                onclick="closeBooking()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="bookAppointment()"
+            >
+                Request appointment
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     DETAILS MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="detailsModal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeDetails()"
+        >
+            ×
+        </button>
+
+
+        <div style="
+            font-size:2.5rem;
+            margin-bottom:15px;
+        ">
+            🩺
+        </div>
+
+
+        <h2>
+            General Consultation
+        </h2>
+
+
+        <p class="modal-description">
+            Your upcoming appointment with
+            Dr. Sarah Perera.
+        </p>
+
+
+        <div style="
+            display:grid;
+            gap:12px;
+        ">
+
+
+            <div style="
+                background:#F0FDFA;
+                padding:14px;
+                border-radius:13px;
+            ">
+                📅 <strong>Date:</strong>
+                18 August 2026
+            </div>
+
+
+            <div style="
+                background:#F0FDFA;
+                padding:14px;
+                border-radius:13px;
+            ">
+                🕐 <strong>Time:</strong>
+                10:30 AM
+            </div>
+
+
+            <div style="
+                background:#F0FDFA;
+                padding:14px;
+                border-radius:13px;
+            ">
+                📍 <strong>Location:</strong>
+                Colombo Medical Centre
+            </div>
+
+
+            <div style="
+                background:#F0FDFA;
+                padding:14px;
+                border-radius:13px;
+            ">
+                🔐 <strong>Records:</strong>
+                OneCare records available
+            </div>
+
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="btn btn-outline"
+                onclick="closeDetails()"
+            >
+                Close
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="showToast('Appointment details copied.')"
+            >
+                Share details
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     CURA BUTTON
+========================================================= -->
+
+<button
+    class="cura-button"
+    id="curaButton"
+>
+    🧾
+</button>
+
+
+
+<!-- =========================================================
+     CURA WINDOW
+========================================================= -->
+
+<div
+    class="cura-window"
+    id="curaWindow"
+>
+
+    <div class="cura-header">
+
+        <div class="cura-logo">
+            🧾
+        </div>
+
+
+        <div class="cura-title">
+
+            <strong>
+                Cura
+            </strong>
+
+            <small>
+                Your OneCare companion
+            </small>
+
+        </div>
+
+
+        <button
+            class="cura-close"
+            id="curaClose"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        class="cura-messages"
+        id="messages"
+    >
+
+        <div class="message bot">
+
+            Hey! 👋 How are you?
+            I'm Cura, your personal OneCare companion.
+            How can I help you today?
+
+        </div>
+
+
+        <div class="message bot">
+
+            I can help you understand your appointments
+            and navigate OneCare.
+
+        </div>
+
+    </div>
+
+
+    <div class="cura-input">
+
+        <input
+            id="curaInput"
+            type="text"
+            placeholder="Ask Cura..."
+        >
+
+        <button
+            class="cura-send"
+            onclick="sendMessage()"
+        >
+            ↑
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+
+<script>
+
+/* =========================================================
+   BOOKING MODAL
+========================================================= */
+
+function openBooking() {
+
+    document
+        .getElementById("bookingModal")
+        .classList.add("show");
+
+}
+
+
+function closeBooking() {
+
+    document
+        .getElementById("bookingModal")
+        .classList.remove("show");
+
+}
+
+
+function bookAppointment() {
+
+    const date =
+        document
+            .getElementById("appointmentDate")
+            .value;
+
+    const reason =
+        document
+            .getElementById("reason")
+            .value;
+
+
+    if (!date) {
+
+        showToast(
+            "Please choose a date."
+        );
+
+        return;
+    }
+
+
+    if (!reason.trim()) {
+
+        showToast(
+            "Please enter the reason for your visit."
+        );
+
+        return;
+    }
+
+
+    closeBooking();
+
+
+    showToast(
+        "Appointment request submitted successfully."
+    );
+
+}
+
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+function viewAppointment() {
+
+    document
+        .getElementById("detailsModal")
+        .classList.add("show");
+
+}
+
+
+function closeDetails() {
+
+    document
+        .getElementById("detailsModal")
+        .classList.remove("show");
+
+}
+
+
+
+/* =========================================================
+   MODAL CLICK OUTSIDE
+========================================================= */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(text) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = text;
+
+    toast.classList.add("show");
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+
+/* =========================================================
+   CURA
+========================================================= */
+
+const curaButton =
+    document.getElementById(
+        "curaButton"
+    );
+
+const curaWindow =
+    document.getElementById(
+        "curaWindow"
+    );
+
+const curaClose =
+    document.getElementById(
+        "curaClose"
+    );
+
+
+curaButton.addEventListener(
+    "click",
+    () => {
+
+        curaWindow.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+curaClose.addEventListener(
+    "click",
+    () => {
+
+        curaWindow.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   CURA CHAT
+========================================================= */
+
+function sendMessage() {
+
+    const input =
+        document.getElementById(
+            "curaInput"
+        );
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    addMessage(
+        text,
+        "user"
+    );
+
+
+    input.value = "";
+
+
+    setTimeout(
+        () => {
+
+            const lower =
+                text.toLowerCase();
+
+            let reply =
+                "I'm here to help you navigate your OneCare appointments. 🩺";
+
+
+            if (
+                lower.includes("appointment") ||
+                lower.includes("visit")
+            ) {
+
+                reply =
+                    "Your next appointment is with Dr. Sarah Perera on 18 August at 10:30 AM. 📅";
+
+            }
+
+
+            else if (
+                lower.includes("doctor")
+            ) {
+
+                reply =
+                    "Your upcoming appointment is with Dr. Sarah Perera for a general consultation.";
+
+            }
+
+
+            else if (
+                lower.includes("when") ||
+                lower.includes("date")
+            ) {
+
+                reply =
+                    "Your next appointment is on 18 August 2026 at 10:30 AM.";
+
+            }
+
+
+            else if (
+                lower.includes("hello") ||
+                lower.includes("hi")
+            ) {
+
+                reply =
+                    "Hey! 👋 What can I help you with today?";
+
+            }
+
+
+            addMessage(
+                reply,
+                "bot"
+            );
+
+        },
+        650
+    );
+
+}
+
+
+function addMessage(
+    text,
+    type
+) {
+
+    const messages =
+        document.getElementById(
+            "messages"
+        );
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "message " +
+        type;
+
+
+    message.textContent =
+        text;
+
+
+    messages.appendChild(
+        message
+    );
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+document
+    .getElementById("curaInput")
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                sendMessage();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

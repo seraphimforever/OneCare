@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Create Your OneCare Account</title>
+
+<style>
+
+/* =====================================================
+   ONECARE SENIOR-FRIENDLY SIGNUP
+===================================================== */
+
+:root {
+
+    --dark: #1E293B;
+
+    --green: #10B981;
+
+    --teal: #0D9488;
+
+    --dark-teal: #0F766E;
+
+    --mint: #F0FDFA;
+
+    --soft-mint: #E6F4F1;
+
+    --border: #CBD5E1;
+
+    --white: #FFFFFF;
+
+    --light: #F8FAFC;
+
+    --muted: #475569;
+
+}
+
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        var(--light);
+
+    color:
+        var(--dark);
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    min-height: 88px;
+
+    padding:
+        0 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: white;
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    color: var(--dark);
+
+    text-decoration: none;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+}
+
+
+.logo-mark {
+
+    width: 50px;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 15px;
+
+    color: white;
+
+    font-size: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+}
+
+
+.logo span {
+
+    color: var(--teal);
+
+}
+
+
+.login-link {
+
+    font-size: 18px;
+
+    color: var(--muted);
+
+}
+
+
+.login-link a {
+
+    color: var(--teal);
+
+    font-weight: 900;
+
+    text-decoration: none;
+
+}
+
+
+.login-link a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+main {
+
+    min-height:
+        calc(100vh - 88px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 45px 20px;
+
+}
+
+
+.signup-card {
+
+    width:
+        min(1150px,100%);
+
+    display: grid;
+
+    grid-template-columns:
+        .85fr 1.15fr;
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 70px
+        rgba(15,23,42,.11);
+
+    animation: appear .6s ease;
+
+}
+
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   LEFT SIDE
+===================================================== */
+
+.left {
+
+    position: relative;
+
+    min-height: 760px;
+
+    overflow: hidden;
+
+}
+
+
+.left img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.left-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(15,23,42,.9),
+            rgba(15,23,42,.08)
+        );
+
+}
+
+
+.left-content {
+
+    position: absolute;
+
+    left: 40px;
+
+    right: 40px;
+
+    bottom: 40px;
+
+    color: white;
+
+}
+
+
+.left-content .badge {
+
+    display: inline-block;
+
+    padding:
+        10px 15px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.17);
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    margin-bottom: 20px;
+
+}
+
+
+.left-content h2 {
+
+    font-size: 42px;
+
+    line-height: 1.1;
+
+    margin-bottom: 16px;
+
+}
+
+
+.left-content p {
+
+    font-size: 19px;
+
+    line-height: 1.7;
+
+    color:
+        rgba(255,255,255,.9);
+
+}
+
+
+/* =====================================================
+   RIGHT
+===================================================== */
+
+.right {
+
+    padding:
+        55px 60px;
+
+}
+
+
+.small-title {
+
+    color:
+        var(--dark-teal);
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.right h1 {
+
+    font-size: 44px;
+
+    line-height: 1.1;
+
+    margin-bottom: 12px;
+
+}
+
+
+.description {
+
+    color: var(--muted);
+
+    font-size: 19px;
+
+    line-height: 1.6;
+
+    margin-bottom: 28px;
+
+}
+
+
+/* =====================================================
+   STEP INDICATOR
+===================================================== */
+
+.steps {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.step {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    color: #94A3B8;
+
+}
+
+
+.step.active {
+
+    color: var(--teal);
+
+}
+
+
+.step-number {
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #E2E8F0;
+
+}
+
+
+.step.active .step-number {
+
+    color: white;
+
+    background: var(--teal);
+
+}
+
+
+.step-line {
+
+    flex: 1;
+
+    height: 2px;
+
+    background:
+        var(--border);
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+
+}
+
+
+.form-group {
+
+    margin-bottom: 22px;
+
+}
+
+
+label {
+
+    display: block;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    margin-bottom: 9px;
+
+}
+
+
+input {
+
+    width: 100%;
+
+    height: 62px;
+
+    border:
+        2px solid var(--border);
+
+    border-radius: 13px;
+
+    padding:
+        0 17px;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    outline: none;
+
+    color: var(--dark);
+
+    transition: .2s;
+
+}
+
+
+input:focus {
+
+    border-color:
+        var(--teal);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(13,148,136,.1);
+
+}
+
+
+input::placeholder {
+
+    color:
+        #64748B;
+
+}
+
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+.password-wrapper {
+
+    position: relative;
+
+}
+
+
+.password-wrapper input {
+
+    padding-right: 60px;
+
+}
+
+
+.show-password {
+
+    position: absolute;
+
+    right: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 24px;
+
+    padding: 8px;
+
+}
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
+
+.info-box {
+
+    display: flex;
+
+    gap: 13px;
+
+    align-items: flex-start;
+
+    padding: 17px;
+
+    border-radius: 14px;
+
+    background:
+        var(--mint);
+
+    border:
+        1px solid #C7EEE7;
+
+    margin:
+        5px 0 25px;
+
+}
+
+
+.info-icon {
+
+    font-size: 23px;
+
+}
+
+
+.info-box p {
+
+    color:
+        var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+.terms {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.terms input {
+
+    width: 22px;
+
+    height: 22px;
+
+    margin-top: 3px;
+
+    accent-color:
+        var(--teal);
+
+}
+
+
+.terms label {
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    font-weight: 500;
+
+}
+
+
+.terms a {
+
+    color:
+        var(--teal);
+
+    font-weight: 800;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.signup-button {
+
+    width: 100%;
+
+    min-height: 65px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    font-family: inherit;
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px
+        rgba(13,148,136,.22);
+
+    transition: .25s;
+
+}
+
+
+.signup-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 15px 30px
+        rgba(13,148,136,.3);
+
+}
+
+
+.signup-button:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.bottom-text {
+
+    text-align: center;
+
+    color:
+        var(--muted);
+
+    font-size: 17px;
+
+    margin-top: 25px;
+
+}
+
+
+.bottom-text a {
+
+    color:
+        var(--teal);
+
+    font-weight: 900;
+
+    text-decoration: none;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:900px) {
+
+    .signup-card {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .left {
+
+        min-height: 380px;
+
+    }
+
+
+    .right {
+
+        padding:
+            45px 35px;
+
+    }
+
+}
+
+
+@media(max-width:600px) {
+
+    .navbar {
+
+        padding:
+            15px 20px;
+
+    }
+
+
+    .logo {
+
+        font-size: 23px;
+
+    }
+
+
+    .logo-mark {
+
+        width: 44px;
+        height: 44px;
+
+    }
+
+
+    .login-link {
+
+        display: none;
+
+    }
+
+
+    main {
+
+        padding:
+            15px 10px;
+
+    }
+
+
+    .signup-card {
+
+        border-radius: 20px;
+
+    }
+
+
+    .left {
+
+        min-height: 320px;
+
+    }
+
+
+    .left-content {
+
+        left: 25px;
+        right: 25px;
+        bottom: 25px;
+
+    }
+
+
+    .left-content h2 {
+
+        font-size: 32px;
+
+    }
+
+
+    .left-content p {
+
+        font-size: 17px;
+
+    }
+
+
+    .right {
+
+        padding:
+            38px 20px;
+
+    }
+
+
+    .right h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .description {
+
+        font-size: 18px;
+
+    }
+
+
+    .form-row {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 0;
+
+    }
+
+
+    input {
+
+        height: 64px;
+
+        font-size: 18px;
+
+    }
+
+
+    .signup-button {
+
+        font-size: 19px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+
+        <div class="logo-mark">
+            ✚
+        </div>
+
+        One<span>Care</span>
+
+    </a>
+
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="patient-login.html">
+            Sign in
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main>
+
+
+<div class="signup-card">
+
+
+    <!-- =================================================
+         IMAGE
+    ================================================== -->
+
+    <section class="left">
+
+
+        <img
+            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85"
+            alt="Doctor talking with an older patient"
+        >
+
+
+        <div class="left-overlay"></div>
+
+
+        <div class="left-content">
+
+
+            <div class="badge">
+                💚 Welcome to OneCare
+            </div>
+
+
+            <h2>
+
+                Take care of
+                your health,
+                without the hassle.
+
+            </h2>
+
+
+            <p>
+
+                One simple place for your
+                medical information, appointments,
+                documents and health history.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         FORM
+    ================================================== -->
+
+    <section class="right">
+
+
+        <div class="small-title">
+            Patient registration
+        </div>
+
+
+        <h1>
+            Let's get started.
+        </h1>
+
+
+        <p class="description">
+
+            Create your OneCare account.
+            It only takes a few minutes.
+
+        </p>
+
+
+        <!-- STEPS -->
+
+        <div class="steps">
+
+            <div class="step active">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                Your details
+
+            </div>
+
+
+            <div class="step-line"></div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                Your account
+
+            </div>
+
+        </div>
+
+
+        <!-- NAME -->
+
+        <div class="form-row">
+
+
+            <div class="form-group">
+
+                <label for="firstName">
+                    First name
+                </label>
+
+                <input
+                    type="text"
+                    id="firstName"
+                    placeholder="Example: John"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="lastName">
+                    Last name
+                </label>
+
+                <input
+                    type="text"
+                    id="lastName"
+                    placeholder="Example: Perera"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+            <label for="email">
+                Email address
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Example: john@gmail.com"
+            >
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+            <label for="phone">
+                Phone number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Example: 077 123 4567"
+            >
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+                Create a password
+            </label>
+
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Choose a password"
+                >
+
+
+                <button
+                    type="button"
+                    class="show-password"
+                    onclick="togglePassword()"
+                >
+                    👁️
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFO -->
+
+        <div class="info-box">
+
+            <div class="info-icon">
+                🔒
+            </div>
+
+
+            <p>
+
+                Your information is designed
+                to stay private and secure.
+                Your OneCare team will connect
+                your account to your health records.
+
+            </p>
+
+        </div>
+
+
+        <!-- TERMS -->
+
+        <div class="terms">
+
+            <input
+                type="checkbox"
+                id="terms"
+            >
+
+
+            <label for="terms">
+
+                I agree to the OneCare
+                <a href="#">
+                    Terms of Service
+                </a>
+                and
+                <a href="#">
+                    Privacy Policy
+                </a>.
+
+            </label>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <button
+            class="signup-button"
+            onclick="createAccount()"
+        >
+
+            Create My OneCare Account →
+
+        </button>
+
+
+        <div class="bottom-text">
+
+            Already have an account?
+
+            <a href="patient-login.html">
+                Sign in here
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   SHOW / HIDE PASSWORD
+===================================================== */
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("password");
+
+    const button =
+        document.querySelector(".show-password");
+
+
+    if(password.type === "password") {
+
+        password.type = "text";
+
+        button.textContent = "🙈";
+
+    }
+
+    else {
+
+        password.type = "password";
+
+        button.textContent = "👁️";
+
+    }
+
+}
+
+
+/* =====================================================
+   CREATE ACCOUNT
+===================================================== */
+
+function createAccount() {
+
+    const firstName =
+        document
+            .getElementById("firstName")
+            .value
+            .trim();
+
+
+    const lastName =
+        document
+            .getElementById("lastName")
+            .value
+            .trim();
+
+
+    const email =
+        document
+            .getElementById("email")
+            .value
+            .trim();
+
+
+    const phone =
+        document
+            .getElementById("phone")
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById("password")
+            .value;
+
+
+    const terms =
+        document
+            .getElementById("terms")
+            .checked;
+
+
+    /* CHECK NAME */
+
+    if(!firstName) {
+
+        alert(
+            "Please enter your first name."
+        );
+
+        document
+            .getElementById("firstName")
+            .focus();
+
+        return;
+
+    }
+
+
+    if(!lastName) {
+
+        alert(
+            "Please enter your last name."
+        );
+
+        document
+            .getElementById("lastName")
+            .focus();
+
+        return;
+
+    }
+
+
+    /* EMAIL */
+
+    if(!email || !email.includes("@")) {
+
+        alert(
+            "Please enter a valid email address."
+        );
+
+        document
+            .getElementById("email")
+            .focus();
+
+        return;
+
+    }
+
+
+    /* PHONE */
+
+    if(!phone) {
+
+        alert(
+            "Please enter your phone number."
+        );
+
+        document
+            .getElementById("phone")
+            .focus();
+
+        return;
+
+    }
+
+
+    /* PASSWORD */
+
+    if(password.length < 6) {
+
+        alert(
+            "Please choose a password with at least 6 characters."
+        );
+
+        document
+            .getElementById("password")
+            .focus();
+
+        return;
+
+    }
+
+
+    /* TERMS */
+
+    if(!terms) {
+
+        alert(
+            "Please agree to the Terms of Service and Privacy Policy before creating your account."
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       FRONTEND DEMO
+    ================================================= */
+
+    const patient = {
+
+        firstName:
+            firstName,
+
+        lastName:
+            lastName,
+
+        email:
+            email,
+
+        phone:
+            phone
+
+    };
+
+
+    /*
+       Save temporary frontend information.
+
+       Your backend team can replace this
+       with a secure registration API.
+    */
+
+    localStorage.setItem(
+        "onecarePatient",
+        JSON.stringify(patient)
+    );
+
+
+    const button =
+        document.querySelector(".signup-button");
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Creating your account...";
+
+
+    setTimeout(function() {
+
+        alert(
+            "Your OneCare account has been created!"
+        );
+
+
+        window.location.href =
+            "patient-login.html";
+
+
+    }, 1000);
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Medical History — OneCare</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="onecare-nav">
+
+    <a
+        href="dashboard.html"
+        class="brand"
+    >
+
+        <div class="brand-mark">
+            ✚
+        </div>
+
+        One<span>Care</span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="appointments.html">
+            Appointments
+        </a>
+
+        <a href="documents.html">
+            Documents
+        </a>
+
+        <a href="ai.html">
+            Cura
+        </a>
+
+    </div>
+
+
+    <a
+        href="profile.html"
+        class="nav-profile"
+    >
+
+        <div class="avatar">
+            JD
+        </div>
+
+        <span>
+            John Doe
+        </span>
+
+    </a>
+
+</nav>
+
+
+
+<!-- =====================================================
+     PAGE LAYOUT
+===================================================== -->
+
+<div class="dashboard-layout">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+    <div class="sidebar-label">
+        OneCare
+    </div>
+
+
+    <a
+        href="dashboard.html"
+        class="sidebar-link"
+    >
+        <span class="sidebar-icon">◉</span>
+        Dashboard
+    </a>
+
+
+    <a
+        href="profile.html"
+        class="sidebar-link"
+    >
+        <span class="sidebar-icon">◎</span>
+        My Profile
+    </a>
+
+
+    <a
+        href="medical-history.html"
+        class="sidebar-link active"
+    >
+        <span class="sidebar-icon">♡</span>
+        Medical History
+    </a>
+
+
+    <a
+        href="documents.html"
+        class="sidebar-link"
+    >
+        <span class="sidebar-icon">▣</span>
+        Documents
+    </a>
+
+
+    <a
+        href="appointments.html"
+        class="sidebar-link"
+    >
+        <span class="sidebar-icon">◷</span>
+        Appointments
+    </a>
+
+
+    <div class="sidebar-label">
+        Sharing
+    </div>
+
+
+    <a
+        href="access.html"
+        class="sidebar-link"
+    >
+        <span class="sidebar-icon">⇄</span>
+        Doctor Access
+    </a>
+
+
+    <a
+        href="ai.html"
+        class="sidebar-link"
+    >
+        <span class="sidebar-icon">✦</span>
+        Ask Cura
+    </a>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main-content">
+
+
+    <div class="page-heading">
+
+        <h1>
+            Medical History
+        </h1>
+
+        <p>
+            Keep your important health information organised and accessible.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         HEALTH SUMMARY
+    ================================================== -->
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⚕
+            </div>
+
+            <div class="stat-number">
+                02
+            </div>
+
+            <div class="stat-label">
+                Conditions
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⚠
+            </div>
+
+            <div class="stat-number">
+                02
+            </div>
+
+            <div class="stat-label">
+                Allergies
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💊
+            </div>
+
+            <div class="stat-number">
+                03
+            </div>
+
+            <div class="stat-label">
+                Medications
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏥
+            </div>
+
+            <div class="stat-number">
+                05
+            </div>
+
+            <div class="stat-label">
+                Past visits
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         CONDITIONS
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Conditions
+                </div>
+
+                <div class="card-subtitle">
+                    Long-term or previously diagnosed conditions
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="addCondition()"
+            >
+                + Add condition
+            </button>
+
+        </div>
+
+
+        <div id="conditions">
+
+
+            <div class="list-item">
+
+                <div class="list-left">
+
+                    <div class="list-icon">
+                        ⚕
+                    </div>
+
+                    <div>
+
+                        <div class="list-title">
+                            Asthma
+                        </div>
+
+                        <div class="list-description">
+                            Diagnosed in 2018
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    style="
+                        display:flex;
+                        gap:8px;
+                    "
+                >
+
+                    <span class="badge">
+                        Ongoing
+                    </span>
+
+                    <button
+                        class="btn btn-outline"
+                        onclick="removeItem(this)"
+                    >
+                        Remove
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="list-item">
+
+                <div class="list-left">
+
+                    <div class="list-icon">
+                        🦴
+                    </div>
+
+                    <div>
+
+                        <div class="list-title">
+                            Previous fracture
+                        </div>
+
+                        <div class="list-description">
+                            Right wrist · 2021
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn btn-outline"
+                    onclick="removeItem(this)"
+                >
+                    Remove
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <br>
+
+
+
+    <!-- =================================================
+         ALLERGIES
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Allergies
+                </div>
+
+                <div class="card-subtitle">
+                    Important information for healthcare professionals
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="addAllergy()"
+            >
+                + Add allergy
+            </button>
+
+        </div>
+
+
+        <div id="allergies">
+
+
+            <div class="list-item">
+
+                <div class="list-left">
+
+                    <div class="list-icon">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <div class="list-title">
+                            Penicillin
+                        </div>
+
+                        <div class="list-description">
+                            Medication allergy
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <span class="badge red">
+                    Important
+                </span>
+
+            </div>
+
+
+
+            <div class="list-item">
+
+                <div class="list-left">
+
+                    <div class="list-icon">
+                        🌸
+                    </div>
+
+                    <div>
+
+                        <div class="list-title">
+                            Pollen
+                        </div>
+
+                        <div class="list-description">
+                            Seasonal allergy
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <span class="badge orange">
+                    Seasonal
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <br>
+
+
+
+    <!-- =================================================
+         MEDICATIONS
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Current medications
+                </div>
+
+                <div class="card-subtitle">
+                    Medicines currently recorded in your profile
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="addMedication()"
+            >
+                + Add medication
+            </button>
+
+        </div>
+
+
+        <div id="medications">
+
+
+            <div class="list-item">
+
+                <div class="list-left">
+
+                    <div class="list-icon">
+                        💊
+                    </div>
+
+                    <div>
+
+                        <div class="list-title">
+                            Salbutamol inhaler
+                        </div>
+
+                        <div class="list-description">
+                            As prescribed · Asthma
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <span class="badge green">
+                    Active
+                </span>
+
+            </div>
+
+
+
+            <div class="list-item">
+
+                <div class="list-left">
+
+                    <div class="list-icon">
+                        💊
+                    </div>
+
+                    <div>
+
+                        <div class="list-title">
+                            Vitamin D
+                        </div>
+
+                        <div class="list-description">
+                            Daily supplement
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <span class="badge green">
+                    Active
+                </span>
+
+            </div>
+
+
+
+            <div class="list-item">
+
+                <div class="list-left">
+
+                    <div class="list-icon">
+                        💊
+                    </div>
+
+                    <div>
+
+                        <div class="list-title">
+                            Paracetamol
+                        </div>
+
+                        <div class="list-description">
+                            As needed
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <span class="badge">
+                    PRN
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <br>
+
+
+
+    <!-- =================================================
+         MEDICAL TIMELINE
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Medical timeline
+                </div>
+
+                <div class="card-subtitle">
+                    A simple overview of your recorded healthcare journey
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="list-item">
+
+            <div class="list-left">
+
+                <div class="list-icon">
+                    🩺
+                </div>
+
+                <div>
+
+                    <div class="list-title">
+                        General consultation
+                    </div>
+
+                    <div class="list-description">
+                        Dr. Sarah Perera · August 2026
+                    </div>
+
+                </div>
+
+            </div>
+
+            <span class="badge green">
+                Recent
+            </span>
+
+        </div>
+
+
+        <div class="list-item">
+
+            <div class="list-left">
+
+                <div class="list-icon">
+                    🧪
+                </div>
+
+                <div>
+
+                    <div class="list-title">
+                        Blood test
+                    </div>
+
+                    <div class="list-description">
+                        Colombo Medical Centre · July 2026
+                    </div>
+
+                </div>
+
+            </div>
+
+            <span class="badge">
+                Report
+            </span>
+
+        </div>
+
+
+        <div class="list-item">
+
+            <div class="list-left">
+
+                <div class="list-icon">
+                    💉
+                </div>
+
+                <div>
+
+                    <div class="list-title">
+                        Vaccination
+                    </div>
+
+                    <div class="list-description">
+                        Community Health Centre · March 2026
+                    </div>
+
+                </div>
+
+            </div>
+
+            <span class="badge green">
+                Completed
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+</div>
+
+
+
+<!-- =====================================================
+     CURA
+===================================================== -->
+
+<button
+    class="cura-floating"
+    aria-label="Open Cura"
+>
+    ✦
+</button>
+
+
+
+<div class="cura-window">
+
+    <div class="cura-header">
+
+        <div class="cura-logo">
+            🧾
+        </div>
+
+        <div>
+
+            <h3>
+                Cura
+            </h3>
+
+            <small>
+                Your OneCare companion
+            </small>
+
+        </div>
+
+        <button class="cura-close">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="cura-messages">
+
+        <div class="message bot">
+
+            Hey! 👋 I'm Cura, your personal OneCare
+            companion. Need help organising your health information?
+
+        </div>
+
+    </div>
+
+
+    <div class="cura-input">
+
+        <input
+            type="text"
+            placeholder="Ask Cura something..."
+        >
+
+        <button>
+            ↑
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<div class="toast"></div>
+
+
+
+<script src="script.js"></script>
+
+
+
+<script>
+
+/* =====================================================
+   FRONTEND MEDICAL HISTORY DEMO
+===================================================== */
+
+
+function removeItem(button) {
+
+    const item =
+        button.closest(".list-item");
+
+    if (!item) return;
+
+    item.style.opacity = "0";
+
+    item.style.transform =
+        "translateX(20px)";
+
+    setTimeout(() => {
+
+        item.remove();
+
+        showToast(
+            "Item removed from this demo."
+        );
+
+    }, 300);
+
+}
+
+
+
+function addCondition() {
+
+    const name =
+        prompt(
+            "Enter the condition name:"
+        );
+
+    if (!name) return;
+
+    const container =
+        document.getElementById(
+            "conditions"
+        );
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "list-item";
+
+    item.innerHTML = `
+
+        <div class="list-left">
+
+            <div class="list-icon">
+                ⚕
+            </div>
+
+            <div>
+
+                <div class="list-title">
+                    ${name}
+                </div>
+
+                <div class="list-description">
+                    Added just now
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
+            class="btn btn-outline"
+            onclick="removeItem(this)"
+        >
+            Remove
+        </button>
+
+    `;
+
+    container.appendChild(item);
+
+    showToast(
+        "Condition added."
+    );
+
+}
+
+
+
+function addAllergy() {
+
+    const name =
+        prompt(
+            "Enter the allergy:"
+        );
+
+    if (!name) return;
+
+    const container =
+        document.getElementById(
+            "allergies"
+        );
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "list-item";
+
+    item.innerHTML = `
+
+        <div class="list-left">
+
+            <div class="list-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <div class="list-title">
+                    ${name}
+                </div>
+
+                <div class="list-description">
+                    Added just now
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
+            class="btn btn-outline"
+            onclick="removeItem(this)"
+        >
+            Remove
+        </button>
+
+    `;
+
+    container.appendChild(item);
+
+    showToast(
+        "Allergy added."
+    );
+
+}
+
+
+
+function addMedication() {
+
+    const name =
+        prompt(
+            "Enter the medication:"
+        );
+
+    if (!name) return;
+
+    const container =
+        document.getElementById(
+            "medications"
+        );
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "list-item";
+
+    item.innerHTML = `
+
+        <div class="list-left">
+
+            <div class="list-icon">
+                💊
+            </div>
+
+            <div>
+
+                <div class="list-title">
+                    ${name}
+                </div>
+
+                <div class="list-description">
+                    Added just now
+                </div>
+
+            </div>
+
+        </div>
+
+        <span class="badge green">
+            Active
+        </span>
+
+    `;
+
+    container.appendChild(item);
+
+    showToast(
+        "Medication added."
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Patient Record | OneCare</title>
+
+<style>
+
+/* =========================================================
+   ONECARE — PATIENT RECORD
+========================================================= */
+
+:root {
+
+    --dark: #1E293B;
+    --green: #10B981;
+    --teal: #0D9488;
+    --dark-teal: #0F766E;
+    --mint: #F0FDFA;
+    --soft-mint: #E6F4F1;
+    --border: #CBD5E1;
+    --white: #ffffff;
+    --muted: #64748B;
+    --light: #F8FAFC;
+
+}
+
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        var(--light);
+
+    color:
+        var(--dark);
+
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    height:
+        76px;
+
+    padding:
+        0 40px;
+
+    background:
+        white;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+}
+
+
+.logo {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    color:
+        var(--dark);
+
+    text-decoration:
+        none;
+
+    font-weight:
+        900;
+
+    font-size:
+        1.3rem;
+
+}
+
+
+.logo-mark {
+
+    width:
+        40px;
+
+    height:
+        40px;
+
+    border-radius:
+        12px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+}
+
+
+.logo span {
+
+    color:
+        var(--teal);
+
+}
+
+
+.access-status {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        8px 12px;
+
+    border-radius:
+        50px;
+
+    background:
+        var(--soft-mint);
+
+    color:
+        var(--dark-teal);
+
+    font-size:
+        .62rem;
+
+    font-weight:
+        800;
+
+}
+
+
+.status-dot {
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--green);
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+
+    width:
+        min(1150px,100%);
+
+    margin:
+        auto;
+
+    padding:
+        35px 25px 60px;
+
+}
+
+
+/* =========================================================
+   TOP
+========================================================= */
+
+.page-top {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        flex-start;
+
+    margin-bottom:
+        25px;
+
+}
+
+
+.eyebrow {
+
+    color:
+        var(--teal);
+
+    font-size:
+        .62rem;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        1px;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+h1 {
+
+    font-size:
+        2rem;
+
+    letter-spacing:
+        -1px;
+
+    margin-bottom:
+        6px;
+
+}
+
+
+.page-top p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        .72rem;
+
+}
+
+
+.end-access {
+
+    border:
+        1px solid
+        #FECACA;
+
+    background:
+        white;
+
+    color:
+        #B91C1C;
+
+    border-radius:
+        11px;
+
+    padding:
+        10px 14px;
+
+    font-family:
+        inherit;
+
+    font-size:
+        .63rem;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+}
+
+
+/* =========================================================
+   PATIENT HEADER
+========================================================= */
+
+.patient-card {
+
+    background:
+        white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        22px;
+
+    padding:
+        25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15,23,42,.04);
+
+}
+
+
+.patient-info {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+}
+
+
+.patient-avatar {
+
+    width:
+        65px;
+
+    height:
+        65px;
+
+    border-radius:
+        19px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        var(--soft-mint);
+
+    color:
+        var(--dark-teal);
+
+    font-weight:
+        900;
+
+    font-size:
+        1rem;
+
+}
+
+
+.patient-info h2 {
+
+    font-size:
+        1.1rem;
+
+    margin-bottom:
+        4px;
+
+}
+
+
+.patient-info p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        .65rem;
+
+}
+
+
+.verified {
+
+    color:
+        var(--dark-teal);
+
+    background:
+        var(--soft-mint);
+
+    padding:
+        8px 12px;
+
+    border-radius:
+        50px;
+
+    font-size:
+        .6rem;
+
+    font-weight:
+        900;
+
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:
+        18px;
+
+}
+
+
+.section {
+
+    background:
+        white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        20px;
+
+    padding:
+        22px;
+
+}
+
+
+.section.full {
+
+    grid-column:
+        1 / -1;
+
+}
+
+
+.section-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.section-header h3 {
+
+    font-size:
+        .82rem;
+
+}
+
+
+.section-header span {
+
+    font-size:
+        1rem;
+
+}
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+.data-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:
+        15px;
+
+}
+
+
+.data {
+
+    padding:
+        13px;
+
+    border-radius:
+        13px;
+
+    background:
+        #F8FAFC;
+
+}
+
+
+.data label {
+
+    display:
+        block;
+
+    color:
+        #94A3B8;
+
+    font-size:
+        .57rem;
+
+    font-weight:
+        800;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .5px;
+
+    margin-bottom:
+        5px;
+
+}
+
+
+.data strong {
+
+    font-size:
+        .7rem;
+
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.tags {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+}
+
+
+.tag {
+
+    padding:
+        7px 10px;
+
+    border-radius:
+        50px;
+
+    background:
+        var(--soft-mint);
+
+    color:
+        var(--dark-teal);
+
+    font-size:
+        .6rem;
+
+    font-weight:
+        800;
+
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        15px;
+
+}
+
+
+.event {
+
+    display:
+        flex;
+
+    gap:
+        12px;
+
+}
+
+
+.event-dot {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        9px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        var(--soft-mint);
+
+}
+
+
+.event h4 {
+
+    font-size:
+        .68rem;
+
+    margin-bottom:
+        3px;
+
+}
+
+
+.event p {
+
+    font-size:
+        .6rem;
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   NOTICE
+========================================================= */
+
+.notice {
+
+    margin-top:
+        20px;
+
+    padding:
+        15px;
+
+    border-radius:
+        14px;
+
+    background:
+        #FFF7ED;
+
+    border:
+        1px solid
+        #FED7AA;
+
+    color:
+        #9A3412;
+
+    font-size:
+        .6rem;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:700px) {
+
+    .navbar {
+
+        padding:
+            0 18px;
+
+    }
+
+    .page-top {
+
+        flex-direction:
+            column;
+
+        gap:
+            15px;
+
+    }
+
+    .patient-card {
+
+        align-items:
+            flex-start;
+
+        gap:
+            15px;
+
+        flex-direction:
+            column;
+
+    }
+
+    .grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .section.full {
+
+        grid-column:
+            auto;
+
+    }
+
+    .data-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<nav class="navbar">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+
+        <div class="logo-mark">
+            ✚
+        </div>
+
+        One<span>Care</span>
+
+    </a>
+
+
+    <div class="access-status">
+
+        <div class="status-dot"></div>
+
+        Temporary access active
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main>
+
+
+    <div class="page-top">
+
+        <div>
+
+            <div class="eyebrow">
+                Doctor Portal
+            </div>
+
+            <h1>
+                Patient Record
+            </h1>
+
+            <p>
+                Information shared through OneCare
+                with verified temporary access.
+            </p>
+
+        </div>
+
+
+        <button
+            class="end-access"
+            onclick="endAccess()"
+        >
+
+            End Access
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         PATIENT
+    ================================================== -->
+
+    <section class="patient-card">
+
+
+        <div class="patient-info">
+
+
+            <div class="patient-avatar">
+                JD
+            </div>
+
+
+            <div>
+
+                <h2>
+                    John Doe
+                </h2>
+
+                <p id="patientIdDisplay">
+                    Patient ID: —
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="verified">
+            ✓ Patient verified
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         RECORD GRID
+    ================================================== -->
+
+    <div class="grid">
+
+
+        <!-- PERSONAL -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h3>
+                    Personal Information
+                </h3>
+
+                <span>
+                    👤
+                </span>
+
+            </div>
+
+
+            <div class="data-grid">
+
+
+                <div class="data">
+
+                    <label>
+                        Date of Birth
+                    </label>
+
+                    <strong>
+                        14 March 1998
+                    </strong>
+
+                </div>
+
+
+                <div class="data">
+
+                    <label>
+                        Blood Group
+                    </label>
+
+                    <strong>
+                        O+
+                    </strong>
+
+                </div>
+
+
+                <div class="data">
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <strong>
+                        +94 XX XXX XXXX
+                    </strong>
+
+                </div>
+
+
+                <div class="data">
+
+                    <label>
+                        Emergency Contact
+                    </label>
+
+                    <strong>
+                        Jane Doe
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ALLERGIES -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h3>
+                    Allergies
+                </h3>
+
+                <span>
+                    ⚠️
+                </span>
+
+            </div>
+
+
+            <div class="tags">
+
+                <div class="tag">
+                    Penicillin
+                </div>
+
+                <div class="tag">
+                    No known food allergies
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MEDICAL HISTORY -->
+
+        <section class="section full">
+
+            <div class="section-header">
+
+                <h3>
+                    Medical History
+                </h3>
+
+                <span>
+                    🩺
+                </span>
+
+            </div>
+
+
+            <div class="timeline">
+
+
+                <div class="event">
+
+                    <div class="event-dot">
+                        🏥
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            General consultation
+                        </h4>
+
+                        <p>
+                            18 June 2026 • Routine
+                            health consultation
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="event">
+
+                    <div class="event-dot">
+                        🧪
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Blood test
+                        </h4>
+
+                        <p>
+                            03 May 2026 • Laboratory
+                            report uploaded
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="event">
+
+                    <div class="event-dot">
+                        💊
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Prescription
+                        </h4>
+
+                        <p>
+                            21 April 2026 • Medication
+                            record added
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DOCUMENTS -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h3>
+                    Shared Documents
+                </h3>
+
+                <span>
+                    📄
+                </span>
+
+            </div>
+
+
+            <div class="tags">
+
+                <div class="tag">
+                    Blood Report
+                </div>
+
+                <div class="tag">
+                    Prescription
+                </div>
+
+                <div class="tag">
+                    Consultation Note
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ACCESS -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h3>
+                    Access Information
+                </h3>
+
+                <span>
+                    🔐
+                </span>
+
+            </div>
+
+
+            <div class="data-grid">
+
+
+                <div class="data">
+
+                    <label>
+                        Access Type
+                    </label>
+
+                    <strong>
+                        Temporary
+                    </strong>
+
+                </div>
+
+
+                <div class="data">
+
+                    <label>
+                        Verification
+                    </label>
+
+                    <strong>
+                        OTP verified
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+
+    <div class="notice">
+
+        🔒 <strong>Privacy notice:</strong>
+        This prototype displays demonstration
+        patient information. In the production
+        version, your backend should enforce
+        authorization, data minimization, audit
+        logging, encryption and automatic access
+        expiry.
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   CHECK FRONTEND VERIFICATION
+========================================================= */
+
+const verified =
+    sessionStorage.getItem(
+        "doctorAccessVerified"
+    );
+
+
+const patientId =
+    sessionStorage.getItem(
+        "verifiedPatientId"
+    );
+
+
+/*
+   Frontend demo guard.
+
+   Your backend must perform the real
+   authorization check.
+*/
+
+if (
+    verified !== "true"
+) {
+
+    window.location.href =
+        "doctor-access.html";
+
+}
+
+
+/* =========================================================
+   DISPLAY PATIENT ID
+========================================================= */
+
+if (patientId) {
+
+    document
+        .getElementById(
+            "patientIdDisplay"
+        )
+        .textContent =
+            "Patient ID: " +
+            patientId;
+
+}
+
+
+/* =========================================================
+   END ACCESS
+========================================================= */
+
+function endAccess() {
+
+
+    sessionStorage.removeItem(
+        "doctorAccessVerified"
+    );
+
+
+    sessionStorage.removeItem(
+        "verifiedPatientId"
+    );
+
+
+    window.location.href =
+        "doctor-access.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,4070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Doctor Access | OneCare</title>
+
+
+<style>
+
+/* =========================================================
+   ONECARE — DOCTOR ACCESS
+   STEP 09
+========================================================= */
+
+:root {
+
+    --dark: #1E293B;
+
+    --green: #10B981;
+
+    --teal: #0D9488;
+
+    --dark-teal: #0F766E;
+
+    --mint: #F0FDFA;
+
+    --soft-mint: #E6F4F1;
+
+    --border: #CBD5E1;
+
+    --white: #ffffff;
+
+    --muted: #64748B;
+
+    --light: #F8FAFC;
+
+    --red: #EF4444;
+
+    --orange: #F59E0B;
+
+    --blue: #2563EB;
+
+    --soft-blue: #EFF6FF;
+
+}
+
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(16,185,129,0.07),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(13,148,136,0.07),
+            transparent 30%
+        ),
+
+        var(--light);
+
+    color: var(--dark);
+
+    min-height: 100vh;
+
+}
+
+
+button,
+input,
+select {
+
+    font-family: inherit;
+
+}
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    height: 78px;
+
+    background:
+        rgba(255,255,255,0.94);
+
+    backdrop-filter:
+        blur(20px);
+
+    border-bottom:
+        1px solid
+        rgba(203,213,225,0.7);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 42px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+    color: var(--dark);
+
+    font-size: 1.35rem;
+
+    font-weight: 900;
+
+}
+
+
+.logo-mark {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    box-shadow:
+
+        0 8px 20px
+        rgba(13,148,136,0.2);
+
+}
+
+
+.logo span {
+
+    color: var(--teal);
+
+}
+
+
+.nav-center {
+
+    display: flex;
+
+    gap: 30px;
+
+}
+
+
+.nav-center a {
+
+    color: var(--muted);
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    font-weight: 650;
+
+    transition: 0.2s;
+
+}
+
+
+.nav-center a:hover {
+
+    color: var(--teal);
+
+}
+
+
+.nav-user {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: var(--dark);
+
+    font-weight: 700;
+
+}
+
+
+.avatar {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--soft-mint),
+            #D1FAE5
+        );
+
+    color: var(--dark-teal);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 0.8rem;
+
+    font-weight: 900;
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+
+    width:
+        min(1200px, 100%);
+
+    margin:
+        0 auto;
+
+    padding:
+        55px 25px 80px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    text-align: center;
+
+    max-width: 720px;
+
+    margin:
+        0 auto 45px;
+
+}
+
+
+.security-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        8px 14px;
+
+    border-radius: 50px;
+
+    background:
+        var(--soft-mint);
+
+    color:
+        var(--dark-teal);
+
+    font-size:
+        0.72rem;
+
+    font-weight:
+        850;
+
+    letter-spacing:
+        0.3px;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.security-dot {
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        var(--green);
+
+    box-shadow:
+        0 0 0 5px
+        rgba(16,185,129,0.1);
+
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(2.2rem, 5vw, 4rem);
+
+    line-height:
+        1.05;
+
+    letter-spacing:
+        -2px;
+
+    margin-bottom:
+        17px;
+
+}
+
+
+.hero h1 span {
+
+    color:
+        var(--teal);
+
+}
+
+
+.hero p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* =========================================================
+   MAIN ACCESS CARD
+========================================================= */
+
+.access-wrapper {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        0.9fr 1.1fr;
+
+    gap:
+        25px;
+
+    align-items:
+        stretch;
+
+}
+
+
+/* =========================================================
+   LEFT INFORMATION PANEL
+========================================================= */
+
+.info-card {
+
+    border-radius:
+        28px;
+
+    padding:
+        38px;
+
+    color:
+        white;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #0F766E,
+            #0D9488 55%,
+            #10B981
+        );
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    min-height:
+        500px;
+
+    box-shadow:
+
+        0 25px 60px
+        rgba(13,148,136,0.18);
+
+}
+
+
+.info-card::before {
+
+    content: "";
+
+    position:
+        absolute;
+
+    width:
+        300px;
+
+    height:
+        300px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    right:
+        -100px;
+
+    top:
+        -100px;
+
+}
+
+
+.info-card::after {
+
+    content: "";
+
+    position:
+        absolute;
+
+    width:
+        190px;
+
+    height:
+        190px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    right:
+        -45px;
+
+    bottom:
+        -55px;
+
+}
+
+
+.info-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+}
+
+
+.doctor-icon {
+
+    width:
+        70px;
+
+    height:
+        70px;
+
+    border-radius:
+        22px;
+
+    background:
+        rgba(255,255,255,0.15);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        2rem;
+
+    margin-bottom:
+        25px;
+
+    backdrop-filter:
+        blur(10px);
+
+}
+
+
+.info-card h2 {
+
+    font-size:
+        2rem;
+
+    letter-spacing:
+        -1px;
+
+    margin-bottom:
+        13px;
+
+}
+
+
+.info-card > .info-content > p {
+
+    color:
+        rgba(255,255,255,0.78);
+
+    line-height:
+        1.7;
+
+    font-size:
+        0.9rem;
+
+    margin-bottom:
+        35px;
+
+}
+
+
+/* =========================================================
+   SECURITY FEATURES
+========================================================= */
+
+.security-list {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        14px;
+
+}
+
+
+.security-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        13px;
+
+}
+
+
+.security-item-icon {
+
+    width:
+        40px;
+
+    height:
+        40px;
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(255,255,255,0.13);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex-shrink:
+        0;
+
+}
+
+
+.security-item strong {
+
+    display:
+        block;
+
+    font-size:
+        0.85rem;
+
+    margin-bottom:
+        2px;
+
+}
+
+
+.security-item span {
+
+    font-size:
+        0.7rem;
+
+    color:
+        rgba(255,255,255,0.67);
+
+}
+
+
+/* =========================================================
+   ACCESS CARD
+========================================================= */
+
+.access-card {
+
+    background:
+        white;
+
+    border:
+        1px solid
+        rgba(203,213,225,0.75);
+
+    border-radius:
+        28px;
+
+    padding:
+        38px;
+
+    box-shadow:
+
+        0 20px 60px
+        rgba(15,23,42,0.05);
+
+}
+
+
+.access-header {
+
+    margin-bottom:
+        28px;
+
+}
+
+
+.access-header h2 {
+
+    font-size:
+        1.6rem;
+
+    letter-spacing:
+        -0.7px;
+
+    margin-bottom:
+        7px;
+
+}
+
+
+.access-header p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        0.82rem;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   STEPS
+========================================================= */
+
+.steps {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        30px;
+
+}
+
+
+.step {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+}
+
+
+.step-number {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #E2E8F0;
+
+    color:
+        var(--muted);
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        900;
+
+    transition:
+        0.3s;
+
+}
+
+
+.step.active .step-number {
+
+    background:
+        var(--teal);
+
+    color:
+        white;
+
+}
+
+
+.step.completed .step-number {
+
+    background:
+        var(--green);
+
+    color:
+        white;
+
+}
+
+
+.step span {
+
+    font-size:
+        0.7rem;
+
+    font-weight:
+        800;
+
+    color:
+        var(--muted);
+
+}
+
+
+.step.active span,
+.step.completed span {
+
+    color:
+        var(--dark);
+
+}
+
+
+.step-line {
+
+    flex:
+        1;
+
+    height:
+        2px;
+
+    background:
+        #E2E8F0;
+
+    margin:
+        0 10px;
+
+}
+
+
+.step-line.completed {
+
+    background:
+        var(--green);
+
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-section {
+
+    display:
+        none;
+
+    animation:
+        slideIn 0.35s ease;
+
+}
+
+
+.form-section.active {
+
+    display:
+        block;
+
+}
+
+
+@keyframes slideIn {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+.form-label {
+
+    display:
+        block;
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        850;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+.input-wrapper {
+
+    position:
+        relative;
+
+}
+
+
+.input-icon {
+
+    position:
+        absolute;
+
+    left:
+        15px;
+
+    top:
+        50%;
+
+    transform:
+        translateY(-50%);
+
+    color:
+        var(--muted);
+
+    font-size:
+        1rem;
+
+}
+
+
+.form-input {
+
+    width:
+        100%;
+
+    height:
+        52px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        14px;
+
+    padding:
+        0 15px 0 45px;
+
+    outline:
+        none;
+
+    color:
+        var(--dark);
+
+    font-size:
+        0.9rem;
+
+    transition:
+        0.2s;
+
+}
+
+
+.form-input:focus {
+
+    border-color:
+        var(--teal);
+
+    box-shadow:
+
+        0 0 0 4px
+        rgba(13,148,136,0.08);
+
+}
+
+
+.input-hint {
+
+    margin-top:
+        8px;
+
+    font-size:
+        0.7rem;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.5;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.primary-button {
+
+    width:
+        100%;
+
+    height:
+        52px;
+
+    border:
+        none;
+
+    border-radius:
+        14px;
+
+    margin-top:
+        22px;
+
+    color:
+        white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    font-weight:
+        850;
+
+    box-shadow:
+
+        0 10px 25px
+        rgba(13,148,136,0.2);
+
+    transition:
+        0.2s;
+
+}
+
+
+.primary-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+
+        0 15px 30px
+        rgba(13,148,136,0.25);
+
+}
+
+
+.secondary-button {
+
+    width:
+        100%;
+
+    height:
+        48px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        13px;
+
+    background:
+        white;
+
+    color:
+        var(--dark);
+
+    font-weight:
+        800;
+
+    margin-top:
+        10px;
+
+}
+
+
+/* =========================================================
+   OTP
+========================================================= */
+
+.otp-message {
+
+    padding:
+        14px;
+
+    background:
+        var(--soft-mint);
+
+    border:
+        1px solid
+        #BCE7DF;
+
+    border-radius:
+        14px;
+
+    margin-bottom:
+        20px;
+
+    display:
+        flex;
+
+    gap:
+        11px;
+
+    align-items:
+        flex-start;
+
+}
+
+
+.otp-message-icon {
+
+    font-size:
+        1.2rem;
+
+}
+
+
+.otp-message strong {
+
+    display:
+        block;
+
+    color:
+        var(--dark-teal);
+
+    font-size:
+        0.78rem;
+
+    margin-bottom:
+        3px;
+
+}
+
+
+.otp-message p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        0.68rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+.otp-inputs {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    margin:
+        20px 0;
+
+}
+
+
+.otp-input {
+
+    width:
+        50px;
+
+    height:
+        58px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        13px;
+
+    text-align:
+        center;
+
+    font-size:
+        1.4rem;
+
+    font-weight:
+        900;
+
+    color:
+        var(--dark);
+
+    outline:
+        none;
+
+}
+
+
+.otp-input:focus {
+
+    border-color:
+        var(--teal);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(13,148,136,0.08);
+
+}
+
+
+.demo-otp {
+
+    text-align:
+        center;
+
+    padding:
+        10px;
+
+    border-radius:
+        10px;
+
+    background:
+        #F8FAFC;
+
+    color:
+        var(--muted);
+
+    font-size:
+        0.68rem;
+
+}
+
+
+.demo-otp strong {
+
+    color:
+        var(--teal);
+
+    letter-spacing:
+        2px;
+
+}
+
+
+/* =========================================================
+   PATIENT RECORD
+========================================================= */
+
+.patient-record {
+
+    display:
+        none;
+
+    animation:
+        recordAppear 0.5s ease;
+
+}
+
+
+.patient-record.show {
+
+    display:
+        block;
+
+}
+
+
+@keyframes recordAppear {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            scale(0.98)
+            translateY(10px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   ACCESS GRANTED
+========================================================= */
+
+.access-granted {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    padding:
+        13px 15px;
+
+    background:
+        #ECFDF5;
+
+    border:
+        1px solid
+        #A7F3D0;
+
+    border-radius:
+        14px;
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.granted-icon {
+
+    width:
+        35px;
+
+    height:
+        35px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--green);
+
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-weight:
+        900;
+
+}
+
+
+.access-granted strong {
+
+    display:
+        block;
+
+    color:
+        #047857;
+
+    font-size:
+        0.8rem;
+
+}
+
+
+.access-granted span {
+
+    color:
+        #059669;
+
+    font-size:
+        0.68rem;
+
+}
+
+
+/* =========================================================
+   PATIENT HEADER
+========================================================= */
+
+.patient-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        17px;
+
+    padding-bottom:
+        22px;
+
+    border-bottom:
+        1px solid
+        #E2E8F0;
+
+    margin-bottom:
+        22px;
+
+}
+
+
+.patient-avatar {
+
+    width:
+        65px;
+
+    height:
+        65px;
+
+    border-radius:
+        20px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--soft-mint),
+            #D1FAE5
+        );
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        1.5rem;
+
+}
+
+
+.patient-name {
+
+    font-size:
+        1.35rem;
+
+    font-weight:
+        900;
+
+}
+
+
+.patient-id {
+
+    color:
+        var(--muted);
+
+    font-size:
+        0.7rem;
+
+    margin-top:
+        3px;
+
+}
+
+
+/* =========================================================
+   RECORD GRID
+========================================================= */
+
+.record-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        13px;
+
+}
+
+
+.record-item {
+
+    padding:
+        16px;
+
+    border:
+        1px solid
+        #E2E8F0;
+
+    border-radius:
+        15px;
+
+}
+
+
+.record-item.full {
+
+    grid-column:
+        1 / -1;
+
+}
+
+
+.record-label {
+
+    color:
+        var(--muted);
+
+    text-transform:
+        uppercase;
+
+    font-size:
+        0.6rem;
+
+    letter-spacing:
+        0.8px;
+
+    font-weight:
+        850;
+
+    margin-bottom:
+        6px;
+
+}
+
+
+.record-value {
+
+    font-weight:
+        750;
+
+    font-size:
+        0.85rem;
+
+}
+
+
+.tag {
+
+    display:
+        inline-block;
+
+    padding:
+        5px 9px;
+
+    border-radius:
+        50px;
+
+    background:
+        var(--soft-mint);
+
+    color:
+        var(--dark-teal);
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        800;
+
+    margin:
+        2px;
+
+}
+
+
+/* =========================================================
+   RECORD SECTIONS
+========================================================= */
+
+.record-section {
+
+    margin-top:
+        25px;
+
+}
+
+
+.record-section-title {
+
+    font-size:
+        0.9rem;
+
+    font-weight:
+        900;
+
+    margin-bottom:
+        12px;
+
+}
+
+
+.record-list {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        9px;
+
+}
+
+
+.record-list-item {
+
+    padding:
+        13px;
+
+    background:
+        #F8FAFC;
+
+    border-radius:
+        12px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+}
+
+
+.record-list-item strong {
+
+    font-size:
+        0.75rem;
+
+}
+
+
+.record-list-item span {
+
+    font-size:
+        0.65rem;
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =========================================================
+   FOOTER NOTICE
+========================================================= */
+
+.privacy-notice {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        7px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        0.68rem;
+
+    margin-top:
+        28px;
+
+    text-align:
+        center;
+
+}
+
+
+/* =========================================================
+   CURA
+========================================================= */
+
+.cura-button {
+
+    position:
+        fixed;
+
+    right:
+        28px;
+
+    bottom:
+        28px;
+
+    width:
+        65px;
+
+    height:
+        65px;
+
+    border-radius:
+        22px;
+
+    border:
+        none;
+
+    color:
+        white;
+
+    font-size:
+        1.5rem;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    box-shadow:
+
+        0 15px 35px
+        rgba(13,148,136,0.3);
+
+    z-index:
+        2000;
+
+    animation:
+        float 3s ease-in-out infinite;
+
+}
+
+
+@keyframes float {
+
+    0%,100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px);
+
+    }
+
+}
+
+
+.cura-window {
+
+    position:
+        fixed;
+
+    right:
+        28px;
+
+    bottom:
+        105px;
+
+    width:
+        360px;
+
+    background:
+        white;
+
+    border-radius:
+        24px;
+
+    box-shadow:
+
+        0 25px 70px
+        rgba(15,23,42,0.18);
+
+    border:
+        1px solid
+        var(--border);
+
+    overflow:
+        hidden;
+
+    z-index:
+        1999;
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    transform:
+        translateY(20px)
+        scale(0.95);
+
+    transition:
+        0.25s;
+
+}
+
+
+.cura-window.open {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.cura-header {
+
+    padding:
+        17px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--mint),
+            white
+        );
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+}
+
+
+.cura-logo {
+
+    width:
+        43px;
+
+    height:
+        43px;
+
+    border-radius:
+        14px;
+
+    background:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        1.3rem;
+
+    box-shadow:
+
+        0 5px 15px
+        rgba(15,23,42,0.06);
+
+}
+
+
+.cura-title {
+
+    flex:
+        1;
+
+}
+
+
+.cura-title strong {
+
+    display:
+        block;
+
+}
+
+
+.cura-title small {
+
+    color:
+        var(--muted);
+
+    font-size:
+        0.7rem;
+
+}
+
+
+.cura-close {
+
+    width:
+        32px;
+
+    height:
+        32px;
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    font-size:
+        1.1rem;
+
+}
+
+
+.cura-messages {
+
+    height:
+        300px;
+
+    padding:
+        18px;
+
+    overflow-y:
+        auto;
+
+    background:
+        #FBFFFE;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+
+}
+
+
+.message {
+
+    max-width:
+        85%;
+
+    padding:
+        12px 14px;
+
+    border-radius:
+        15px;
+
+    font-size:
+        0.82rem;
+
+    line-height:
+        1.5;
+
+}
+
+
+.message.bot {
+
+    align-self:
+        flex-start;
+
+    background:
+        var(--soft-mint);
+
+    border-bottom-left-radius:
+        5px;
+
+}
+
+
+.message.user {
+
+    align-self:
+        flex-end;
+
+    color:
+        white;
+
+    background:
+        var(--teal);
+
+    border-bottom-right-radius:
+        5px;
+
+}
+
+
+.cura-input {
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    padding:
+        12px;
+
+    border-top:
+        1px solid
+        var(--border);
+
+}
+
+
+.cura-input input {
+
+    flex:
+        1;
+
+    height:
+        42px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px;
+
+    padding:
+        0 12px;
+
+    outline:
+        none;
+
+}
+
+
+.cura-send {
+
+    width:
+        42px;
+
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    color:
+        white;
+
+    background:
+        var(--teal);
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+
+    position:
+        fixed;
+
+    left:
+        50%;
+
+    bottom:
+        30px;
+
+    transform:
+        translate(-50%,20px);
+
+    background:
+        var(--dark);
+
+    color:
+        white;
+
+    padding:
+        13px 20px;
+
+    border-radius:
+        12px;
+
+    font-size:
+        0.85rem;
+
+    z-index:
+        10000;
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    transition:
+        0.25s;
+
+}
+
+
+.toast.show {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+    transform:
+        translate(-50%,0);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px) {
+
+    .nav-center {
+
+        display:
+            none;
+
+    }
+
+    .access-wrapper {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .info-card {
+
+        min-height:
+            auto;
+
+    }
+
+}
+
+
+@media(max-width:600px) {
+
+    .navbar {
+
+        padding:
+            0 18px;
+
+    }
+
+    .nav-user span {
+
+        display:
+            none;
+
+    }
+
+    .page {
+
+        padding:
+            35px 16px 70px;
+
+    }
+
+    .access-card,
+    .info-card {
+
+        padding:
+            25px;
+
+        border-radius:
+            22px;
+
+    }
+
+    .hero h1 {
+
+        font-size:
+            2.4rem;
+
+    }
+
+    .otp-inputs {
+
+        gap:
+            6px;
+
+    }
+
+    .otp-input {
+
+        width:
+            43px;
+
+        height:
+            52px;
+
+    }
+
+    .record-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .record-item.full {
+
+        grid-column:
+            auto;
+
+    }
+
+    .cura-window {
+
+        right:
+            15px;
+
+        bottom:
+            95px;
+
+        width:
+            calc(100% - 30px);
+
+    }
+
+    .cura-button {
+
+        right:
+            18px;
+
+        bottom:
+            18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+
+    <a
+        href="dashboard.html"
+        class="logo"
+    >
+
+        <div class="logo-mark">
+            ✚
+        </div>
+
+        One<span>Care</span>
+
+    </a>
+
+
+    <div class="nav-center">
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="appointments.html">
+            Appointments
+        </a>
+
+        <a href="documents.html">
+            Documents
+        </a>
+
+        <a href="access.html">
+            Doctor Access
+        </a>
+
+        <a href="ai.html">
+            Cura
+        </a>
+
+    </div>
+
+
+    <a
+        href="profile.html"
+        class="nav-user"
+    >
+
+        <div class="avatar">
+            JD
+        </div>
+
+        <span>
+            John Doe
+        </span>
+
+    </a>
+
+</nav>
+
+
+
+<!-- =========================================================
+     PAGE
+========================================================= -->
+
+<main class="page">
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+
+        <div class="security-badge">
+
+            <div class="security-dot"></div>
+
+            Secure OneCare sharing
+
+        </div>
+
+
+        <h1>
+
+            Give your doctor
+            <span>the right information.</span>
+
+        </h1>
+
+
+        <p>
+
+            OneCare lets healthcare professionals access
+            the information you choose to share using your
+            unique patient ID and a temporary verification code.
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ACCESS WRAPPER
+    ====================================================== -->
+
+    <section class="access-wrapper">
+
+
+        <!-- =================================================
+             INFORMATION PANEL
+        ================================================== -->
+
+        <div class="info-card">
+
+
+            <div class="info-content">
+
+
+                <div class="doctor-icon">
+                    🩺
+                </div>
+
+
+                <h2>
+                    Doctor Access
+                </h2>
+
+
+                <p>
+
+                    A simple and controlled way for healthcare
+                    professionals to access the information
+                    you decide to share.
+
+                </p>
+
+
+                <div class="security-list">
+
+
+                    <div class="security-item">
+
+                        <div class="security-item-icon">
+                            🪪
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Unique patient ID
+                            </strong>
+
+                            <span>
+                                Every OneCare account has its own ID.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="security-item">
+
+                        <div class="security-item-icon">
+                            🔐
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                One-time verification
+                            </strong>
+
+                            <span>
+                                Access requires a temporary code.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="security-item">
+
+                        <div class="security-item-icon">
+                            👁️
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Controlled visibility
+                            </strong>
+
+                            <span>
+                                Only selected patient information is shown.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="security-item">
+
+                        <div class="security-item-icon">
+                            ⏱️
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Temporary access
+                            </strong>
+
+                            <span>
+                                Access can be designed to expire automatically.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ACCESS CARD
+        ================================================== -->
+
+        <div class="access-card">
+
+
+            <div class="access-header">
+
+                <h2>
+                    Access a patient record
+                </h2>
+
+                <p>
+
+                    Enter the patient's OneCare ID to
+                    request temporary access.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STEPS
+            ================================================== -->
+
+            <div class="steps">
+
+
+                <div
+                    class="step active"
+                    id="step1Indicator"
+                >
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <span>
+                        Patient ID
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="step-line"
+                    id="line1"
+                ></div>
+
+
+                <div
+                    class="step"
+                    id="step2Indicator"
+                >
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <span>
+                        Verification
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="step-line"
+                    id="line2"
+                ></div>
+
+
+                <div
+                    class="step"
+                    id="step3Indicator"
+                >
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <span>
+                        Record
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STEP 1
+            ================================================== -->
+
+            <div
+                class="form-section active"
+                id="idSection"
+            >
+
+
+                <label
+                    class="form-label"
+                    for="patientId"
+                >
+                    OneCare Patient ID
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <div class="input-icon">
+                        🪪
+                    </div>
+
+                    <input
+                        type="text"
+                        class="form-input"
+                        id="patientId"
+                        placeholder="e.g. OC-7F29-K4P2"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="input-hint">
+
+                    Ask the patient for their unique
+                    OneCare ID. For this demo, use:
+                    <strong>OC-7F29-K4P2</strong>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    onclick="requestAccess()"
+                >
+
+                    Request secure access →
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STEP 2
+            ================================================== -->
+
+            <div
+                class="form-section"
+                id="otpSection"
+            >
+
+
+                <div class="otp-message">
+
+                    <div class="otp-message-icon">
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Verification required
+                        </strong>
+
+                        <p>
+
+                            A one-time verification code has
+                            been generated for this demo.
+                            Enter the code below to continue.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <label class="form-label">
+
+                    Enter verification code
+
+                </label>
+
+
+                <div class="otp-inputs">
+
+
+                    <input
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                        id="otp1"
+                    >
+
+
+                    <input
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                        id="otp2"
+                    >
+
+
+                    <input
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                        id="otp3"
+                    >
+
+
+                    <input
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                        id="otp4"
+                    >
+
+
+                    <input
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                        id="otp5"
+                    >
+
+
+                    <input
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                        id="otp6"
+                    >
+
+
+                </div>
+
+
+                <div class="demo-otp">
+
+                    Demo verification code:
+
+                    <strong id="demoOtp">
+                        ------
+                    </strong>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    onclick="verifyOtp()"
+                >
+
+                    Verify & access record →
+
+                </button>
+
+
+                <button
+                    class="secondary-button"
+                    onclick="backToId()"
+                >
+
+                    ← Use another Patient ID
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STEP 3 — PATIENT RECORD
+            ================================================== -->
+
+            <div
+                class="patient-record"
+                id="patientRecord"
+            >
+
+
+                <div class="access-granted">
+
+                    <div class="granted-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Access granted
+                        </strong>
+
+                        <span>
+                            Temporary patient record access verified.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PATIENT HEADER -->
+
+                <div class="patient-header">
+
+                    <div class="patient-avatar">
+                        👩
+                    </div>
+
+                    <div>
+
+                        <div class="patient-name">
+                            Emily Perera
+                        </div>
+
+                        <div class="patient-id">
+                            OneCare ID: OC-7F29-K4P2
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BASIC INFORMATION -->
+
+                <div class="record-grid">
+
+
+                    <div class="record-item">
+
+                        <div class="record-label">
+                            Date of birth
+                        </div>
+
+                        <div class="record-value">
+                            14 March 1997
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-item">
+
+                        <div class="record-label">
+                            Blood group
+                        </div>
+
+                        <div class="record-value">
+                            O+
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-item">
+
+                        <div class="record-label">
+                            Emergency contact
+                        </div>
+
+                        <div class="record-value">
+                            +94 77 123 4567
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-item">
+
+                        <div class="record-label">
+                            Allergies
+                        </div>
+
+                        <div class="record-value">
+
+                            <span class="tag">
+                                Penicillin
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="record-item full">
+
+                        <div class="record-label">
+                            Current medications
+                        </div>
+
+                        <div class="record-value">
+
+                            <span class="tag">
+                                Vitamin D
+                            </span>
+
+                            <span class="tag">
+                                Iron supplement
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- MEDICAL HISTORY -->
+
+                <div class="record-section">
+
+                    <div class="record-section-title">
+
+                        Recent medical history
+
+                    </div>
+
+
+                    <div class="record-list">
+
+
+                        <div class="record-list-item">
+
+                            <div>
+
+                                <strong>
+                                    General consultation
+                                </strong>
+
+                                <span>
+                                    Dr. Sarah Perera
+                                </span>
+
+                            </div>
+
+                            <span>
+                                04 Aug 2026
+                            </span>
+
+                        </div>
+
+
+                        <div class="record-list-item">
+
+                            <div>
+
+                                <strong>
+                                    Blood test
+                                </strong>
+
+                                <span>
+                                    City Diagnostics
+                                </span>
+
+                            </div>
+
+                            <span>
+                                15 Jul 2026
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DOCUMENTS -->
+
+                <div class="record-section">
+
+                    <div class="record-section-title">
+
+                        Shared documents
+
+                    </div>
+
+
+                    <div class="record-list">
+
+
+                        <div class="record-list-item">
+
+                            <div>
+
+                                <strong>
+                                    Blood Test Results.pdf
+                                </strong>
+
+                                <span>
+                                    Laboratory report
+                                </span>
+
+                            </div>
+
+                            <span>
+                                View
+                            </span>
+
+                        </div>
+
+
+                        <div class="record-list-item">
+
+                            <div>
+
+                                <strong>
+                                    Prescription — Aug 2026
+                                </strong>
+
+                                <span>
+                                    Prescription record
+                                </span>
+
+                            </div>
+
+                            <span>
+                                View
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <button
+                    class="secondary-button"
+                    onclick="endAccess()"
+                >
+
+                    End patient access
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PRIVACY NOTICE
+    ====================================================== -->
+
+    <div class="privacy-notice">
+
+        🔒
+
+        <span>
+            OneCare privacy-first design · This prototype
+            demonstrates the intended access experience.
+        </span>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     CURA BUTTON
+========================================================= -->
+
+<button
+    class="cura-button"
+    id="curaButton"
+>
+
+    🧾
+
+</button>
+
+
+
+<!-- =========================================================
+     CURA CHAT WINDOW
+========================================================= -->
+
+<div
+    class="cura-window"
+    id="curaWindow"
+>
+
+
+    <div class="cura-header">
+
+
+        <div class="cura-logo">
+            🧾
+        </div>
+
+
+        <div class="cura-title">
+
+            <strong>
+                Cura
+            </strong>
+
+            <small>
+                Your OneCare companion
+            </small>
+
+        </div>
+
+
+        <button
+            class="cura-close"
+            id="curaClose"
+        >
+
+            ×
+
+        </button>
+
+
+    </div>
+
+
+
+    <div
+        class="cura-messages"
+        id="messages"
+    >
+
+
+        <div class="message bot">
+
+            Hey! 👋 How are you?
+
+            I'm Cura, your personal OneCare
+            companion.
+
+            How can I help you today?
+
+        </div>
+
+
+        <div class="message bot">
+
+            I can explain how OneCare's
+            doctor-access process works. 🩺
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="cura-input">
+
+
+        <input
+            id="curaInput"
+            type="text"
+            placeholder="Ask Cura..."
+        >
+
+
+        <button
+            class="cura-send"
+            onclick="sendMessage()"
+        >
+
+            ↑
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+
+<script>
+
+/* =========================================================
+   ONECARE DEMO DATA
+========================================================= */
+
+let generatedOTP = "";
+
+let currentPatientID = "";
+
+
+/* =========================================================
+   STEP 1 — REQUEST ACCESS
+========================================================= */
+
+function requestAccess() {
+
+
+    const patientInput =
+        document.getElementById(
+            "patientId"
+        );
+
+
+    const patientID =
+        patientInput.value
+            .trim()
+            .toUpperCase();
+
+
+    if (!patientID) {
+
+        showToast(
+            "Please enter the patient's OneCare ID."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       DEMO PATIENT ID
+
+       In the real system this would be checked
+       against a secure backend database.
+    */
+
+    if (
+        patientID !==
+        "OC-7F29-K4P2"
+    ) {
+
+        showToast(
+            "Patient ID not recognised in this demo."
+        );
+
+        patientInput.focus();
+
+        return;
+
+    }
+
+
+    currentPatientID =
+        patientID;
+
+
+    /*
+       Generate a random
+       six-digit demonstration OTP.
+    */
+
+    generatedOTP =
+        Math.floor(
+            100000 +
+            Math.random() *
+            900000
+        ).toString();
+
+
+    document
+        .getElementById("demoOtp")
+        .textContent =
+        generatedOTP;
+
+
+    /*
+       Move to STEP 2
+    */
+
+    document
+        .getElementById("idSection")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("otpSection")
+        .classList.add(
+            "active"
+        );
+
+
+    /*
+       Update progress
+    */
+
+    document
+        .getElementById("step1Indicator")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("step1Indicator")
+        .classList.add(
+            "completed"
+        );
+
+
+    document
+        .getElementById("step2Indicator")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("line1")
+        .classList.add(
+            "completed"
+        );
+
+
+    showToast(
+        "Verification code generated."
+    );
+
+
+    /*
+       Focus first OTP box
+    */
+
+    setTimeout(
+        () => {
+
+            document
+                .getElementById("otp1")
+                .focus();
+
+        },
+        300
+    );
+
+}
+
+
+/* =========================================================
+   OTP INPUT BEHAVIOUR
+========================================================= */
+
+const otpInputs =
+    document.querySelectorAll(
+        ".otp-input"
+    );
+
+
+otpInputs.forEach(
+    (input, index) => {
+
+
+        input.addEventListener(
+            "input",
+            () => {
+
+
+                /*
+                   Only allow numbers.
+                */
+
+                input.value =
+                    input.value.replace(
+                        /[^0-9]/g,
+                        ""
+                    );
+
+
+                /*
+                   Automatically move
+                   to the next box.
+                */
+
+                if (
+                    input.value &&
+                    index <
+                    otpInputs.length - 1
+                ) {
+
+                    otpInputs[
+                        index + 1
+                    ].focus();
+
+                }
+
+            }
+        );
+
+
+        input.addEventListener(
+            "keydown",
+            event => {
+
+
+                /*
+                   Backspace moves
+                   to previous box.
+                */
+
+                if (
+                    event.key ===
+                    "Backspace" &&
+                    !input.value &&
+                    index > 0
+                ) {
+
+                    otpInputs[
+                        index - 1
+                    ].focus();
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   STEP 2 — VERIFY OTP
+========================================================= */
+
+function verifyOtp() {
+
+
+    let enteredOTP = "";
+
+
+    otpInputs.forEach(
+        input => {
+
+            enteredOTP +=
+                input.value;
+
+        }
+    );
+
+
+    if (
+        enteredOTP.length !== 6
+    ) {
+
+        showToast(
+            "Please enter the complete verification code."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        enteredOTP !==
+        generatedOTP
+    ) {
+
+        showToast(
+            "Incorrect verification code."
+        );
+
+        otpInputs.forEach(
+            input => {
+
+                input.value = "";
+
+            }
+        );
+
+
+        otpInputs[0].focus();
+
+
+        return;
+
+    }
+
+
+    /*
+       Hide verification form.
+    */
+
+    document
+        .getElementById("otpSection")
+        .classList.remove(
+            "active"
+        );
+
+
+    /*
+       Show record.
+    */
+
+    document
+        .getElementById("patientRecord")
+        .classList.add(
+            "show"
+        );
+
+
+    /*
+       Update progress.
+    */
+
+    document
+        .getElementById("step2Indicator")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("step2Indicator")
+        .classList.add(
+            "completed"
+        );
+
+
+    document
+        .getElementById("step3Indicator")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("line2")
+        .classList.add(
+            "completed"
+        );
+
+
+    showToast(
+        "Access granted successfully."
+    );
+
+}
+
+
+/* =========================================================
+   BACK TO PATIENT ID
+========================================================= */
+
+function backToId() {
+
+
+    document
+        .getElementById("otpSection")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("idSection")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("step2Indicator")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("step1Indicator")
+        .classList.remove(
+            "completed"
+        );
+
+
+    document
+        .getElementById("step1Indicator")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("line1")
+        .classList.remove(
+            "completed"
+        );
+
+
+    otpInputs.forEach(
+        input => {
+
+            input.value = "";
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   END ACCESS
+========================================================= */
+
+function endAccess() {
+
+
+    document
+        .getElementById("patientRecord")
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById("step3Indicator")
+        .classList.remove(
+            "active"
+        );
+
+
+    document
+        .getElementById("step2Indicator")
+        .classList.remove(
+            "completed"
+        );
+
+
+    document
+        .getElementById("step2Indicator")
+        .classList.add(
+            "active"
+        );
+
+
+    document
+        .getElementById("line2")
+        .classList.remove(
+            "completed"
+        );
+
+
+    document
+        .getElementById("otpSection")
+        .classList.add(
+            "active"
+        );
+
+
+    generatedOTP =
+        Math.floor(
+            100000 +
+            Math.random() *
+            900000
+        ).toString();
+
+
+    document
+        .getElementById("demoOtp")
+        .textContent =
+        generatedOTP;
+
+
+    otpInputs.forEach(
+        input => {
+
+            input.value = "";
+
+        }
+    );
+
+
+    showToast(
+        "Patient access ended."
+    );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(
+    text
+) {
+
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        text;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2800
+    );
+
+}
+
+
+/* =========================================================
+   CURA
+========================================================= */
+
+const curaButton =
+    document.getElementById(
+        "curaButton"
+    );
+
+
+const curaWindow =
+    document.getElementById(
+        "curaWindow"
+    );
+
+
+const curaClose =
+    document.getElementById(
+        "curaClose"
+    );
+
+
+curaButton.addEventListener(
+    "click",
+    () => {
+
+        curaWindow.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+curaClose.addEventListener(
+    "click",
+    () => {
+
+        curaWindow.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CURA CHAT
+========================================================= */
+
+function sendMessage() {
+
+
+    const input =
+        document.getElementById(
+            "curaInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        return;
+
+    }
+
+
+    addMessage(
+        text,
+        "user"
+    );
+
+
+    input.value = "";
+
+
+    setTimeout(
+        () => {
+
+
+            const lower =
+                text.toLowerCase();
+
+
+            let reply =
+                "I'm here to help you understand the OneCare doctor-access process. 🩺";
+
+
+            if (
+                lower.includes("otp") ||
+                lower.includes("code") ||
+                lower.includes("verification")
+            ) {
+
+                reply =
+                    "The OTP is a temporary verification code used to confirm that the doctor has permission to access the shared record. 🔐";
+
+            }
+
+
+            else if (
+                lower.includes("id") ||
+                lower.includes("patient")
+            ) {
+
+                reply =
+                    "The OneCare Patient ID uniquely identifies the patient's account. In this demo, try OC-7F29-K4P2.";
+
+            }
+
+
+            else if (
+                lower.includes("doctor")
+            ) {
+
+                reply =
+                    "Doctors can request access using the patient's OneCare ID and then complete the verification step.";
+
+            }
+
+
+            else if (
+                lower.includes("hello") ||
+                lower.includes("hi")
+            ) {
+
+                reply =
+                    "Hey! 👋 I'm Cura. How can I help you today?";
+
+            }
+
+
+            addMessage(
+                reply,
+                "bot"
+            );
+
+
+        },
+        650
+    );
+
+}
+
+
+/* =========================================================
+   ADD CURA MESSAGE
+========================================================= */
+
+function addMessage(
+    text,
+    type
+) {
+
+
+    const messages =
+        document.getElementById(
+            "messages"
+        );
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "message " +
+        type;
+
+
+    message.textContent =
+        text;
+
+
+    messages.appendChild(
+        message
+    );
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+/* =========================================================
+   CURA ENTER KEY
+========================================================= */
+
+document
+    .getElementById("curaInput")
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
+
+                sendMessage();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+</body>
+</html>

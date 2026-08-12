@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Profile — OneCare</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="onecare-nav">
+
+    <a href="dashboard.html" class="brand">
+
+        <div class="brand-mark">
+            ✚
+        </div>
+
+        One<span>Care</span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="appointments.html">
+            Appointments
+        </a>
+
+        <a href="documents.html">
+            Documents
+        </a>
+
+        <a href="ai.html">
+            Cura
+        </a>
+
+    </div>
+
+
+    <a
+        href="profile.html"
+        class="nav-profile"
+    >
+
+        <div class="avatar">
+            JD
+        </div>
+
+        <span>
+            John Doe
+        </span>
+
+    </a>
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN LAYOUT
+===================================================== -->
+
+<div class="dashboard-layout">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+    <div class="sidebar-label">
+        OneCare
+    </div>
+
+
+    <a
+        href="dashboard.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ◉
+        </span>
+
+        Dashboard
+
+    </a>
+
+
+    <a
+        href="profile.html"
+        class="sidebar-link active"
+    >
+
+        <span class="sidebar-icon">
+            ◎
+        </span>
+
+        My Profile
+
+    </a>
+
+
+    <a
+        href="medical-history.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ♡
+        </span>
+
+        Medical History
+
+    </a>
+
+
+    <a
+        href="documents.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ▣
+        </span>
+
+        Documents
+
+    </a>
+
+
+    <a
+        href="appointments.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ◷
+        </span>
+
+        Appointments
+
+    </a>
+
+
+    <div class="sidebar-label">
+        Sharing
+    </div>
+
+
+    <a
+        href="access.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ⇄
+        </span>
+
+        Doctor Access
+
+    </a>
+
+
+    <a
+        href="ai.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ✦
+        </span>
+
+        Ask Cura
+
+    </a>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- PAGE HEADING -->
+
+    <div class="page-heading">
+
+        <h1>
+            My Profile
+        </h1>
+
+        <p>
+            Keep your personal information accurate and up to date.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         PROFILE HEADER
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="profile-header">
+
+
+            <div class="profile-avatar">
+                JD
+            </div>
+
+
+            <div>
+
+                <h2>
+                    John Doe
+                </h2>
+
+                <p
+                    style="
+                        color: var(--muted);
+                        margin-top: 5px;
+                    "
+                >
+                    OneCare Member
+                </p>
+
+
+                <span
+                    class="badge green"
+                    style="
+                        margin-top: 10px;
+                    "
+                >
+                    ● Profile verified
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            style="
+                display:flex;
+                gap:10px;
+                flex-wrap:wrap;
+            "
+        >
+
+            <span class="badge">
+                🆔 Patient ID: OC-482913
+            </span>
+
+            <span class="badge">
+                🔐 Secure profile
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <br>
+
+
+
+    <!-- =================================================
+         PERSONAL INFORMATION
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Personal information
+                </div>
+
+                <div class="card-subtitle">
+                    Information used to identify you across OneCare
+                </div>
+
+            </div>
+
+
+            <span class="badge">
+                Editable
+            </span>
+
+        </div>
+
+
+
+        <form id="profileForm">
+
+
+            <div class="form-grid">
+
+
+                <!-- FIRST NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        First name
+                    </label>
+
+                    <input
+                        type="text"
+                        value="John"
+                        id="firstName"
+                    >
+
+                </div>
+
+
+                <!-- LAST NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Last name
+                    </label>
+
+                    <input
+                        type="text"
+                        value="Doe"
+                        id="lastName"
+                    >
+
+                </div>
+
+
+                <!-- DATE OF BIRTH -->
+
+                <div class="form-group">
+
+                    <label>
+                        Date of birth
+                    </label>
+
+                    <input
+                        type="date"
+                        value="2004-06-18"
+                    >
+
+                </div>
+
+
+                <!-- GENDER -->
+
+                <div class="form-group">
+
+                    <label>
+                        Gender
+                    </label>
+
+                    <select>
+
+                        <option>
+                            Prefer not to say
+                        </option>
+
+                        <option selected>
+                            Male
+                        </option>
+
+                        <option>
+                            Female
+                        </option>
+
+                        <option>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Phone number
+                    </label>
+
+                    <input
+                        type="tel"
+                        value="+94 77 123 4567"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        value="john@example.com"
+                    >
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-group full">
+
+                    <label>
+                        Address
+                    </label>
+
+                    <input
+                        type="text"
+                        value="Colombo, Sri Lanka"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <br>
+
+
+            <div
+                style="
+                    display:flex;
+                    justify-content:flex-end;
+                    gap:10px;
+                    flex-wrap:wrap;
+                "
+            >
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    onclick="showToast('No changes were made.')"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Save changes
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+
+    <br>
+
+
+
+    <!-- =================================================
+         EMERGENCY CONTACT
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Emergency contact
+                </div>
+
+                <div class="card-subtitle">
+                    Someone OneCare can identify as your emergency contact
+                </div>
+
+            </div>
+
+            <span class="badge orange">
+                Important
+            </span>
+
+        </div>
+
+
+        <form id="emergencyForm">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Full name
+                    </label>
+
+                    <input
+                        type="text"
+                        value="Jane Doe"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Relationship
+                    </label>
+
+                    <select>
+
+                        <option selected>
+                            Parent
+                        </option>
+
+                        <option>
+                            Spouse
+                        </option>
+
+                        <option>
+                            Sibling
+                        </option>
+
+                        <option>
+                            Friend
+                        </option>
+
+                        <option>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone number
+                    </label>
+
+                    <input
+                        type="tel"
+                        value="+94 71 987 6543"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        value="jane@example.com"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <br>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Save emergency contact
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+
+    <br>
+
+
+
+    <!-- =================================================
+         HEALTH IDENTIFIERS
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Health identifiers
+                </div>
+
+                <div class="card-subtitle">
+                    Important information that may help healthcare professionals
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="two-column">
+
+
+            <!-- BLOOD GROUP -->
+
+            <div
+                style="
+                    padding:20px;
+                    background:var(--mint);
+                    border-radius:18px;
+                    border:1px solid var(--border);
+                "
+            >
+
+                <div
+                    style="
+                        font-size:2rem;
+                        margin-bottom:10px;
+                    "
+                >
+                    🩸
+                </div>
+
+                <div
+                    style="
+                        font-weight:800;
+                    "
+                >
+                    Blood group
+                </div>
+
+                <div
+                    style="
+                        color:var(--teal);
+                        font-size:1.5rem;
+                        font-weight:850;
+                        margin-top:5px;
+                    "
+                >
+                    O+
+                </div>
+
+            </div>
+
+
+
+            <!-- ORGAN DONOR -->
+
+            <div
+                style="
+                    padding:20px;
+                    background:var(--mint);
+                    border-radius:18px;
+                    border:1px solid var(--border);
+                "
+            >
+
+                <div
+                    style="
+                        font-size:2rem;
+                        margin-bottom:10px;
+                    "
+                >
+                    💚
+                </div>
+
+                <div
+                    style="
+                        font-weight:800;
+                    "
+                >
+                    Organ donor status
+                </div>
+
+                <div
+                    style="
+                        margin-top:7px;
+                    "
+                >
+
+                    <span class="badge green">
+                        Registered
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <br>
+
+
+
+    <!-- =================================================
+         SECURITY
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Account & security
+                </div>
+
+                <div class="card-subtitle">
+                    Manage how your OneCare account is protected
+                </div>
+
+            </div>
+
+            <span class="badge green">
+                Protected
+            </span>
+
+        </div>
+
+
+        <div class="list-item">
+
+            <div class="list-left">
+
+                <div class="list-icon">
+                    🔐
+                </div>
+
+                <div>
+
+                    <div class="list-title">
+                        Login security
+                    </div>
+
+                    <div class="list-description">
+                        Password and authentication settings
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-secondary"
+                onclick="showToast('Security settings opened.')"
+            >
+                Manage
+            </button>
+
+        </div>
+
+
+
+        <div class="list-item">
+
+            <div class="list-left">
+
+                <div class="list-icon">
+                    📱
+                </div>
+
+                <div>
+
+                    <div class="list-title">
+                        Two-step verification
+                    </div>
+
+                    <div class="list-description">
+                        Add another layer of protection
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <span class="badge green">
+                Enabled
+            </span>
+
+        </div>
+
+
+
+        <div class="list-item">
+
+            <div class="list-left">
+
+                <div class="list-icon">
+                    ⇄
+                </div>
+
+                <div>
+
+                    <div class="list-title">
+                        Doctor access
+                    </div>
+
+                    <div class="list-description">
+                        Control temporary access to your records
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="access.html"
+                class="btn btn-secondary"
+            >
+                Manage
+            </a>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+</div>
+
+
+
+<!-- =====================================================
+     CURA FLOATING BUTTON
+===================================================== -->
+
+<button
+    class="cura-floating"
+    aria-label="Open Cura"
+>
+    ✦
+</button>
+
+
+
+<div class="cura-window">
+
+
+    <div class="cura-header">
+
+        <div class="cura-logo">
+            🧾
+        </div>
+
+        <div>
+
+            <h3>
+                Cura
+            </h3>
+
+            <small>
+                Your OneCare companion
+            </small>
+
+        </div>
+
+        <button class="cura-close">
+            ×
+        </button>
+
+    </div>
+
+
+
+    <div class="cura-messages">
+
+        <div class="message bot">
+
+            Hey! 👋 I'm Cura, your personal OneCare
+            companion. Need help finding something?
+
+        </div>
+
+    </div>
+
+
+
+    <div class="cura-input">
+
+        <input
+            type="text"
+            placeholder="Ask Cura something..."
+        >
+
+        <button>
+            ↑
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<div class="toast"></div>
+
+
+
+<script src="script.js"></script>
+
+
+
+<script>
+
+    saveForm(
+        "profileForm",
+        "Your profile has been updated."
+    );
+
+
+    saveForm(
+        "emergencyForm",
+        "Emergency contact saved."
+    );
+
+</script>
+
+
+</body>
+
+</html>

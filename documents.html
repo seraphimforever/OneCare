@@ -1,0 +1,2627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Documents | OneCare</title>
+
+<style>
+
+/* =========================================================
+   ONECARE — GLOBAL DESIGN
+========================================================= */
+
+:root {
+    --dark: #1E293B;
+    --green: #10B981;
+    --teal: #0D9488;
+    --dark-teal: #0F766E;
+    --mint: #F0FDFA;
+    --soft-mint: #E6F4F1;
+    --border: #CBD5E1;
+    --white: #ffffff;
+    --muted: #64748B;
+    --danger: #EF4444;
+    --warning: #F59E0B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #F8FAFC;
+    color: var(--dark);
+    min-height: 100vh;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+    height: 78px;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(203,213,225,0.7);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 42px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    text-decoration: none;
+    color: var(--dark);
+
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+.logo-mark {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    box-shadow:
+        0 8px 20px rgba(13,148,136,0.2);
+
+    font-size: 1.25rem;
+}
+
+.logo span {
+    color: var(--teal);
+}
+
+.nav-center {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-center a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 650;
+
+    transition: 0.2s;
+}
+
+.nav-center a:hover,
+.nav-center a.active {
+    color: var(--teal);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+    color: var(--dark);
+
+    font-weight: 700;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--soft-mint),
+            #D1FAE5
+        );
+
+    color: var(--dark-teal);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   PAGE LAYOUT
+========================================================= */
+
+.layout {
+    display: flex;
+    min-height: calc(100vh - 78px);
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: 245px;
+
+    background: white;
+
+    border-right:
+        1px solid
+        rgba(203,213,225,0.7);
+
+    padding: 28px 18px;
+
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    padding: 0 14px 15px;
+
+    color: #94A3B8;
+
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px 15px;
+
+    margin-bottom: 5px;
+
+    border-radius: 13px;
+
+    text-decoration: none;
+
+    color: var(--muted);
+
+    font-size: 0.9rem;
+    font-weight: 650;
+
+    transition: 0.2s;
+}
+
+.sidebar-link:hover {
+    background: var(--mint);
+    color: var(--teal);
+}
+
+.sidebar-link.active {
+    background: var(--soft-mint);
+    color: var(--dark-teal);
+    font-weight: 800;
+}
+
+.sidebar-icon {
+    width: 25px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+    flex: 1;
+    padding: 45px;
+
+    max-width: 1500px;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 35px;
+}
+
+.page-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -1.5px;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+    border: none;
+    border-radius: 12px;
+
+    padding: 12px 18px;
+
+    font-weight: 800;
+    font-size: 0.88rem;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(13,148,136,0.2);
+}
+
+.btn-secondary {
+    background: var(--soft-mint);
+    color: var(--dark-teal);
+}
+
+.btn-outline {
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--dark);
+}
+
+.btn-outline:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card {
+    background: white;
+
+    border:
+        1px solid
+        rgba(203,213,225,0.75);
+
+    border-radius: 22px;
+
+    padding: 27px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(15,23,42,0.035);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 22px;
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 850;
+}
+
+.card-subtitle {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: white;
+
+    border:
+        1px solid
+        rgba(203,213,225,0.75);
+
+    border-radius: 20px;
+
+    padding: 23px;
+
+    transition: 0.25s;
+}
+
+.stat:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(15,23,42,0.07);
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: var(--soft-mint);
+
+    font-size: 1.3rem;
+
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    border-radius: 50px;
+
+    background: #F1F5F9;
+
+    color: var(--muted);
+
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.badge.green {
+    background: #DCFCE7;
+    color: #15803D;
+}
+
+.badge.orange {
+    background: #FEF3C7;
+    color: #B45309;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-area {
+    display: flex;
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+}
+
+.search-box input {
+    width: 100%;
+    height: 50px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 14px;
+
+    padding: 0 18px 0 45px;
+
+    outline: none;
+
+    color: var(--dark);
+
+    background: white;
+
+    transition: 0.2s;
+}
+
+.search-box input:focus {
+    border-color: var(--teal);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(13,148,136,0.08);
+}
+
+.search-icon {
+    position: absolute;
+
+    left: 17px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--muted);
+}
+
+.filter {
+    height: 50px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 14px;
+
+    padding: 0 15px;
+
+    background: white;
+
+    color: var(--dark);
+
+    outline: none;
+}
+
+
+/* =========================================================
+   DOCUMENTS
+========================================================= */
+
+.document {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 20px 0;
+
+    border-bottom:
+        1px solid
+        #E2E8F0;
+
+    transition: 0.2s;
+}
+
+.document:last-child {
+    border-bottom: none;
+}
+
+.document:hover {
+    transform: translateX(5px);
+}
+
+.document-icon {
+    width: 56px;
+    height: 56px;
+
+    flex-shrink: 0;
+
+    border-radius: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--soft-mint);
+
+    font-size: 1.45rem;
+}
+
+.document-info {
+    flex: 1;
+}
+
+.document-name {
+    font-weight: 850;
+    margin-bottom: 5px;
+}
+
+.document-meta {
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-bottom: 8px;
+}
+
+.document-actions {
+    display: flex;
+    gap: 8px;
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(15,23,42,0.48);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 5000;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.25s;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    width: min(550px, 100%);
+
+    background: white;
+
+    border-radius: 27px;
+
+    padding: 32px;
+
+    position: relative;
+
+    box-shadow:
+        0 30px 80px
+        rgba(15,23,42,0.2);
+
+    transform:
+        translateY(20px)
+        scale(0.97);
+
+    transition: 0.25s;
+}
+
+.modal.show .modal-box {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.close {
+    position: absolute;
+
+    top: 17px;
+    right: 17px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--soft-mint);
+
+    color: var(--dark);
+
+    font-size: 1.2rem;
+}
+
+.modal-icon {
+    font-size: 2.7rem;
+    margin-bottom: 14px;
+}
+
+.modal-box h2 {
+    margin-bottom: 8px;
+}
+
+.modal-description {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.upload-area {
+    margin-top: 25px;
+
+    min-height: 180px;
+
+    border:
+        2px dashed
+        var(--border);
+
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.upload-area:hover {
+    border-color: var(--teal);
+    background: var(--mint);
+}
+
+.upload-cloud {
+    font-size: 2.2rem;
+}
+
+.upload-area strong {
+    font-size: 0.95rem;
+}
+
+.upload-area span {
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+
+/* =========================================================
+   DOCUMENT PREVIEW
+========================================================= */
+
+.preview-paper {
+    margin-top: 25px;
+
+    background: #F8FAFC;
+
+    border-radius: 18px;
+
+    padding: 20px;
+}
+
+.paper {
+    background: white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 12px;
+
+    min-height: 270px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(15,23,42,0.05);
+}
+
+.paper-heading {
+    font-size: 1.2rem;
+    font-weight: 900;
+
+    margin-bottom: 25px;
+}
+
+.paper-line {
+    height: 10px;
+
+    background: #E2E8F0;
+
+    border-radius: 20px;
+
+    margin-bottom: 14px;
+}
+
+.paper-line.short {
+    width: 50%;
+}
+
+.paper-line.medium {
+    width: 70%;
+}
+
+.paper-line.long {
+    width: 90%;
+}
+
+
+/* =========================================================
+   CURA FLOATING BUTTON
+========================================================= */
+
+.cura-button {
+    position: fixed;
+
+    right: 28px;
+    bottom: 28px;
+
+    width: 65px;
+    height: 65px;
+
+    border-radius: 22px;
+
+    border: none;
+
+    color: white;
+
+    font-size: 1.5rem;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            var(--teal)
+        );
+
+    box-shadow:
+        0 15px 35px
+        rgba(13,148,136,0.3);
+
+    z-index: 2000;
+
+    animation:
+        curaFloat 3s ease-in-out infinite;
+}
+
+@keyframes curaFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* =========================================================
+   CURA WINDOW
+========================================================= */
+
+.cura-window {
+    position: fixed;
+
+    right: 28px;
+    bottom: 105px;
+
+    width: 360px;
+
+    background: white;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(15,23,42,0.18);
+
+    border:
+        1px solid
+        var(--border);
+
+    overflow: hidden;
+
+    z-index: 1999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translateY(20px)
+        scale(0.95);
+
+    transition: 0.25s;
+}
+
+.cura-window.open {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.cura-header {
+    padding: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--mint),
+            white
+        );
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+}
+
+.cura-logo {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 14px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.3rem;
+
+    box-shadow:
+        0 5px 15px
+        rgba(15,23,42,0.06);
+}
+
+.cura-title {
+    flex: 1;
+}
+
+.cura-title strong {
+    display: block;
+}
+
+.cura-title small {
+    color: var(--muted);
+    font-size: 0.7rem;
+}
+
+.cura-close {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    font-size: 1.1rem;
+}
+
+.cura-messages {
+    height: 300px;
+
+    padding: 18px;
+
+    overflow-y: auto;
+
+    background: #FBFFFE;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.message {
+    max-width: 85%;
+
+    padding: 12px 14px;
+
+    border-radius: 15px;
+
+    font-size: 0.82rem;
+
+    line-height: 1.5;
+}
+
+.message.bot {
+    align-self: flex-start;
+
+    background: var(--soft-mint);
+
+    border-bottom-left-radius: 5px;
+}
+
+.message.user {
+    align-self: flex-end;
+
+    color: white;
+
+    background: var(--teal);
+
+    border-bottom-right-radius: 5px;
+}
+
+.cura-input {
+    display: flex;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    border-top:
+        1px solid
+        var(--border);
+}
+
+.cura-input input {
+    flex: 1;
+
+    height: 42px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 12px;
+
+    padding: 0 12px;
+
+    outline: none;
+}
+
+.cura-input input:focus {
+    border-color: var(--teal);
+}
+
+.cura-send {
+    width: 42px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background: var(--teal);
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    left: 50%;
+    bottom: 30px;
+
+    transform:
+        translate(-50%, 20px);
+
+    background: var(--dark);
+
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 12px;
+
+    font-size: 0.85rem;
+
+    z-index: 10000;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.25s;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translate(-50%, 0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .nav-center {
+        display: none;
+    }
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main {
+        padding: 30px;
+    }
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+
+    .navbar {
+        padding: 0 18px;
+    }
+
+    .nav-user span {
+        display: none;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        padding: 25px 18px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .search-area {
+        flex-direction: column;
+    }
+
+    .document {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .document-actions {
+        width: 100%;
+    }
+
+    .cura-window {
+        right: 15px;
+        bottom: 95px;
+        width: calc(100% - 30px);
+    }
+
+    .cura-button {
+        right: 18px;
+        bottom: 18px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="navbar">
+
+    <a href="dashboard.html" class="logo">
+
+        <div class="logo-mark">
+            ✚
+        </div>
+
+        One<span>Care</span>
+
+    </a>
+
+
+    <div class="nav-center">
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="appointments.html">
+            Appointments
+        </a>
+
+        <a href="documents.html" class="active">
+            Documents
+        </a>
+
+        <a href="ai.html">
+            Cura
+        </a>
+
+    </div>
+
+
+    <a href="profile.html" class="nav-user">
+
+        <div class="avatar">
+            JD
+        </div>
+
+        <span>
+            John Doe
+        </span>
+
+    </a>
+
+</nav>
+
+
+
+<!-- =========================================================
+     LAYOUT
+========================================================= -->
+
+<div class="layout">
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-title">
+        OneCare
+    </div>
+
+
+    <a
+        href="dashboard.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ◉
+        </span>
+
+        Dashboard
+
+    </a>
+
+
+    <a
+        href="profile.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ◎
+        </span>
+
+        My Profile
+
+    </a>
+
+
+    <a
+        href="medical-history.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ♡
+        </span>
+
+        Medical History
+
+    </a>
+
+
+    <a
+        href="documents.html"
+        class="sidebar-link active"
+    >
+
+        <span class="sidebar-icon">
+            ▣
+        </span>
+
+        Documents
+
+    </a>
+
+
+    <a
+        href="appointments.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ◷
+        </span>
+
+        Appointments
+
+    </a>
+
+
+    <div
+        class="sidebar-title"
+        style="margin-top:25px;"
+    >
+        Sharing
+    </div>
+
+
+    <a
+        href="access.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ⇄
+        </span>
+
+        Doctor Access
+
+    </a>
+
+
+    <a
+        href="ai.html"
+        class="sidebar-link"
+    >
+
+        <span class="sidebar-icon">
+            ✦
+        </span>
+
+        Ask Cura
+
+    </a>
+
+</aside>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="main">
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                My Documents
+            </h1>
+
+            <p>
+                Your medical reports, prescriptions and receipts —
+                safely organised in one place.
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="openUpload()"
+        >
+            + Add document
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         STATS
+    ====================================================== -->
+
+    <div class="stats">
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                📄
+            </div>
+
+            <div class="stat-number">
+                12
+            </div>
+
+            <div class="stat-label">
+                Total documents
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🧪
+            </div>
+
+            <div class="stat-number">
+                4
+            </div>
+
+            <div class="stat-label">
+                Lab reports
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                💊
+            </div>
+
+            <div class="stat-number">
+                3
+            </div>
+
+            <div class="stat-label">
+                Prescriptions
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🧾
+            </div>
+
+            <div class="stat-number">
+                5
+            </div>
+
+            <div class="stat-label">
+                Receipts
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SEARCH
+    ====================================================== -->
+
+    <div class="card">
+
+        <div class="search-area">
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    🔎
+                </span>
+
+                <input
+                    id="search"
+                    type="text"
+                    placeholder="Search your documents..."
+                    oninput="filterDocuments()"
+                >
+
+            </div>
+
+
+            <select
+                id="filter"
+                class="filter"
+                onchange="filterDocuments()"
+            >
+
+                <option value="all">
+                    All documents
+                </option>
+
+                <option value="report">
+                    Lab reports
+                </option>
+
+                <option value="prescription">
+                    Prescriptions
+                </option>
+
+                <option value="receipt">
+                    Receipts
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    <br>
+
+
+
+    <!-- =====================================================
+         DOCUMENT LIST
+    ====================================================== -->
+
+    <section class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Medical archive
+                </div>
+
+                <div class="card-subtitle">
+                    Recently added records
+                </div>
+
+            </div>
+
+
+            <span class="badge green">
+                🔐 Secure archive
+            </span>
+
+        </div>
+
+
+
+        <!-- DOCUMENT 1 -->
+
+        <div
+            class="document"
+            data-type="report"
+            data-name="blood test results"
+        >
+
+            <div class="document-icon">
+                🧪
+            </div>
+
+
+            <div class="document-info">
+
+                <div class="document-name">
+                    Blood Test Results
+                </div>
+
+                <div class="document-meta">
+                    Colombo Medical Centre · 04 Aug 2026
+                </div>
+
+                <span class="badge">
+                    Lab report
+                </span>
+
+            </div>
+
+
+            <div class="document-actions">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="preview('Blood Test Results')"
+                >
+                    View
+                </button>
+
+                <button
+                    class="btn btn-outline"
+                    onclick="downloadDemo('Blood Test Results')"
+                >
+                    ↓
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DOCUMENT 2 -->
+
+        <div
+            class="document"
+            data-type="prescription"
+            data-name="asthma prescription"
+        >
+
+            <div class="document-icon">
+                💊
+            </div>
+
+
+            <div class="document-info">
+
+                <div class="document-name">
+                    Asthma Prescription
+                </div>
+
+                <div class="document-meta">
+                    Dr. Sarah Perera · 01 Aug 2026
+                </div>
+
+                <span class="badge green">
+                    Prescription
+                </span>
+
+            </div>
+
+
+            <div class="document-actions">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="preview('Asthma Prescription')"
+                >
+                    View
+                </button>
+
+                <button
+                    class="btn btn-outline"
+                    onclick="downloadDemo('Asthma Prescription')"
+                >
+                    ↓
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DOCUMENT 3 -->
+
+        <div
+            class="document"
+            data-type="receipt"
+            data-name="hospital receipt"
+        >
+
+            <div class="document-icon">
+                🧾
+            </div>
+
+
+            <div class="document-info">
+
+                <div class="document-name">
+                    Hospital Receipt
+                </div>
+
+                <div class="document-meta">
+                    OneCare Medical Centre · 28 Jul 2026
+                </div>
+
+                <span class="badge orange">
+                    Receipt
+                </span>
+
+            </div>
+
+
+            <div class="document-actions">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="preview('Hospital Receipt')"
+                >
+                    View
+                </button>
+
+                <button
+                    class="btn btn-outline"
+                    onclick="downloadDemo('Hospital Receipt')"
+                >
+                    ↓
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DOCUMENT 4 -->
+
+        <div
+            class="document"
+            data-type="report"
+            data-name="chest x ray report"
+        >
+
+            <div class="document-icon">
+                🩻
+            </div>
+
+
+            <div class="document-info">
+
+                <div class="document-name">
+                    Chest X-Ray Report
+                </div>
+
+                <div class="document-meta">
+                    City Diagnostics · 19 Jul 2026
+                </div>
+
+                <span class="badge">
+                    Diagnostic report
+                </span>
+
+            </div>
+
+
+            <div class="document-actions">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="preview('Chest X-Ray Report')"
+                >
+                    View
+                </button>
+
+                <button
+                    class="btn btn-outline"
+                    onclick="downloadDemo('Chest X-Ray Report')"
+                >
+                    ↓
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DOCUMENT 5 -->
+
+        <div
+            class="document"
+            data-type="receipt"
+            data-name="pharmacy receipt"
+        >
+
+            <div class="document-icon">
+                🧾
+            </div>
+
+
+            <div class="document-info">
+
+                <div class="document-name">
+                    Pharmacy Receipt
+                </div>
+
+                <div class="document-meta">
+                    HealthPlus Pharmacy · 15 Jul 2026
+                </div>
+
+                <span class="badge orange">
+                    Receipt
+                </span>
+
+            </div>
+
+
+            <div class="document-actions">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="preview('Pharmacy Receipt')"
+                >
+                    View
+                </button>
+
+                <button
+                    class="btn btn-outline"
+                    onclick="downloadDemo('Pharmacy Receipt')"
+                >
+                    ↓
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="empty"
+            style="
+                display:none;
+                text-align:center;
+                padding:40px;
+                color:#64748B;
+            "
+        >
+            No documents found.
+        </div>
+
+    </section>
+
+
+</main>
+
+</div>
+
+
+
+<!-- =========================================================
+     UPLOAD MODAL
+========================================================= -->
+
+<div
+    id="uploadModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeUpload()"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-icon">
+            📁
+        </div>
+
+
+        <h2>
+            Add a document
+        </h2>
+
+
+        <p class="modal-description">
+            Add a medical report, prescription or receipt
+            to your OneCare archive.
+        </p>
+
+
+        <label
+            for="file"
+            class="upload-area"
+        >
+
+            <div class="upload-cloud">
+                ☁️
+            </div>
+
+            <strong>
+                Choose a file
+            </strong>
+
+            <span>
+                PDF, JPG or PNG
+            </span>
+
+        </label>
+
+
+        <input
+            id="file"
+            type="file"
+            accept=".pdf,.jpg,.jpeg,.png"
+            style="display:none"
+            onchange="fileChosen()"
+        >
+
+
+        <div
+            id="chosen"
+            style="
+                display:none;
+                margin-top:15px;
+                padding:12px;
+                background:#E6F4F1;
+                border-radius:12px;
+                font-size:0.85rem;
+            "
+        ></div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="btn btn-outline"
+                onclick="closeUpload()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="uploadDocument()"
+            >
+                Add document
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     PREVIEW MODAL
+========================================================= -->
+
+<div
+    id="previewModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closePreview()"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-icon">
+            📄
+        </div>
+
+
+        <h2 id="previewTitle">
+            Document
+        </h2>
+
+
+        <div class="preview-paper">
+
+            <div class="paper">
+
+                <div class="paper-heading">
+                    OneCare Medical Record
+                </div>
+
+                <div class="paper-line medium"></div>
+
+                <div class="paper-line short"></div>
+
+                <br>
+
+                <div class="paper-line long"></div>
+
+                <div class="paper-line long"></div>
+
+                <div class="paper-line medium"></div>
+
+                <br>
+
+                <div class="paper-line long"></div>
+
+                <div class="paper-line short"></div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="closePreview()"
+        >
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     CURA BUTTON
+========================================================= -->
+
+<button
+    class="cura-button"
+    id="curaButton"
+>
+    🧾
+</button>
+
+
+
+<!-- =========================================================
+     CURA CHAT
+========================================================= -->
+
+<div
+    class="cura-window"
+    id="curaWindow"
+>
+
+
+    <div class="cura-header">
+
+        <div class="cura-logo">
+            🧾
+        </div>
+
+
+        <div class="cura-title">
+
+            <strong>
+                Cura
+            </strong>
+
+            <small>
+                Your OneCare companion
+            </small>
+
+        </div>
+
+
+        <button
+            class="cura-close"
+            id="curaClose"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+
+    <div
+        class="cura-messages"
+        id="messages"
+    >
+
+        <div class="message bot">
+
+            Hey! 👋 How are you?
+            I'm Cura, your personal OneCare companion.
+            How can I help you today?
+
+        </div>
+
+
+        <div class="message bot">
+
+            I can help you find your documents,
+            understand the OneCare dashboard,
+            or explain how doctor access works.
+
+        </div>
+
+    </div>
+
+
+
+    <div class="cura-input">
+
+        <input
+            id="curaInput"
+            type="text"
+            placeholder="Ask Cura..."
+        >
+
+        <button
+            class="cura-send"
+            onclick="sendMessage()"
+        >
+            ↑
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+
+<script>
+
+/* =========================================================
+   DOCUMENT SEARCH
+========================================================= */
+
+function filterDocuments() {
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+    const filter =
+        document
+            .getElementById("filter")
+            .value;
+
+    const documents =
+        document.querySelectorAll(
+            ".document"
+        );
+
+    let count = 0;
+
+
+    documents.forEach(doc => {
+
+        const name =
+            doc
+                .dataset
+                .name
+                .toLowerCase();
+
+        const type =
+            doc.dataset.type;
+
+
+        const matchesSearch =
+            name.includes(search);
+
+        const matchesFilter =
+            filter === "all" ||
+            filter === type;
+
+
+        if (
+            matchesSearch &&
+            matchesFilter
+        ) {
+
+            doc.style.display = "flex";
+
+            count++;
+
+        } else {
+
+            doc.style.display = "none";
+
+        }
+
+    });
+
+
+    document
+        .getElementById("empty")
+        .style.display =
+            count === 0
+                ? "block"
+                : "none";
+}
+
+
+
+/* =========================================================
+   UPLOAD
+========================================================= */
+
+function openUpload() {
+
+    document
+        .getElementById("uploadModal")
+        .classList.add("show");
+
+}
+
+
+function closeUpload() {
+
+    document
+        .getElementById("uploadModal")
+        .classList.remove("show");
+
+}
+
+
+function fileChosen() {
+
+    const input =
+        document.getElementById("file");
+
+    const chosen =
+        document.getElementById("chosen");
+
+
+    if (
+        input.files &&
+        input.files.length
+    ) {
+
+        chosen.style.display = "block";
+
+        chosen.textContent =
+            "📄 " +
+            input.files[0].name;
+
+    }
+
+}
+
+
+function uploadDocument() {
+
+    const input =
+        document.getElementById("file");
+
+
+    if (
+        !input.files ||
+        !input.files.length
+    ) {
+
+        showToast(
+            "Please choose a file first."
+        );
+
+        return;
+    }
+
+
+    closeUpload();
+
+
+    showToast(
+        "Document added to your OneCare archive."
+    );
+
+
+    input.value = "";
+
+    document
+        .getElementById("chosen")
+        .style.display = "none";
+}
+
+
+
+/* =========================================================
+   PREVIEW
+========================================================= */
+
+function preview(name) {
+
+    document
+        .getElementById("previewTitle")
+        .textContent = name;
+
+
+    document
+        .getElementById("previewModal")
+        .classList.add("show");
+
+}
+
+
+function closePreview() {
+
+    document
+        .getElementById("previewModal")
+        .classList.remove("show");
+
+}
+
+
+
+/* =========================================================
+   DOWNLOAD DEMO
+========================================================= */
+
+function downloadDemo(name) {
+
+    showToast(
+        name +
+        " would download here in the full version."
+    );
+
+}
+
+
+
+/* =========================================================
+   MODAL OUTSIDE CLICK
+========================================================= */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(text) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = text;
+
+    toast.classList.add("show");
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+
+/* =========================================================
+   CURA
+========================================================= */
+
+const curaButton =
+    document.getElementById(
+        "curaButton"
+    );
+
+const curaWindow =
+    document.getElementById(
+        "curaWindow"
+    );
+
+const curaClose =
+    document.getElementById(
+        "curaClose"
+    );
+
+
+curaButton.addEventListener(
+    "click",
+    () => {
+
+        curaWindow.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+curaClose.addEventListener(
+    "click",
+    () => {
+
+        curaWindow.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   CURA CHAT
+========================================================= */
+
+function sendMessage() {
+
+    const input =
+        document.getElementById(
+            "curaInput"
+        );
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    addMessage(
+        text,
+        "user"
+    );
+
+
+    input.value = "";
+
+
+    setTimeout(
+        () => {
+
+            const lower =
+                text.toLowerCase();
+
+            let reply =
+                "I'm still learning! I can help you navigate OneCare and find your healthcare information.";
+
+            
+            if (
+                lower.includes("document") ||
+                lower.includes("report")
+            ) {
+
+                reply =
+                    "Your latest document is your Blood Test Results from 04 August 2026. 🧪";
+
+            }
+
+
+            else if (
+                lower.includes("prescription")
+            ) {
+
+                reply =
+                    "Your latest prescription is the Asthma Prescription from Dr. Sarah Perera. 💊";
+
+            }
+
+
+            else if (
+                lower.includes("receipt")
+            ) {
+
+                reply =
+                    "You have hospital and pharmacy receipts stored in your OneCare archive. 🧾";
+
+            }
+
+
+            else if (
+                lower.includes("doctor") ||
+                lower.includes("access")
+            ) {
+
+                reply =
+                    "You can use Doctor Access to give a healthcare professional temporary access to selected records. 🔐";
+
+            }
+
+
+            else if (
+                lower.includes("hi") ||
+                lower.includes("hello")
+            ) {
+
+                reply =
+                    "Hey! 👋 It's lovely to see you. What can I help you with today?";
+
+            }
+
+
+            addMessage(
+                reply,
+                "bot"
+            );
+
+        },
+        650
+    );
+
+}
+
+
+
+function addMessage(
+    text,
+    type
+) {
+
+    const messages =
+        document.getElementById(
+            "messages"
+        );
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+
+    message.className =
+        "message " +
+        type;
+
+
+    message.textContent =
+        text;
+
+
+    messages.appendChild(
+        message
+    );
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+
+document
+    .getElementById("curaInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                sendMessage();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
